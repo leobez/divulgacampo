@@ -1,3 +1,0 @@
-# projeto-lab-eng-soft
-
- 
