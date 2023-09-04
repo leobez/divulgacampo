@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
 		<nav className={styles.navbar}>
 			<NavLink className={styles.brand} to="/">
-				TC <span>Campo</span>
+				TCCCC <span>Campo</span>
 			</NavLink>
 			<ul className={styles.links_list}>
 				<li>
