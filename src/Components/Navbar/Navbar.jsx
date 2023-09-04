@@ -4,6 +4,7 @@ import styles  from "./Navbar.module.css"
 
 const Navbar = () => {
 
+
     return (
 		<nav className={styles.navbar}>
 			<NavLink className={styles.brand} to="/">
@@ -16,6 +17,22 @@ const Navbar = () => {
 					className={({ isActive }) => (isActive ? styles.active : "")}
 					>
 					Home
+					</NavLink>
+				</li>
+				<li>
+					<NavLink
+					to="/login"
+					className={({ isActive }) => (isActive ? styles.active : "")}
+					>
+					Login
+					</NavLink>
+				</li>
+				<li>
+					<NavLink
+					to="/cadastro"
+					className={({ isActive }) => (isActive ? styles.active : "")}
+					>
+					Cadastro
 					</NavLink>
 				</li>
 			</ul>

@@ -3,6 +3,7 @@ import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Cadastro from './Pages/Cadastro/Cadastro'
 
 function App() {
 
@@ -14,8 +15,12 @@ function App() {
 					<Routes>
 						<Route path='/' element={<Home/>}></Route>
 
-            <Route path='/login' element={<Login/>}></Route>
+            			<Route path='/login' element={<Login/>}></Route>
+
+						<Route path='/cadastro' element={<Cadastro/>}></Route>
 					</Routes>
+
+			
 				</div>
 			</BrowserRouter>
       </div>
