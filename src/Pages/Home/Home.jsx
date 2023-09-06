@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
         Home, seu email é: X
-		<div className={styles.teste}></div>
+		{/* <div className={styles.teste}></div> */}
     </div>
   )
 }
