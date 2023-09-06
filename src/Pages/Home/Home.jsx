@@ -4,7 +4,7 @@ import styles  from "./Home.module.css"
 const Home = () => {
   return (
     <div className={styles.home}>
-        Home, seu email é: X
+        Olá, você esta na tela de home! Seu e-mail é: X
 		{/* <div className={styles.teste}></div> */}
     </div>
   )

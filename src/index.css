@@ -34,9 +34,22 @@ html, body {
 	max-width: 1920px;
 }
 
-.App {
+/* DESIGN 1 */
+/* .App {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	position: relative;
+}
+*/
+
+/* DESIGN 2 */
+.App {
+	display: grid;
+	gap: 5px;
+	grid-template-areas: 
+		"header header"
+		"navbar main"
+		"footer footer";
+	grid-template-rows: 80px auto 80px;
+	grid-template-columns: auto 1fr;
 }

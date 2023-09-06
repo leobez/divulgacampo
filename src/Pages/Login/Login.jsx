@@ -4,7 +4,7 @@ import styles  from "./Login.module.css"
 const Login = () => {
     return (
         <div className={styles.login}>
-            Login
+            Olá, você esta na tela de login!
         </div>
     )
 }

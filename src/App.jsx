@@ -15,10 +15,10 @@ function App() {
 
     return (
       <div className='App'>
-			<Header/>
+			<Header id='header'/>
 			<BrowserRouter>
-				<Navbar />
-				<div className="main">
+				<Navbar id='navbar'/>
+				<div className='main' id='main'>
 					<Routes>
 						<Route path='/' element={<Home/>}></Route>
 						{/* <Route path='/projeto-lab-eng-soft' element={<Navigate to="/"/>}></Route> */}
@@ -30,7 +30,7 @@ function App() {
 					</Routes>
 				</div>
 			</BrowserRouter>
-			<Footer/>
+			<Footer id='footer'/>
       </div>
     )
 }
