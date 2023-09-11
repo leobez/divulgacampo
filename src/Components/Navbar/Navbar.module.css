@@ -16,6 +16,9 @@
 	border: 3px solid black;
 	width: 200px;
 	text-align: center;
+
+	animation-name: left-to-right;
+	animation-duration: 0.4s;
 }
 
 .navbar > button {
@@ -38,3 +41,14 @@
 	background-color: #000;
 	color: white;
 }
+
+/* NAV ANIMATION */
+@keyframes left-to-right {
+	from {
+        transform: translateX(-100%);
+        opacity: 0%;
+    } to {
+        transform: translateX(0);
+        opacity: 100%;
+    }
+  }

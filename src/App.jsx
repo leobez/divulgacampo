@@ -37,7 +37,7 @@ function App() {
 				console.log("TESTE: ", user.displayName, user.uid, user.email)
 				setTimeout(() => {
 					setGlobalDisplayName(user.displayName)
-				}, 500)
+				}, 1000)
 				setGlobalUid(user.uid)
 				setGlobalEmail(user.email)
 				setIsLogged(true)
