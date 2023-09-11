@@ -10,21 +10,26 @@ const Login = ({auth}) => {
 	const [email, setEmail] = useState(undefined)
 	const [password, setPassword] = useState(undefined)
 
+	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState("")
 
 	const navigate = useNavigate()
 
 	const loginUser = async(user, auth) => {
 		try {
+			setLoading(true)
 			await signInWithEmailAndPassword(auth, user.email, user.password)
+			setLoading(false)
+			navigate("/")
 		} catch (error) {
-			console.log(error)
+			setLoading(false)
+			//console.log(error)
 			setError(error.message)
 		}
 
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault()
 
 		if (email === undefined || password === undefined) {
@@ -38,8 +43,7 @@ const Login = ({auth}) => {
 		}
 		setError("")
 
-		loginUser(user, auth)
-		navigate("/")
+		await loginUser(user, auth)
 		
 		//console.log("USER: ", user)
 	}
@@ -66,7 +70,7 @@ const Login = ({auth}) => {
 					onChange={(e) => setPassword(e.target.value)}/>
 				</div>
 
-				<input type="submit" value="Entrar"/>
+				{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
 				<div className={styles.error}>
 					{error && <p>{error}</p>}

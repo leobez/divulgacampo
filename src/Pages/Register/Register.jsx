@@ -11,16 +11,20 @@ const Register = ({auth}) => {
 	const [password, setPassword] = useState(undefined)
 	const [passwordAgain, setPasswordAgain] = useState(undefined)
 	const [error, setError] = useState("")
+	const [loading, setLoading] = useState(false)
 
 	const navigate = useNavigate()
 
 	const createUser = async(auth, userData) => {
 		try {
+			setLoading(true)
 			const {user} = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
 			await updateProfile(user, {displayName: userData.displayName})
-			return user
+			setLoading(false)
+			navigate("/")
 		} catch (error) {
-			console.log(error)
+			setLoading(false)
+			//console.log(error)
 			setError(error.message)
 		}
 	}
@@ -46,8 +50,6 @@ const Register = ({auth}) => {
 		setError("")
 
 		await createUser(auth, user)
-
-		navigate("/")
 
 		//console.log("USER: ", user)
 	}
@@ -93,7 +95,7 @@ const Register = ({auth}) => {
 						onChange={(e) => setPasswordAgain(e.target.value)}/>
 					</div>
 
-					<input type="submit" value="Cadastrar"/>
+					{!loading ? (<input type="submit" value="Cadastrar"/>) : (<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
 					<div className={styles.error}>
 						{error && <p>{error}</p>}

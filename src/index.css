@@ -64,26 +64,26 @@ form {
 
 form > div {
 	display: flex;
-	justify-content: space-between;
 }
 
 form label {
-	width: fit-content;
 	display: flex;
 	align-items: center;
-	justify-content: end;
 	margin-right: 1em;
+	flex-basis: 30%;
+	text-align: left;
 }
 
 form input {
 	height: 50px;
 	padding: 5px;
+	flex-basis: 70%;
 	border: 3px solid black;
 }
 
 form input[type="submit"] {
-	height: 50px;
-	width: 200px;
+	height: 60px;
+	width: 100%;
 	align-self: center;
 
 	border: 3px solid black;
@@ -91,8 +91,12 @@ form input[type="submit"] {
 	color: black;
 	font-weight: bold;
 	cursor: pointer;
-	margin-left: 0.60em;
 	transition: 0.3s;
+}
+
+form input[type="submit"].loadingButton {
+	background-color: black;
+	color: white;
 }
 
 form input[type="submit"]:hover {
@@ -100,8 +104,47 @@ form input[type="submit"]:hover {
 	background-color: black;
 }
 
-p.loading {
+
+/* LOADING ANIMATION */
+.loading {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 }
+
+.lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+  }
+  .lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border: 8px solid #cef;
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #cef transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  

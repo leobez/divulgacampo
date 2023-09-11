@@ -53,9 +53,8 @@ function App() {
 		
 	}, [auth])
 
-
 	if (loadingUser) {
-		return <p className='loading'>Carregando...</p>
+		return <div className="lds-ring loading"><div></div><div></div><div></div><div></div></div>
 	}
 
     return (
