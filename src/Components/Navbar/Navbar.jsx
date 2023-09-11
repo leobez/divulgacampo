@@ -2,15 +2,18 @@ import React from 'react'
 import styles from "./Navbar.module.css"
 import { NavLink } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = ({ auth, isLogged, setIsLogged }) => {
 
+	const navigate = useNavigate()
+
 	const handleLogout = async () => {
-		console.log("DESLOGANDO USUARIO: ", auth)
 		try {
 			await signOut(auth)
 			setIsLogged(false)
 			console.log("DESLOGADO")
+			navigate("/")
 		} catch (error) {
 			console.log(error)
 		}
@@ -26,9 +29,16 @@ const Navbar = ({ auth, isLogged, setIsLogged }) => {
 
 			{isLogged ?
 				(
-					<button  onClick={handleLogout}>
-						Sair
-					</button>
+					<>
+						<NavLink
+							to="/myprofile"
+							className={({ isActive }) => isActive ? styles.active : ""}>
+							Meu perfil
+						</NavLink>
+						<button  onClick={handleLogout}>
+							Sair
+						</button>
+					</>
 				)
 				:
 				(

@@ -1,12 +1,28 @@
 import { useState } from 'react'
 import styles  from "./Login.module.css"
 
-const Login = () => {
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
+import { useNavigate } from 'react-router-dom'
+
+const Login = ({auth}) => {
 
 	const [email, setEmail] = useState(undefined)
 	const [password, setPassword] = useState(undefined)
 
 	const [error, setError] = useState("")
+
+	const navigate = useNavigate()
+
+	const loginUser = async(user, auth) => {
+		try {
+			await signInWithEmailAndPassword(auth, user.email, user.password)
+		} catch (error) {
+			console.log(error)
+			setError(error.message)
+		}
+
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -22,7 +38,10 @@ const Login = () => {
 		}
 		setError("")
 
-		console.log("USER: ", user)
+		loginUser(user, auth)
+		navigate("/")
+		
+		//console.log("USER: ", user)
 	}
 
     return (

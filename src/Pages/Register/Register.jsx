@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles  from "./Register.module.css"
 import {db} from "../../firebase/config"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
 const Register = ({auth}) => {
@@ -14,29 +14,18 @@ const Register = ({auth}) => {
 
 	const navigate = useNavigate()
 
-	const login = async(auth, userData) => {
-		try {
-			await signInWithEmailAndPassword(auth, userData.email, userData.password)
-			console.log("login: ", auth)
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
 	const createUser = async(auth, userData) => {
-
 		try {
 			const {user} = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
 			await updateProfile(user, {displayName: userData.displayName})
-			login(auth, userData)
-			navigate("/")
+			return user
 		} catch (error) {
 			console.log(error)
 			setError(error.message)
 		}
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault()
 
 		if (password !== passwordAgain) {
@@ -56,9 +45,11 @@ const Register = ({auth}) => {
 		}
 		setError("")
 
-		createUser(auth, user)
+		await createUser(auth, user)
 
-		console.log("USER: ", user)
+		navigate("/")
+
+		//console.log("USER: ", user)
 	}
 
 	return (
