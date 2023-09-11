@@ -1,0 +1,20 @@
+.login {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.login > div {
+/* 	border-left: 1px solid black;
+	border-right: 1px solid black; */
+	padding: 50px 0px;
+}
+
+.error {
+	align-self: center;
+}
+
+.error > p {
+	color: red;
+	font-weight: bold;
+}
