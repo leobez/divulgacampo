@@ -30,6 +30,7 @@ function App() {
 					</Routes>
 				</div>
 			</BrowserRouter>
+
 			<Footer id='footer'/>
       </div>
     )

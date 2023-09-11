@@ -1,3 +1,43 @@
-.login {
+.login{
+    margin-top: 100px;
+    padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
 	
 }
+
+input{
+    padding: 5px;
+    width: 300px;
+    border: 1px solid black;
+    
+}
+
+input:hover{
+    opacity: 0.5;
+    border-style: grey;
+}
+
+button{
+    padding:7px;
+    cursor: pointer;
+    border: 1px solid black;
+	text-align: center;
+    background-color: white;
+}
+
+button:hover{
+    opacity: 0.5;
+    background-color: grey;
+}
+
+button:active{
+    opacity: 0.5;
+}
+
+
+
+
+
