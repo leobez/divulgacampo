@@ -1,11 +1,7 @@
-import { useContext, createContext } from "react";
+import { db } from "../firebase/config";
+import { createContext } from "react";
+import { getAuth } from "firebase/auth";
 
-const AuthContext = createContext()
+const AuthContext = createContext(getAuth())
 
-export const AuthContextProvider = ({children, value}) => {
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-
-}
-
-export const useAuthValue = () => useContext(AuthContext)
+export default AuthContext

@@ -1,39 +1,22 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles  from "./Login.module.css"
+import { useAuthentication } from '../../Hooks/useAuthentication'
+import AuthContext from '../../Context/AuthContext'
 
-import { signInWithEmailAndPassword } from 'firebase/auth'
-
-import { useNavigate } from 'react-router-dom'
-
-const Login = ({auth}) => {
+const Login = () => {
 
 	const [email, setEmail] = useState(undefined)
 	const [password, setPassword] = useState(undefined)
-
-	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState("")
 
-	const navigate = useNavigate()
-
-	const loginUser = async(user, auth) => {
-		try {
-			setLoading(true)
-			await signInWithEmailAndPassword(auth, user.email, user.password)
-			setLoading(false)
-			navigate("/")
-		} catch (error) {
-			setLoading(false)
-			//console.log(error)
-			setError(error.message)
-		}
-
-	}
+	const {loading, authError, loginUser} = useAuthentication()
+	const auth = useContext(AuthContext)
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
 
-		if (email === undefined || password === undefined) {
-			setError("Deve digitar todos os campos!")
+		if (email === undefined || password === undefined || email.trim() === "" || password.trim() === "") {
+			setError("Preencha todos os campos.")
 			return;
 		}
 
@@ -42,10 +25,7 @@ const Login = ({auth}) => {
 			password: password,
 		}
 		setError("")
-
-		await loginUser(user, auth)
-		
-		//console.log("USER: ", user)
+		await loginUser(auth, user)
 	}
 
     return (
@@ -75,7 +55,10 @@ const Login = ({auth}) => {
 				<div className={styles.error}>
 					{error && <p>{error}</p>}
 				</div>
-				
+				<div className={styles.error}>
+					{authError && <p>{authError}</p>}
+				</div>
+
 			</form>
 		</div>
 	</div>

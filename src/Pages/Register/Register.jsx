@@ -1,44 +1,38 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles  from "./Register.module.css"
-import {db} from "../../firebase/config"
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { useAuthentication } from '../../Hooks/useAuthentication'
+import AuthContext from '../../Context/AuthContext'
 
-const Register = ({auth}) => {
+const Register = () => {
 
 	const [name, setName] = useState(undefined)
 	const [email, setEmail] = useState(undefined)
 	const [password, setPassword] = useState(undefined)
 	const [passwordAgain, setPasswordAgain] = useState(undefined)
-	const [error, setError] = useState("")
-	const [loading, setLoading] = useState(false)
 
-	const navigate = useNavigate()
-
-	const createUser = async(auth, userData) => {
-		try {
-			setLoading(true)
-			const {user} = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
-			await updateProfile(user, {displayName: userData.displayName})
-			setLoading(false)
-			navigate("/")
-		} catch (error) {
-			setLoading(false)
-			//console.log(error)
-			setError(error.message)
-		}
-	}
+	const {loading, authError, registerUser} = useAuthentication()
+	const [error, setError] = useState()
+	const auth = useContext(AuthContext)
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
 
-		if (password !== passwordAgain) {
-			setError("Senhas devem ser iguais!")
+		if (
+			name === undefined || 
+			email === undefined || 
+			password === undefined || 
+			passwordAgain === undefined || 
+			name.trim() === "" || 
+			email.trim() === "" || 
+			password.trim() === "" || 
+			passwordAgain.trim() === ""
+		) {
+			setError("Preencha todos os campos.")
 			return;
 		}
 
-		if (name === undefined || email === undefined || password === undefined || passwordAgain === undefined) {
-			setError("Deve digitar todos os campos!")
+		if (password !== passwordAgain) {
+			setError("Senhas devem ser iguais.")
 			return;
 		}
 
@@ -48,10 +42,7 @@ const Register = ({auth}) => {
 			password: password,
 		}
 		setError("")
-
-		await createUser(auth, user)
-
-		//console.log("USER: ", user)
+		await registerUser(auth, user)
 	}
 
 	return (
@@ -95,10 +86,12 @@ const Register = ({auth}) => {
 						onChange={(e) => setPasswordAgain(e.target.value)}/>
 					</div>
 
-					{!loading ? (<input type="submit" value="Cadastrar"/>) : (<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
+					{!loading ? (<input type="submit" value="Cadastrar"/>):(
+					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
 					<div className={styles.error}>
 						{error && <p>{error}</p>}
+						{authError && <p>{authError}</p>}
 					</div>
 				</form>
 			</div>

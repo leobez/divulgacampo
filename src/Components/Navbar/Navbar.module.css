@@ -17,8 +17,8 @@
 	width: 200px;
 	text-align: center;
 
-	animation-name: left-to-right;
-	animation-duration: 0.4s;
+/* 	animation-name: left-to-right;
+	animation-duration: 0.4s; */
 }
 
 .navbar > button {

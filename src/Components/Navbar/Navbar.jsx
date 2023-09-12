@@ -1,22 +1,18 @@
 import React from 'react'
 import styles from "./Navbar.module.css"
 import { NavLink } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import AuthContext from '../../Context/AuthContext'
+import { useAuthentication } from '../../Hooks/useAuthentication'
 
-const Navbar = ({ auth, isLogged, setIsLogged }) => {
+const Navbar = () => {
 
-	const navigate = useNavigate()
+	const auth = useContext(AuthContext)
+
+	const {logoutUser} = useAuthentication()
 
 	const handleLogout = async () => {
-		try {
-			await signOut(auth)
-			setIsLogged(false)
-			console.log("DESLOGADO")
-			navigate("/")
-		} catch (error) {
-			console.log(error)
-		}
+		await logoutUser(auth)
 	}
 
 	return (
@@ -27,7 +23,7 @@ const Navbar = ({ auth, isLogged, setIsLogged }) => {
 				Home
 			</NavLink>
 
-			{isLogged ?
+			{auth.currentUser ?
 				(
 					<>
 						<NavLink
@@ -35,6 +31,7 @@ const Navbar = ({ auth, isLogged, setIsLogged }) => {
 							className={({ isActive }) => isActive ? styles.active : ""}>
 							Meu perfil
 						</NavLink>
+						
 						<button  onClick={handleLogout}>
 							Sair
 						</button>
