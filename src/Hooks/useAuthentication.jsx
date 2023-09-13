@@ -18,11 +18,17 @@ export const useAuthentication = () => {
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
-			setAuthError(error.message)
+			if (error.message.includes("email-already-in-use")) {
+				setAuthError("Email já usado. Tente outro.")
+			} else {
+				setAuthError("Algo aconteceu. Tente mais tarde.")
+			}
+			//setAuthError(error.message)
 		}
 	}
 
 	const loginUser = async(auth, userData) => {
+
 		try {
 			setLoading(true)
 			await signInWithEmailAndPassword(auth, userData.email, userData.password)
@@ -31,7 +37,12 @@ export const useAuthentication = () => {
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
-			setAuthError(error.message)
+			if (error.message.includes("user-not-found")) {
+				setAuthError("Usuário não foi encontrado.")
+			} else {
+				setAuthError("Algo aconteceu. Tente mais tarde.")
+			}
+			//setAuthError(error.message)
 		}
 	}
 
@@ -44,7 +55,7 @@ export const useAuthentication = () => {
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
-			setAuthError(error.message)
+			//setAuthError(error.message)
 		}
 	}
 

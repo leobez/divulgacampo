@@ -25,7 +25,15 @@ const Login = () => {
 			password: password,
 		}
 		setError("")
+
 		await loginUser(auth, user)
+/* 
+		loginUser(auth, user).then((message) => {
+			console.log(message)
+		}).catch((message) => {
+			console.log(message)
+		}) */
+
 	}
 
     return (
