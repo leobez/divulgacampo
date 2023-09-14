@@ -16,9 +16,17 @@
 	border: 3px solid black;
 	width: 200px;
 	text-align: center;
+	font-weight: bold;
 
 /* 	animation-name: left-to-right;
 	animation-duration: 0.4s; */
+}
+
+.navbar > a:hover {
+	transition: 0.3s;
+	cursor: pointer;
+	background-color: black;
+	color: white;
 }
 
 .navbar > button {
@@ -29,6 +37,7 @@
 	text-align: center;
 	background-color: white;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .navbar > button:hover {

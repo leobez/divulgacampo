@@ -4,3 +4,7 @@
 	grid-area: main;
 	padding: 5px;
 }
+
+.main > div {
+	padding: 10px;
+}
