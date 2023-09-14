@@ -1,11 +1,10 @@
 .register {
 	height: 100%;
 	display: flex;
-	justify-content: center;
 }
 
 .register > div {
 /* 	border-left: 1px solid black;
 	border-right: 1px solid black; */
-	padding: 0px 0px;
+	padding: 20px;
 }

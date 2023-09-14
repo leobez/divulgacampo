@@ -18,6 +18,7 @@ import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
 import Register from './Pages/Register/Register'
 import MyProfile from './Pages/MyProfile/MyProfile'
+import About from './Pages/About/About'
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			console.log(auth.currentUser.emailVerified)
+
 			setIsLogged(true)
 
 			if (user.emailVerified) {
@@ -68,8 +69,9 @@ function App() {
 						}
 
 						<Routes>
-							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}></Route>
 							<Route path='*' element={<NotFound/>}></Route>
+							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}></Route>
+							<Route path='/about' element={<About/>}></Route>
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to="/register"/>}></Route>

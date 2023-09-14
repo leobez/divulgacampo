@@ -23,6 +23,12 @@ const Navbar = () => {
 				Home
 			</NavLink>
 
+			<NavLink
+				to="/about"
+				className={({ isActive }) => isActive ? styles.active : ""}>
+				Sobre
+			</NavLink>
+
 			{auth.currentUser ?
 				(
 					<>
