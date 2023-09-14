@@ -1,5 +1,13 @@
 .myprofile{ 
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
 
+.myprofile h1{ 
+	font-size: 1.3em;
+}
 
-    
+.myprofile .info > span{
+	font-weight: bold;
 }

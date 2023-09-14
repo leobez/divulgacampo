@@ -10,7 +10,7 @@ const Register = () => {
 	const [password, setPassword] = useState(undefined)
 	const [passwordAgain, setPasswordAgain] = useState(undefined)
 
-	const {loading, authError, registerUser} = useAuthentication()
+	const {loading, authError, authWarn, registerUser} = useAuthentication()
 	const [error, setError] = useState()
 	const auth = useContext(AuthContext)
 
@@ -42,6 +42,7 @@ const Register = () => {
 			password: password,
 		}
 		setError("")
+
 		await registerUser(auth, user)
 	}
 
@@ -89,10 +90,16 @@ const Register = () => {
 					{!loading ? (<input type="submit" value="Cadastrar"/>):(
 					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
-					<div className={styles.error}>
+					<div className="error">
 						{error && <p>{error}</p>}
+					</div>
+					<div className="error">
 						{authError && <p>{authError}</p>}
 					</div>
+					<div className="warn">
+						{authWarn && <p>{authWarn}</p>}
+					</div>
+
 				</form>
 			</div>
 		</div>

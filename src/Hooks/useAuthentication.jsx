@@ -1,11 +1,20 @@
 import { useState } from "react"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth"
+
+import { 
+		createUserWithEmailAndPassword, 
+		signInWithEmailAndPassword, 
+		signOut, 
+		updateProfile,
+		sendEmailVerification
+	} from "firebase/auth"
+
 import { useNavigate } from "react-router-dom"
 
 export const useAuthentication = () => {
 
 	const navigate = useNavigate()
 	const [authError, setAuthError] = useState("")
+	const [authWarn, setAuthWarn] = useState("")
 	const [loading, setLoading] = useState(false)
 
 	const registerUser = async(auth, userData) => {
@@ -13,8 +22,9 @@ export const useAuthentication = () => {
 			setLoading(true)
 			const userCredentials = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
 			await updateProfile(userCredentials.user, {displayName: userData.displayName})
+			await sendEmailVerification(userCredentials.user)
 			setLoading(false)
-			navigate("/")
+			navigate("/") 
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
@@ -39,7 +49,9 @@ export const useAuthentication = () => {
 			console.log(error)
 			if (error.message.includes("user-not-found")) {
 				setAuthError("Usuário não foi encontrado.")
-			} else {
+			} else if (error.message.includes("wrong-password")) {
+				setAuthError("Email ou senha incorreto.")
+ 			} else {
 				setAuthError("Algo aconteceu. Tente mais tarde.")
 			}
 			//setAuthError(error.message)
@@ -62,9 +74,11 @@ export const useAuthentication = () => {
 	return {
 		loading,
 		authError,
+		authWarn,
 		registerUser,
 		loginUser,
-		logoutUser
+		logoutUser,
+		
 	}
 
 }

@@ -9,17 +9,3 @@
 	border-right: 1px solid black; */
 	padding: 0px 0px;
 }
-
-.error {
-	width: 400px;
-	align-self: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.error > p {
-	text-align: center;
-	color: red;
-	font-weight: bold;
-}

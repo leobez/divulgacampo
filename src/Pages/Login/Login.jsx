@@ -60,10 +60,10 @@ const Login = () => {
 
 				{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
-				<div className={styles.error}>
+				<div className="error">
 					{error && <p>{error}</p>}
 				</div>
-				<div className={styles.error}>
+				<div className="error">
 					{authError && <p>{authError}</p>}
 				</div>
 

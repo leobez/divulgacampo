@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from "./Home.module.css"
+import AuthContext from '../../Context/AuthContext'
 
-const Home = ({uid, email, displayName}) => {
+const Home = ({isEmailVerified}) => {
+
+	const auth = useContext(AuthContext)
+
 	return (
 		<div className={styles.home}>
 			<p> Olá, você esta na tela de home! </p> 
-			{uid && 
-				<>
-				</>
-			}
-			{/* <div className={styles.teste}></div> */}
+			{!auth.currentUser && <p>Cadastre-se!</p>}		
 		</div>
 	)
 }

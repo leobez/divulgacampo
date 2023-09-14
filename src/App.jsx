@@ -11,7 +11,8 @@ import NotFound from './Pages/NotFound/NotFound'
 
 // Context
 import AuthContext from './Context/AuthContext'
-
+/* import VerifiedEmailContext from './Context/VerifiedEmailContext' 
+ */
 // Pages
 import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
@@ -22,12 +23,23 @@ import MyProfile from './Pages/MyProfile/MyProfile'
 function App() {
 
 	const auth = useContext(AuthContext)
+
 	const [isLogged, setIsLogged] = useState(false)
+	const [isEmailVerified, setIsEmailVerified] = useState(false)
+
 	const [loadingUser, setLoadingUser] = useState(true)
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
+			console.log(auth.currentUser.emailVerified)
 			setIsLogged(true)
+
+			if (user.emailVerified) {
+				setIsEmailVerified(true)
+			} else {
+				setIsEmailVerified(false)
+			}
+
 		} else {
 			setIsLogged(false)
 		}
@@ -48,17 +60,26 @@ function App() {
 					<Header/>
 					<Navbar/>
 					<div className='main'>
+
+						{!isEmailVerified && auth.currentUser && 
+							<div className='verifyemailwarn'>
+								<p>Verifique seu email: <span>{auth.currentUser.email}</span></p>
+							</div>
+						}
+
 						<Routes>
-							<Route path='/' element={<Home/>}></Route>
+							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}></Route>
 							<Route path='*' element={<NotFound/>}></Route>
 
 							{/* ROTAS PARA AUTENTICADO */}
-							<Route path='/myprofile' element={isLogged ? <MyProfile/>:<Navigate to="/register"/>}></Route>
+							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to="/register"/>}></Route>
 
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged ? <Login/>:<Navigate to="/"/>}></Route>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}></Route>
+
 						</Routes>
+
 					</div>
 				</BrowserRouter>
 				<Footer/>
