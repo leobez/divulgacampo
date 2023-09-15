@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import styles from './PopUp.module.css'
 
-const EmailVerificationPopUp = ({userEmail}) => {
+const PopUp = ({children, time}) => {
 
 	const [showIt, setShowIt] = useState(true)
 
@@ -10,17 +11,17 @@ const EmailVerificationPopUp = ({userEmail}) => {
 			setShowIt(false)
 		}
 
-		const timeout = setTimeout(showPopUp, 3000)
+		const timeout = setTimeout(showPopUp, time)
 
 		return () => clearTimeout(timeout)
 		
 	}, [])
 
 	if (showIt) {
-		return 	<div className='verifyemailwarn'>
-					<p>Verifique seu email: <span>{userEmail}</span></p>
+		return 	<div className={styles.popup}>
+					{children}
 				</div>
 	}
 }
 
-export default EmailVerificationPopUp
+export default PopUp

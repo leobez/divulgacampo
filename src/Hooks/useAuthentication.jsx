@@ -34,9 +34,8 @@ export const useAuthentication = () => {
 			} else if (error.message.includes("weak-password")) {
 				setAuthError("Senha muito fraca. Tente outra.")
 			} else {
-				setAuthError("Algo aconteceu. Tente mais tarde.")
+				setAuthError("Algo de errado aconteceu. Tente novamente mais tarde.")
 			}
-			//setAuthError(error.message)
 		}
 	}
 
@@ -46,7 +45,6 @@ export const useAuthentication = () => {
 			setLoading(true)
 			const userCredential = await signInWithEmailAndPassword(auth, userData.email, userData.password)
 			setLoading(false)
-			console.log("TESTE: ", userCredential.user.emailVerified)
 			if (!userCredential.user.emailVerified) {
 				navigate(`/validationemailsent/?email=${userCredential.user.email}`)
 				await signOut(auth)
@@ -60,9 +58,8 @@ export const useAuthentication = () => {
 			} else if (error.message.includes("wrong-password")) {
 				setAuthError("Email ou senha incorreto.")
  			} else {
-				setAuthError("Algo aconteceu. Tente mais tarde.")
+				setAuthError("Algo de errado aconteceu. Tente novamente mais tarde.")
 			}
-			//setAuthError(error.message)
 		}
 	}
 
@@ -74,7 +71,7 @@ export const useAuthentication = () => {
 			navigate("/")
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
+			//console.log(error)
 			//setAuthError(error.message)
 		}
 	}
