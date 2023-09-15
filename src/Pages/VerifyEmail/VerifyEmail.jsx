@@ -4,7 +4,7 @@ import AuthContext from '../../Context/AuthContext'
 import { applyActionCode } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
-const VerifyEmail = ({setIsEmailVerified}) => {
+const VerifyEmail = () => {
 
 	const [error, setError] = useState()
 	const auth = useContext(AuthContext)
@@ -19,7 +19,8 @@ const VerifyEmail = ({setIsEmailVerified}) => {
 	const handleVerifyEmail = async() => {
 		try {
 			const resp = await applyActionCode(auth, actionCode)
-			navigate("/?refresh=true")
+			//navigate("/?refresh=true")
+			navigate("/login")
 		} catch (error) {
 			setError(error.message)
 			navigate("/")

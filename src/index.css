@@ -134,10 +134,21 @@ form {
 	justify-content: center;
 }
 
-	.error > p {
-		color: red;
-		font-weight: bold;
-	}
+.error > p {
+	color: red;
+	font-weight: bold;
+}
+
+.warn {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.warn > p {
+	color: green;
+	font-weight: bold;
+}
 
 /*DIV CASO USUÁRIO NÃO ESTEJA COM EMAIL AUTENTICADO*/
 
@@ -145,17 +156,25 @@ form {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100px;
-	background-color: azure;
-	border: 2px solid black;
+	height: 100%;
+	width: 100%;
+	border: 2px solid black;	
 }
 
 .verifyemailwarn > p {
-	
+	background-color: azure;
+	border: 3px solid grey;
+	display: block;
+	height: 50%;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .verifyemailwarn > p > span {
 	font-weight: bold;
+	text-indent: 5px;
 }
 
 .unverifiedemail {

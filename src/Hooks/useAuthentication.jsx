@@ -13,17 +13,19 @@ import { useNavigate } from "react-router-dom"
 export const useAuthentication = () => {
 
 	const navigate = useNavigate()
+
 	const [authError, setAuthError] = useState("")
 	const [loading, setLoading] = useState(false)
 
 	const registerUser = async(auth, userData) => {
 		try {
 			setLoading(true)
-			const userCredentials = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
-			await updateProfile(userCredentials.user, {displayName: userData.displayName})
-			await sendEmailVerification(userCredentials.user)
+			const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
+			await updateProfile(userCredential.user, {displayName: userData.displayName})
+			await sendEmailVerification(userCredential.user)
+			await signOut(auth)
 			setLoading(false)
-			navigate("/") 
+			navigate(`/validationemailsent/?email=${userCredential.user.email}`)
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
@@ -42,9 +44,14 @@ export const useAuthentication = () => {
 
 		try {
 			setLoading(true)
-			await signInWithEmailAndPassword(auth, userData.email, userData.password)
+			const userCredential = await signInWithEmailAndPassword(auth, userData.email, userData.password)
 			setLoading(false)
-			navigate("/")
+			console.log("TESTE: ", userCredential.user.emailVerified)
+			if (!userCredential.user.emailVerified) {
+				navigate(`/validationemailsent/?email=${userCredential.user.email}`)
+				await signOut(auth)
+			}
+			//navigate("/")
 		} catch (error) {
 			setLoading(false)
 			console.log(error)

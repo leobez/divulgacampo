@@ -7,7 +7,6 @@ import { onAuthStateChanged } from 'firebase/auth'
 import Navbar from './Components/Navbar/Navbar'
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
-import NotFound from './Pages/NotFound/NotFound'
 
 // Context
 import AuthContext from './Context/AuthContext'
@@ -20,6 +19,8 @@ import MyProfile from './Pages/MyProfile/MyProfile'
 import About from './Pages/About/About'
 import ResetPassword from './Pages/ResetPassword/ResetPassword'
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
+import NotFound from './Pages/NotFound/NotFound'
+import ValidationEmailSent from './Pages/ValidationEmailSent/ValidationEmailSent'
 
 function App() {
 
@@ -60,29 +61,22 @@ function App() {
 					<Header/>
 					<Navbar/>
 					<div className='main'>
-
-						{!isEmailVerified && auth.currentUser && 
-							<div className='verifyemailwarn'>
-								<p>Verifique seu email: <span>{auth.currentUser.email}</span></p>
-							</div>
-						}
-
 						<Routes>
 							<Route path='*' element={<NotFound/>}></Route>
 							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}></Route>
 							<Route path='/about' element={<About/>}></Route>
 							<Route path='/resetpassword' element={<ResetPassword/>}></Route>
-							<Route path='/verifyemail' element={<VerifyEmail setIsEmailVerified={setIsEmailVerified}/>}></Route>
+							<Route path='/verifyemail' element={<VerifyEmail/>}></Route>
+							<Route path='/validationemailsent' element={<ValidationEmailSent/>}></Route>
 
 							{/* ROTAS PARA AUTENTICADO */}
-							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/register'/>}></Route>
-
+							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}></Route>
+							
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged ? <Login/>:<Navigate to="/"/>}></Route>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}></Route>
 
 						</Routes>
-
 					</div>
 				</BrowserRouter>
 				<Footer/>

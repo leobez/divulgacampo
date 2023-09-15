@@ -101,12 +101,10 @@ const Register = () => {
 						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 
-
 					<div className="error">
 						{error && <p>{error}</p>}
 						{authError && <p>{authError}</p>}
 					</div>
-
 				</form>
 			</div>
 		</div>
