@@ -9,16 +9,3 @@
 	border-right: 1px solid black; */
 }
 
-.register .title {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 2px solid black;
-	padding-bottom: 10px;
-}
-
-.register .extrabuttons {
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
-}

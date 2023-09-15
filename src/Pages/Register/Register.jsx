@@ -96,7 +96,7 @@ const Register = () => {
 					{!loading ? (<input type="submit" value="Cadastrar"/>):(
 					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
-					<div className={styles.extrabuttons}>
+					<div className='extrabuttons'>
 						<Link to="/login" className="nonNavLink">Já criou uma conta?</Link>
 						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>

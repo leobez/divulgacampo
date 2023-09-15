@@ -35,7 +35,7 @@ const Login = () => {
 		<div>
 			<form onSubmit={handleSubmit} className={styles.form}>
 
-				<div className={styles.title}>
+				<div className='formtitle'>
 					<h1>Entre !</h1>
 				</div>
 
@@ -59,7 +59,7 @@ const Login = () => {
 
 				{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
-				<div className={styles.extrabuttons}>
+				<div className='extrabuttons'>
 					<Link to="/register" className="nonNavLink">Já criou uma conta?</Link>
 					<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 				</div>

@@ -77,6 +77,13 @@ form {
 	flex-direction: column;
 	gap: 30px;
 }
+	.formtitle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 2px solid black;
+		padding-bottom: 10px;
+	}
 
 	form > div {
 		display: flex;
@@ -96,7 +103,6 @@ form {
 	form input {
 		height: 45px;
 		padding: 5px;
-		border: 2px solid black;
 		border: 3px double black;
 		font-size: 1.05em;
 	}
@@ -107,7 +113,7 @@ form {
 		align-self: center;
 		border-radius: 0px;
 
-		border: 2px solid black;
+		border: 3px solid black;
 		background-color: white;
 		color: black;
 		font-size: 1.2em;
@@ -124,6 +130,16 @@ form {
 	form input[type="submit"]:hover {
 		color: white;
 		background-color: black;
+	}
+
+	.extrabuttons {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+	}
+
+	.extrabuttons a {
+		border: 3px solid black;
 	}
 
 
@@ -158,7 +174,6 @@ form {
 	justify-content: center;
 	height: 100%;
 	width: 100%;
-	border: 2px solid black;	
 }
 
 .verifyemailwarn > p {
