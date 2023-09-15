@@ -34,8 +34,8 @@ const VerifyEmail = () => {
 	return (
 		<div>
 			{error ? 
-			(<div className='error'><p>Algo de errado aconteceu. Tente mais tarde.</p></div>) :
-
+			(<div className='error'><p>Algo de errado aconteceu. Tente mais tarde.</p></div>) 
+			:
 			(<div className={styles.noterror}><p>Seu email foi verificado!</p></div>)}
 		</div>
 	)

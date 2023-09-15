@@ -6,7 +6,7 @@
 	gap: 10px;
 }
 
-	.noterror > p {
-		color: green;
-		font-weight: bold;
-	}
+.noterror > p {
+	color: green;
+	font-weight: bold;
+}
