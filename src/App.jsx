@@ -20,6 +20,7 @@ import MyProfile from './Pages/MyProfile/MyProfile'
 import About from './Pages/About/About'
 import ResetPassword from './Pages/ResetPassword/ResetPassword'
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
+import ChangeEmailVerified from './Components/ChangeEmailVerified/ChangeEmailVerified'
 
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
 			window.location.reload()
 		}
 	}, []) */
+
+	const handleEmailVerified = () => {
+		setIsEmailVerified(true)
+	}
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
@@ -67,6 +72,7 @@ function App() {
     return (
 		<div className='App'>
 			<AuthContext.Provider value={auth}>
+				<ChangeEmailVerified handleEmailVerified={handleEmailVerified}/>
 				<BrowserRouter>
 					<Header/>
 					<Navbar/>

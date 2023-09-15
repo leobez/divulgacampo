@@ -19,7 +19,7 @@ const VerifyEmail = ({setIsEmailVerified}) => {
 	const handleVerifyEmail = async() => {
 		try {
 			const resp = await applyActionCode(auth, actionCode)
-			setIsEmailVerified(true)
+			//setIsEmailVerified(true)
 			navigate("/")
 		} catch (error) {
 			setError(error.message)
