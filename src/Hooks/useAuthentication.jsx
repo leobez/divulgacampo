@@ -14,7 +14,6 @@ export const useAuthentication = () => {
 
 	const navigate = useNavigate()
 	const [authError, setAuthError] = useState("")
-	const [authWarn, setAuthWarn] = useState("")
 	const [loading, setLoading] = useState(false)
 
 	const registerUser = async(auth, userData) => {
@@ -76,7 +75,6 @@ export const useAuthentication = () => {
 	return {
 		loading,
 		authError,
-		authWarn,
 		registerUser,
 		loginUser,
 		logoutUser,

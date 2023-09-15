@@ -16,3 +16,9 @@
 	border-bottom: 2px solid black;
 	padding-bottom: 10px;
 }
+
+.login .extrabuttons {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}

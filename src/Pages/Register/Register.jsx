@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import styles  from "./Register.module.css"
 import { useAuthentication } from '../../Hooks/useAuthentication'
 import AuthContext from '../../Context/AuthContext'
@@ -10,7 +11,7 @@ const Register = () => {
 	const [password, setPassword] = useState(undefined)
 	const [passwordAgain, setPasswordAgain] = useState(undefined)
 
-	const {loading, authError, authWarn, registerUser} = useAuthentication()
+	const {loading, authError, registerUser} = useAuthentication()
 	const [error, setError] = useState()
 	const auth = useContext(AuthContext)
 
@@ -95,12 +96,15 @@ const Register = () => {
 					{!loading ? (<input type="submit" value="Cadastrar"/>):(
 					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
+					<div className={styles.extrabuttons}>
+						<Link to="/login" className="nonNavLink">Já criou uma conta?</Link>
+						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
+					</div>
+
+
 					<div className="error">
 						{error && <p>{error}</p>}
 						{authError && <p>{authError}</p>}
-					</div>
-					<div className="warn">
-						{authWarn && <p>{authWarn}</p>}
 					</div>
 
 				</form>
