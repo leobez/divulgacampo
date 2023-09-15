@@ -49,9 +49,9 @@ function App() {
 		return <div className="loading">Carregando...</div>
 	}
 
-/* 	console.log("isLogged: ", isLogged)
-	console.log("auth.currentUser: ", auth.currentUser) */
-	console.log("isEmailVerified: ", isEmailVerified)
+/*  console.log("isLogged: ", isLogged)
+	console.log("auth.currentUser: ", auth.currentUser)
+	console.log("isEmailVerified: ", isEmailVerified) */
 
     return (
 		<div className='App'>
