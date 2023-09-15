@@ -30,6 +30,8 @@ export const useAuthentication = () => {
 			console.log(error)
 			if (error.message.includes("email-already-in-use")) {
 				setAuthError("Email já usado. Tente outro.")
+			} else if (error.message.includes("weak-password")) {
+				setAuthError("Senha muito fraca. Tente outra.")
 			} else {
 				setAuthError("Algo aconteceu. Tente mais tarde.")
 			}

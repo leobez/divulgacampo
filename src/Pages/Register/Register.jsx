@@ -50,6 +50,11 @@ const Register = () => {
 		<div className={styles.register}>
 			<div>
 				<form onSubmit={handleSubmit} className={styles.form}>
+
+					<div className={styles.title}>
+						<h1>Cadastre-se !</h1>
+					</div>
+
 					<div>
 						<label htmlFor="name">Nome: </label>
 						<input 
@@ -92,8 +97,6 @@ const Register = () => {
 
 					<div className="error">
 						{error && <p>{error}</p>}
-					</div>
-					<div className="error">
 						{authError && <p>{authError}</p>}
 					</div>
 					<div className="warn">

@@ -40,6 +40,11 @@ const Login = () => {
 		<div className={styles.login}>
 		<div>
 			<form onSubmit={handleSubmit} className={styles.form}>
+
+				<div className={styles.title}>
+					<h1>Entre !</h1>
+				</div>
+
 				<div>
 					<label htmlFor="email">E-mail: </label>
 					<input 
@@ -62,8 +67,6 @@ const Login = () => {
 
 				<div className="error">
 					{error && <p>{error}</p>}
-				</div>
-				<div className="error">
 					{authError && <p>{authError}</p>}
 				</div>
 

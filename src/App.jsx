@@ -48,7 +48,7 @@ function App() {
 	})
 
 	if (loadingUser) {
-		return <div className="lds-ring loading"><div></div><div></div><div></div><div></div></div>
+		return <div className="loading">Carregando...</div>
 	}
 
 /* 	console.log("isLogged: ", isLogged)
