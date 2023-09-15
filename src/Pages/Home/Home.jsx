@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,16 @@ import { Link } from 'react-router-dom'
 const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
+
+	useEffect(() => {
+		const verifyParams = new URLSearchParams(window.location.search)
+		const params = verifyParams.get("refresh")
+		if (params) {
+			if (params === "true") {
+				window.location.assign("/")
+			}
+		}
+	}, [])
 
 	return (
 		<div className={styles.home}>
