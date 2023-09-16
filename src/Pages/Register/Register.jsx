@@ -52,7 +52,7 @@ const Register = () => {
 			<div>
 				<form onSubmit={handleSubmit} className={styles.form}>
 
-					<div className={styles.title}>
+					<div className='formtitle'>
 						<h1>Cadastre-se !</h1>
 					</div>
 
