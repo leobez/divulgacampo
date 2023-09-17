@@ -62,19 +62,19 @@ function App() {
 					<Navbar/>
 					<div className='main'>
 						<Routes>
-							<Route path='*' element={<NotFound/>}></Route>
-							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}></Route>
-							<Route path='/about' element={<About/>}></Route>
-							<Route path='/resetpassword' element={<ResetPassword/>}></Route>
-							<Route path='/verifyemail' element={<VerifyEmail/>}></Route>
-							<Route path='/validationemailsent' element={<ValidationEmailSent/>}></Route>
+							<Route path='*' element={<NotFound/>}/>
+							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
+							<Route path='/about' element={<About/>}/>
+							<Route path='/resetpassword' element={<ResetPassword/>}/>
+							<Route path='/verifyemail' element={<VerifyEmail/>}/>
+							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 
 							{/* ROTAS PARA AUTENTICADO */}
-							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}></Route>
+							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
 							
 							{/* ROTAS PARA NÃO AUTENTICADO */}
-							<Route path='/login' element={!isLogged ? <Login/>:<Navigate to="/"/>}></Route>
-							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}></Route>
+							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
+							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
 
 						</Routes>
 					</div>

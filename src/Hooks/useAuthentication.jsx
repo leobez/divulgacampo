@@ -18,14 +18,15 @@ export const useAuthentication = () => {
 	const [loading, setLoading] = useState(false)
 
 	const registerUser = async(auth, userData) => {
+
 		try {
 			setLoading(true)
 			const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
+			navigate(`/validationemailsent/?email=${userCredential.user.email}`)
 			await updateProfile(userCredential.user, {displayName: userData.displayName})
 			await sendEmailVerification(userCredential.user)
 			await signOut(auth)
 			setLoading(false)
-			navigate(`/validationemailsent/?email=${userCredential.user.email}`)
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
