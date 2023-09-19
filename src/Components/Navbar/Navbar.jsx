@@ -16,7 +16,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<nav className={styles.navbar}>
+		<nav className="navbar">
 			<NavLink
 				to="/"
 				className={({ isActive }) => isActive ? styles.active : ""}>

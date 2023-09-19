@@ -2,9 +2,32 @@
 	border: 2px solid black;
 	height: 100%;
 	grid-area: main;
-	padding: 5px;
+	/* padding: 5px; */
 }
 
 .main > div {
 	padding: 10px;
 }
+
+/* DESIGN 1 */
+/* .App {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+*/
+
+/* DESIGN 2 */
+.App {
+	display: grid;
+	gap: 3px;
+	grid-template-areas: 
+		"header header"
+		"navbar main"
+		"subnav main"
+		"footer footer";
+	grid-template-rows: 100px auto 80px 100px;
+	grid-template-columns: auto 1fr;
+}
+
+

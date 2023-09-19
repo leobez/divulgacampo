@@ -1,10 +1,11 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useState, useContext, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-dom'
+import { useState, useContext } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 
 // Components
 import Navbar from './Components/Navbar/Navbar'
+import SubNavBar from './Components/SubNavBar/SubNavBar'
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 
@@ -21,6 +22,7 @@ import ResetPassword from './Pages/ResetPassword/ResetPassword'
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
 import NotFound from './Pages/NotFound/NotFound'
 import ValidationEmailSent from './Pages/ValidationEmailSent/ValidationEmailSent'
+import Config from './Pages/Config/Config'
 
 function App() {
 
@@ -59,7 +61,10 @@ function App() {
 			<AuthContext.Provider value={auth}>
 				<BrowserRouter>
 					<Header/>
+					
 					<Navbar/>
+					<SubNavBar/>
+
 					<div className='main'>
 						<Routes>
 							<Route path='*' element={<NotFound/>}/>
@@ -68,6 +73,11 @@ function App() {
 							<Route path='/resetpassword' element={<ResetPassword/>}/>
 							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
+
+							<Route path='/config' element={<Config element={"config"}/>}/>
+							<Route path='/config/user' element={<Config element={"user"}/>}/>
+							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
+							<Route path='/config/accessibility' element={<Config element={"accessibility"}/>}/>
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>

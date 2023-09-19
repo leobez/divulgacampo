@@ -1,0 +1,45 @@
+.config {
+	display: grid;
+	height: 100%;
+	grid-template-areas: 
+	"navcontainer configcontainer";
+	grid-template-columns: 200px auto;
+	grid-template-rows: 1fr;
+	gap: 5px;
+}
+
+.confignavbarcontainer {
+	grid-area: navcontainer;
+}
+
+.confignavbarcontainer > nav {
+	padding: 0;
+	border: none;
+}
+
+
+.configcontainer {
+	grid-area: configcontainer;
+	border-left: 3px solid black;
+	padding: 0px 10px;
+}
+
+.active {
+	background-color: black;
+	color: white;
+}
+
+/* .config {
+	height: 100%;
+	display: flex;
+	gap: 5px;
+}
+
+.confignavbarcontainer {
+	flex-basis: 20%;
+}
+
+.configcontainer {
+	flex-basis: 80%;
+	border: 3px solid black;
+} */
