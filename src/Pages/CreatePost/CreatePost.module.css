@@ -74,8 +74,61 @@ textarea {
 /* formquizcontent */
 .formquizcontent {
 	border: 3px solid black;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
-.formquizcontent > button {
-	
+.buttonarea {
+	display: flex;
+	gap: 10px;
+}
+
+.buttonarea > button{
+	background-color: white;
+	color: black;
+	text-decoration: none;
+	padding: 15px;
+	border: 2px solid black;
+	font-size: 1.05em;
+	flex-basis: 50%;
+}
+
+.buttonarea > button {
+	background-color: white;
+	color: black;
+}
+.buttonarea > button:hover {
+	transition: 0.3s;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+.formquizcontent > button:hover {
+	transition: 0.3s;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+.linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.formquizcontent > div > div {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border: 2px solid black;
+	padding: 10px;
+}
+.formquizcontent > div > div > label {
+	flex-basis: 80%;
+}
+.formquizcontent > div > div > input {
+	flex-basis: 20%;
 }

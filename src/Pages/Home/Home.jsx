@@ -30,7 +30,7 @@ const Home = ({isEmailVerified}) => {
 					</div>) :
 					(
 						<div className={styles.welcomelinkstopost}>
-							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa +</Link>
+							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
 						</div>
 					)
 				}

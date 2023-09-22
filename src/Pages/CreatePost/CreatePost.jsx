@@ -22,13 +22,48 @@ const CreatePost = ({isEmailVerified}) => {
 		}
 	}, [description])
 
-	const addQuiz = () => {
+	const [quizLinks, setQuizLinks] = useState([])
+	const [amountOfQuizLinks, setAmountOfQuizLinks] = useState(0)
 
+	const quizContainerRef = useRef()
+	const addQuiz = () => {
+		const quiz_div = document.createElement("div")
+		quiz_div.setAttribute("class", "quizcontainer")
+
+		const quiz_label = document.createElement("label")
+		quiz_label.setAttribute("for", `quiz_${amountOfQuizLinks}`)
+		quiz_label.innerText = `Questionário ${amountOfQuizLinks}`
+
+		const quiz_input = document.createElement("input")
+		quiz_input.setAttribute("type", "text") // CHANGE TO TYPE TO URL
+		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
+		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
+		quiz_input.addEventListener("input", (e) => {
+			var k = Number(e.target.name.replace("quiz_", ""))
+			console.log(k, ": ", e.target.value)
+			// PAREI AQUI
+			return setQuizLinks((prev) => [{k : e.target.value}])
+		})
+				
+		setAmountOfQuizLinks((prev) => prev+1)
+		quiz_div.append(quiz_label, quiz_input)
+		quizContainerRef.current.appendChild(quiz_div)
+	}
+	const removeQuiz = () => {
+		quizContainerRef.current.removeChild(quizContainerRef.current.children[amountOfQuizLinks-1])
+		setAmountOfQuizLinks((prev) => prev-1)
 	}
 
 	const handleSubmit = (e) => {	
 		e.preventDefault()
-		console.log(title, description)
+
+		const form = {
+			title: title,
+			description: description,
+			link: quizLinks
+		}
+
+		console.log(form)
 	}
 
 	return (
@@ -97,8 +132,20 @@ const CreatePost = ({isEmailVerified}) => {
 						</div>
 					</div>
 
-					<div className={styles.formquizcontent}>
-						<button onClick={addQuiz}></button>
+					<div className={styles.formquizcontent} >
+						<div className={styles.linksarea} ref={quizContainerRef}>
+						</div>
+
+						<div className={styles.buttonarea}>
+							<button type="button" onClick={addQuiz}>
+								Adicionar Questionário +
+							</button>
+							{amountOfQuizLinks > 0 &&
+								<button type="button" onClick={removeQuiz}>
+									Remover Questionário -
+								</button>
+							}
+						</div>
 					</div>
 
 					<input type="submit" value="Enviar"/>
