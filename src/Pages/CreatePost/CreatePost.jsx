@@ -23,7 +23,6 @@ const CreatePost = ({isEmailVerified}) => {
 	}, [description])
 
 	const [amountOfQuizLinks, setAmountOfQuizLinks] = useState(0)
-
 	const quizContainerRef = useRef()
 	const addQuiz = () => {
 		const quiz_div = document.createElement("div")
@@ -38,12 +37,6 @@ const CreatePost = ({isEmailVerified}) => {
 		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
 		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
 
-/* 		quiz_input.addEventListener("input", (e) => {
-			let k = Number(e.target.name.replace("quiz_", ""))
-			console.log(k, ": ", e.target.value)
-		})
-			 */	
-
 		setAmountOfQuizLinks((prev) => prev+1)
 		quiz_div.append(quiz_label, quiz_input)
 		quizContainerRef.current.appendChild(quiz_div)
@@ -52,6 +45,8 @@ const CreatePost = ({isEmailVerified}) => {
 		quizContainerRef.current.removeChild(quizContainerRef.current.children[amountOfQuizLinks-1])
 		setAmountOfQuizLinks((prev) => prev-1)
 	}
+
+	const [error, setError] = useState("")
 
 	const handleSubmit = (e) => {	
 		e.preventDefault()
@@ -65,11 +60,27 @@ const CreatePost = ({isEmailVerified}) => {
 			}
 		})
 
+		if (
+			title.trim() === "" || 
+			title.trim() === undefined || 
+			title.trim() === null ||
+			description.trim() === "" || 
+			description.trim() === undefined ||
+			description.trim() === null ||
+			Object.keys(quizLinks).length <= 0 ||
+			Object.keys(quizLinks).length === undefined ||
+			Object.keys(quizLinks).length === null 
+		) {
+			setError("Preencha todos os campos.")
+			return;
+		}
+
 		const form = {
 			title: title,
 			description: description,
 			quizLinks: quizLinks  
 		}
+		setError("")
 
 		console.log(form)
 	}
@@ -161,7 +172,11 @@ const CreatePost = ({isEmailVerified}) => {
 					</div>
 
 					<input type="submit" value="Enviar"/>
-					
+
+					<div className="error">
+						{error && <p>{error}</p>}
+					</div>
+
 				</form>
 			)}
 
