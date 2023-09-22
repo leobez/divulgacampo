@@ -1,7 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './CreatePost.module.css'
-
+import { useInsertDocument } from '../../Hooks/useInsertDocuments'
+import AuthContext from '../../Context/AuthContext'
+ 
 const CreatePost = ({isEmailVerified}) => {
+
+	const auth = useContext(AuthContext)
 
 	const maxcharlimit_title = 50
 	const [title, setTitle] = useState("")
@@ -33,7 +37,7 @@ const CreatePost = ({isEmailVerified}) => {
 		quiz_label.innerText = `Questionário ${amountOfQuizLinks}`
 
 		const quiz_input = document.createElement("input")
-		quiz_input.setAttribute("type", "url")
+		quiz_input.setAttribute("type", "text") // CHANGE TO URL
 		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
 		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
 
@@ -47,8 +51,9 @@ const CreatePost = ({isEmailVerified}) => {
 	}
 
 	const [error, setError] = useState("")
+	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 
-	const handleSubmit = (e) => {	
+	const handleSubmit = async(e) => {	
 		e.preventDefault()
 
 		// Create quizLinks obj
@@ -75,14 +80,20 @@ const CreatePost = ({isEmailVerified}) => {
 			return;
 		}
 
-		const form = {
+		console.log(auth.currentUser.uid)
+
+		const postData = {
+			uid: auth.currentUser.uid,
+			displayName: auth.currentUser.displayName,
 			title: title,
 			description: description,
 			quizLinks: quizLinks  
 		}
 		setError("")
 
-		console.log(form)
+		await insertDocument(postData)
+
+		console.log(postData)
 	}
 
 	return (
@@ -170,11 +181,11 @@ const CreatePost = ({isEmailVerified}) => {
 							}
 						</div>
 					</div>
-
-					<input type="submit" value="Enviar"/>
+					{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
 
 					<div className="error">
 						{error && <p>{error}</p>}
+						{apiError && <p>{apiError}</p>}
 					</div>
 
 				</form>
