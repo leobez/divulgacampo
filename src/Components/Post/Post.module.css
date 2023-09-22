@@ -1,12 +1,50 @@
 .post {
-	border: 2px solid black;
+	width: 600px;
+	box-shadow: 1px 2px 3px black;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 20px;
 }
 
 .post > div {
-	border: 1px solid black;
 	padding: 5px;
 }
+
+.title {
+	border-bottom: 2px solid black;
+}
+
+.quizlinks {
+	border-top: 2px solid black ;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.quizlink {
+	text-indent: 15px;
+}
+
+.linktoenter {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.linktoenter > a {
+	width: 100%;
+	height: 100%;
+	border: 1px solid black;
+	display: grid;
+	place-items: center;
+
+}
+.linktoenter > a:hover {
+	background-color: black;
+	color: white;
+	transition: 0.3s;
+
+}
+

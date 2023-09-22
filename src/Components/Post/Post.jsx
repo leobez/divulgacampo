@@ -1,10 +1,16 @@
 import React from 'react'
 import styles from './Post.module.css'
+import { Link } from 'react-router-dom'
 
 const Post = ({postData}) => {
 
 	return (
 		<div className={styles.post}>
+
+			<div className={styles.displayName}>
+				Criado por: <span>{postData.displayName}</span>
+			</div>
+
 			<div className={styles.title}>
 				{postData.title}
 			</div>
@@ -21,6 +27,11 @@ const Post = ({postData}) => {
 					</div>
 				))}
 			</div>
+
+			<div className={`${styles.linktoenter}`}>
+				<Link to="/">Acessar</Link>
+			</div>
+
 		</div>
 	)
 }

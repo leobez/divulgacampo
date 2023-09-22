@@ -60,8 +60,6 @@ const Home = ({isEmailVerified}) => {
 			
 			<div className={styles.homecontent}>
 				 
-				{!posts && <p>Não há posts...</p>}
-
 				{posts && posts.map((post) => (
 					<Post key={post.postId} postData={post.postData}></Post>
 				))}
