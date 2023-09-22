@@ -23,11 +23,11 @@
 }
 
 .formtextcontent > div > input, textarea {
-	flex-basis: 80%;
+	flex-basis: 85%;
 }
 
 .formtextcontent > div > div {
-	flex-basis: 20%;
+	flex-basis: 15%;
 }
 
 .formtextcontent > div > input {
@@ -94,17 +94,12 @@ textarea {
 	border: 2px solid black;
 	font-size: 1.05em;
 	flex-basis: 50%;
+	font-weight: bold;
+
 }
 
 .buttonarea > button:hover {
 	transition: 0.3s;
-	cursor: pointer;
-}
-
-.formquizcontent > button:hover {
-	transition: 0.3s;
-	background-color: black;
-	color: white;
 	cursor: pointer;
 }
 
@@ -131,12 +126,10 @@ textarea {
 .addquiz:hover {
 	border-color:green;
 	color: green;
-	font-weight: bold;
 }
 .removequiz:hover {
 	border-color:red;
 	color: red;
-	font-weight: bold;
 }
 .bordertop {
 	border-top: 3px solid black;

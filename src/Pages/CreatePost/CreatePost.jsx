@@ -33,7 +33,7 @@ const CreatePost = ({isEmailVerified}) => {
 		quiz_label.innerText = `Questionário ${amountOfQuizLinks}`
 
 		const quiz_input = document.createElement("input")
-		quiz_input.setAttribute("type", "text") // CHANGE TO TYPE TO URL
+		quiz_input.setAttribute("type", "url")
 		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
 		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
 
