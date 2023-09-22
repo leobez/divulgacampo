@@ -1,0 +1,81 @@
+.createpost {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.createpost > form {
+	width: 700px;
+}
+
+/* formtextcontent */
+
+.formtextcontent {
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+	border: 3px solid black;
+}
+
+.formtextcontent > div {
+	display: flex;
+}
+
+.formtextcontent > div > input, textarea {
+	flex-basis: 80%;
+}
+
+.formtextcontent > div > div {
+	flex-basis: 20%;
+}
+
+.formtextcontent > div > input {
+	width: 100%;
+	border: none;
+}
+
+.formtextcontent textarea:focus, input:focus {
+	outline: none;
+}
+
+textarea {
+	border: none;
+}
+
+.inputtitle {
+	height: 45px;
+}
+
+.inputdescription {
+	height: 180px;
+	min-height: 180px;
+	resize: vertical;
+	border-top: 3px solid black ;
+}
+
+.wordcounter {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-left: 3px solid black;
+}
+
+.wordcounter > div {
+	font-size: 0.8em;
+}
+
+.wordcounterlimitreached > span {
+	color: red;
+}
+
+
+/* formquizcontent */
+.formquizcontent {
+	border: 3px solid black;
+}
+
+.formquizcontent > button {
+	
+}

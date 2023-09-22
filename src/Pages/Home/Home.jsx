@@ -22,12 +22,17 @@ const Home = ({isEmailVerified}) => {
 			<div className={styles.welcome}>
 				<p> Olá, você esta na tela de home! </p> 
 
-				{!auth.currentUser && 
-					<div className={styles.welcomeSubdivision}>
+				{!auth.currentUser ? 
+					(<div className={styles.welcomelinkstoauth}>
 						{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
 						<p> OU </p>
 						{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
-					</div>
+					</div>) :
+					(
+						<div className={styles.welcomelinkstopost}>
+							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa +</Link>
+						</div>
+					)
 				}
 			</div>
 			<hr />

@@ -10,10 +10,23 @@
 	gap: 10px;
 }
 
-.welcomeSubdivision {
+.welcomelinkstoauth {
 	display: flex;
 	gap: 10px;
 	align-items: center;
+}
+
+.welcomelinkstopost {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.welcomelinkstopost > a {
+	width: 100%;
+	height: 100px;
+	display: grid;
+	place-items: center;
 }
 
 

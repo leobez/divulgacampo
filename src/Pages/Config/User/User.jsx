@@ -7,7 +7,7 @@ const User = () => {
 
 	return (
 		<div>
-			<p>Configruação de usuário</p>
+			<p>Configuração de usuário</p>
 			<hr />
 			{ auth.currentUser &&
 				<>

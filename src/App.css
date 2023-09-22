@@ -9,15 +9,6 @@
 	padding: 10px;
 }
 
-/* DESIGN 1 */
-/* .App {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-*/
-
-/* DESIGN 2 */
 .App {
 	display: grid;
 	gap: 3px;

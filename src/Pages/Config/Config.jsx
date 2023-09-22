@@ -25,12 +25,6 @@ const Config = ({element}) => {
 						Aparência
 					</NavLink>
 
-					<NavLink
-						to="/config/accessibility"
-						className={({ isActive }) => isActive ? styles.active : ""}>
-						Acessibilidade
-					</NavLink>
-
 				</nav>
 			</div>
 			

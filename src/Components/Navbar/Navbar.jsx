@@ -38,6 +38,12 @@ const Navbar = () => {
 							Meu perfil
 						</NavLink>
 						
+						<NavLink
+							to="/createpost"
+							className={({ isActive }) => isActive ? styles.active : ""}>
+							Criar postagem
+						</NavLink>
+
 						<button  onClick={handleLogout}>
 							Sair
 						</button>

@@ -32,45 +32,45 @@ const Login = () => {
 
     return (
 		<div className={styles.login}>
-		<div>
-			<form onSubmit={handleSubmit} className={styles.form}>
+			<div>
+				<form onSubmit={handleSubmit} className={styles.form}>
 
-				<div className='formtitle'>
-					<h1>Entre !</h1>
-				</div>
+					<div className='formtitle'>
+						<h1>Entre !</h1>
+					</div>
 
-				<div>
-					<label htmlFor="email">E-mail: </label>
-					<input 
-					placeholder='Digite seu email'
-					type="email" 
-					name="email" 
-					onChange={(e) => setEmail(e.target.value)}/>
-				</div>
+					<div>
+						<label htmlFor="email">E-mail: </label>
+						<input 
+						placeholder='Digite seu email'
+						type="email" 
+						name="email" 
+						onChange={(e) => setEmail(e.target.value)}/>
+					</div>
 
-				<div>
-					<label htmlFor="password">Senha: </label>
-					<input 
-					placeholder='Digite sua senha'
-					type="password" 
-					name="password" 
-					onChange={(e) => setPassword(e.target.value)}/>
-				</div>
+					<div>
+						<label htmlFor="password">Senha: </label>
+						<input 
+						placeholder='Digite sua senha'
+						type="password" 
+						name="password" 
+						onChange={(e) => setPassword(e.target.value)}/>
+					</div>
 
-				{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
+					{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
-				<div className='extrabuttons'>
-					<Link to="/register" className="nonNavLink">Já criou uma conta?</Link>
-					<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
-				</div>
+					<div className='extrabuttons'>
+						<Link to="/register" className="nonNavLink">Já criou uma conta?</Link>
+						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
+					</div>
 
-				<div className="error">
-					{error && <p>{error}</p>}
-					{authError && <p>{authError}</p>}
-				</div>
-			</form>
+					<div className="error">
+						{error && <p>{error}</p>}
+						{authError && <p>{authError}</p>}
+					</div>
+				</form>
+			</div>
 		</div>
-	</div>
     )
 }
 
