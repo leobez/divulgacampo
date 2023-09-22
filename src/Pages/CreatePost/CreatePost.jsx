@@ -22,7 +22,6 @@ const CreatePost = ({isEmailVerified}) => {
 		}
 	}, [description])
 
-	const [quizLinks, setQuizLinks] = useState([])
 	const [amountOfQuizLinks, setAmountOfQuizLinks] = useState(0)
 
 	const quizContainerRef = useRef()
@@ -38,13 +37,13 @@ const CreatePost = ({isEmailVerified}) => {
 		quiz_input.setAttribute("type", "text") // CHANGE TO TYPE TO URL
 		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
 		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
-		quiz_input.addEventListener("input", (e) => {
-			var k = Number(e.target.name.replace("quiz_", ""))
+
+/* 		quiz_input.addEventListener("input", (e) => {
+			let k = Number(e.target.name.replace("quiz_", ""))
 			console.log(k, ": ", e.target.value)
-			// PAREI AQUI
-			return setQuizLinks((prev) => [{k : e.target.value}])
 		})
-				
+			 */	
+
 		setAmountOfQuizLinks((prev) => prev+1)
 		quiz_div.append(quiz_label, quiz_input)
 		quizContainerRef.current.appendChild(quiz_div)
@@ -57,10 +56,19 @@ const CreatePost = ({isEmailVerified}) => {
 	const handleSubmit = (e) => {	
 		e.preventDefault()
 
+		// Create quizLinks obj
+		const quizLinks = {}
+		const quizInputs = document.querySelectorAll(".quizcontainer")
+		quizInputs.forEach((value, key) => {
+			if (value.lastChild.value.trim() !== "") {
+				quizLinks[key] = value.lastChild.value
+			}
+		})
+
 		const form = {
 			title: title,
 			description: description,
-			link: quizLinks
+			quizLinks: quizLinks  
 		}
 
 		console.log(form)
@@ -114,7 +122,7 @@ const CreatePost = ({isEmailVerified}) => {
 								placeholder='Descrição'
 								onChange={(e) => setDescription(e.target.value)}
 							/>
-							<div className={styles.wordcounter}>
+							<div className={`${styles.wordcounter} ${styles.bordertop}`}>
 								{descriptioncharcounter <= maxcharlimit_desc ? (
 									<div>
 										<span>
@@ -137,11 +145,15 @@ const CreatePost = ({isEmailVerified}) => {
 						</div>
 
 						<div className={styles.buttonarea}>
-							<button type="button" onClick={addQuiz}>
-								Adicionar Questionário +
-							</button>
+
+							{amountOfQuizLinks <= 10 &&
+								<button type="button" onClick={addQuiz} className={styles.addquiz}>
+									Adicionar Questionário +
+								</button>
+								}
+
 							{amountOfQuizLinks > 0 &&
-								<button type="button" onClick={removeQuiz}>
+								<button type="button" onClick={removeQuiz} className={styles.removequiz}>
 									Remover Questionário -
 								</button>
 							}
@@ -149,7 +161,7 @@ const CreatePost = ({isEmailVerified}) => {
 					</div>
 
 					<input type="submit" value="Enviar"/>
-
+					
 				</form>
 			)}
 

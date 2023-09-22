@@ -60,6 +60,7 @@ textarea {
 	align-items: center;
 	justify-content: center;
 	border-left: 3px solid black;
+	padding: 5px;
 }
 
 .wordcounter > div {
@@ -95,14 +96,8 @@ textarea {
 	flex-basis: 50%;
 }
 
-.buttonarea > button {
-	background-color: white;
-	color: black;
-}
 .buttonarea > button:hover {
 	transition: 0.3s;
-	background-color: black;
-	color: white;
 	cursor: pointer;
 }
 
@@ -131,4 +126,18 @@ textarea {
 }
 .formquizcontent > div > div > input {
 	flex-basis: 20%;
+}
+
+.addquiz:hover {
+	border-color:green;
+	color: green;
+	font-weight: bold;
+}
+.removequiz:hover {
+	border-color:red;
+	color: red;
+	font-weight: bold;
+}
+.bordertop {
+	border-top: 3px solid black;
 }
