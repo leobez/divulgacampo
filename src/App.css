@@ -15,9 +15,8 @@
 		"header header"
 		"navbar main"
 		"footer footer";
-	grid-template-rows: 100px 1fr 100px;
+	grid-template-rows: 80px 1fr 80px;
 	grid-template-columns: auto 1fr;
-	position: relative;
 }
 
 .navcontainer {
@@ -25,7 +24,6 @@
 	grid-area: navbar;
 	display: flex;
 	flex-direction: column;
-	gap: 3px;
 	justify-content: space-between;
 }
 
