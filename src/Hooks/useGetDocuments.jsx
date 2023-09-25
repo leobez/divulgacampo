@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {db} from "../firebase/config"
 import { useNavigate } from "react-router-dom"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 
 
 export const useGetDocuments = (collectionName) => {
@@ -36,6 +36,31 @@ export const useGetDocuments = (collectionName) => {
 		}
 	}
 
+	const getDocumentsByUid = async(uid) => {
+
+		if (cancelled) return;
+
+		try {
+			setLoading(true)
+			const col = collection(db, collectionName)
+			const q = query(col, where("uid", "==", uid))
+
+			const querySnapshot = await getDocs(q)
+
+			let list = []
+			await querySnapshot.forEach(doc => {
+				list.push({postData: doc.data(), postId: doc.id})
+			});
+
+			setLoading(false)
+			return list
+
+		} catch (error) {
+			setApiError(error)
+			setLoading(false)
+		}
+	}
+
 	useEffect(() => {
 		return () => setCancelled(true)
 	}, [])
@@ -43,6 +68,7 @@ export const useGetDocuments = (collectionName) => {
 	return {
 		loading, 
 		apiError,
-		getDocuments
+		getDocuments,
+		getDocumentsByUid
 	}
 }

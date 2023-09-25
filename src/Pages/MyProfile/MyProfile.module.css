@@ -7,3 +7,87 @@
 .myprofile .info > span{
 	font-weight: bold;
 }
+
+.historycontainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.history {
+	display: flex;
+	gap: 20px;
+}
+
+.historypost {
+	width: 300px;
+	height: fit-content;
+	border: 3px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	padding: 5px;
+}
+
+.historypost > div {
+	word-wrap: break-word;
+	padding: 5px;
+}
+
+.historyposttitle {
+	border: 2px solid black;
+	width: 100%;
+	text-overflow: ellipsis;
+	display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+	flex-basis: 20%;
+}
+
+.historypostdesc {
+	border: 2px solid black;
+	width: 100%;
+	text-overflow: ellipsis;
+	display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+	flex-basis: 70%;
+}
+
+.historypostlinks {
+	width: 100%;
+	display: flex;
+	gap: 5px;
+}
+
+.historypostlinks > a {
+	border: 2px solid black;
+	padding: 5px;
+	flex-basis: 33%;
+	text-align: center;
+	font-size: 1.01em;
+}
+
+/* ACESSAR */
+.historypostlinks > a:nth-child(1):hover{
+	background-color: black;
+	color: white;
+}
+/* EDITAR */
+.historypostlinks > a:nth-child(2):hover{
+	border-color: green;
+	color: green;
+}
+/* EXLCUIR */
+.historypostlinks > a:nth-child(3):hover{
+	border-color: red;
+	color: red;
+}
+
+.extrainfo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
