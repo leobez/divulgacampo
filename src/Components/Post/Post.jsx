@@ -23,7 +23,7 @@ const Post = ({postData}) => {
 				<p>Meus questionários: </p>
 				{Object.entries(postData.quizLinks).map(([key, value]) => (
 					<div key={key} className={styles.quizlink}>
-						<a href={value}>{value}</a>
+						<a href={`https://${value}`}>{value}</a>
 					</div>
 				))}
 			</div>

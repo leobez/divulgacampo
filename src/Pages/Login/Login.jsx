@@ -60,7 +60,7 @@ const Login = () => {
 					{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
 					<div className='extrabuttons'>
-						<Link to="/register" className="nonNavLink">Já criou uma conta?</Link>
+						<Link to="/register" className="nonNavLink">Não tem conta?</Link>
 						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 

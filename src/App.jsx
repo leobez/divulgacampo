@@ -63,8 +63,10 @@ function App() {
 				<BrowserRouter>
 					<Header/>
 					
-					<Navbar/>
-					<SubNavBar/>
+					<div className='navcontainer'>
+						<Navbar/>
+						<SubNavBar/>	
+					</div>
 
 					<div className='main'>
 						<Routes>

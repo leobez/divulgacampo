@@ -1,6 +1,4 @@
 .subnavbar {
-	grid-area: subnav;
-	border: 2px solid black;
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -1,8 +1,7 @@
 .main {
-	border: 2px solid black;
 	height: 100%;
 	grid-area: main;
-	/* padding: 5px; */
+	overflow-y: scroll;
 }
 
 .main > div {
@@ -15,10 +14,18 @@
 	grid-template-areas: 
 		"header header"
 		"navbar main"
-		"subnav main"
 		"footer footer";
-	grid-template-rows: 100px auto 80px 100px;
+	grid-template-rows: 100px 1fr 100px;
 	grid-template-columns: auto 1fr;
+	position: relative;
 }
 
+.navcontainer {
+	border: 2px solid black;
+	grid-area: navbar;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	justify-content: space-between;
+}
 
