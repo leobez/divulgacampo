@@ -1,9 +1,19 @@
 .home {
-
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
-.teste {
-	height: 1000px;
-	width: 100px;
-	border: 1px solid red;
+.welcome {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
+
+.welcomeSubdivision {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+

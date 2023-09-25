@@ -1,0 +1,9 @@
+.myprofile{ 
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.myprofile .info > span{
+	font-weight: bold;
+}

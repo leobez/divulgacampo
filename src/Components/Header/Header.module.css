@@ -1,11 +1,46 @@
 .header {
-	min-height: 80px;
+	min-height: 100px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+	padding: 0px 10px;
 	font-weight: bold;
 	font-size: 1.5em;
-	border: 1px solid black;
-
+	border: 2px solid black;
 	grid-area: header;
 }
+
+.header a {
+	text-decoration: none;
+}
+
+.header div {
+	cursor: pointer;
+}
+
+.header span {
+	padding: 5px;
+	transition: 0.2s;
+	border: 3px solid black;
+
+}
+
+.header .divulga {
+	background-color: white;
+	color: black;
+}
+.header .campo {
+	background-color: black;
+	color: white;
+}
+
+.header div:hover > .divulga {
+	background-color: black;
+	color: white;
+}
+
+.header div:hover > .campo {
+	background-color: white;
+	color: black;
+}
+

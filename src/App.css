@@ -1,5 +1,10 @@
 .main {
-	border: 1px solid black;
+	border: 2px solid black;
 	height: 100%;
 	grid-area: main;
+	padding: 5px;
+}
+
+.main > div {
+	padding: 10px;
 }

@@ -1,0 +1,12 @@
+.noterror {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+}
+
+.noterror > p {
+	color: green;
+	font-weight: bold;
+}

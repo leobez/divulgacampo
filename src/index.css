@@ -15,8 +15,8 @@ font-family: 'Sora', sans-serif;
 	margin: 0;
 	box-sizing: border-box;
 
-	font-family: 'Poppins', sans-serif;
-	font-size: 1em;
+	font-family: 'Sora', sans-serif;
+	font-size: 1.01em;
 	color: black;
 }
 
@@ -26,6 +26,7 @@ html, body, #root, .App {
 }
 
 html, body {
+	padding: 1px;
 	display: flex;
 	justify-content: center;
 }
@@ -33,6 +34,21 @@ html, body {
 #root {
 	max-width: 1920px;
 }
+
+p {
+	font-size: 1.01em;
+}
+
+h1 {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+a {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
 
 /* DESIGN 1 */
 /* .App {
@@ -45,11 +61,158 @@ html, body {
 /* DESIGN 2 */
 .App {
 	display: grid;
-	gap: 5px;
+	gap: 3px;
 	grid-template-areas: 
 		"header header"
 		"navbar main"
 		"footer footer";
-	grid-template-rows: 80px auto 80px;
+	grid-template-rows: 100px auto 100px;
 	grid-template-columns: auto 1fr;
 }
+
+
+/* FORMULÁRIOS */
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+	.formtitle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 2px solid black;
+		padding-bottom: 10px;
+	}
+
+	form > div {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	form label {
+		height: 10px;
+		display: flex;
+		align-items: center;
+		margin-right: 1em;
+		flex-basis: 32%;
+		text-align: left;
+	}
+
+	form input {
+		height: 45px;
+		padding: 5px;
+		border: 3px double black;
+		font-size: 1.05em;
+	}
+
+	form input[type="submit"] {
+		height: 60px;
+		width: 100%;
+		align-self: center;
+		border-radius: 0px;
+
+		border: 3px solid black;
+		background-color: white;
+		color: black;
+		font-size: 1.2em;
+		font-weight: bold;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	form input[type="submit"].loadingButton {
+		background-color: black;
+		color: white;
+	}
+
+	form input[type="submit"]:hover {
+		color: white;
+		background-color: black;
+	}
+
+	.extrabuttons {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+	}
+
+	.extrabuttons a {
+		border: 3px solid black;
+	}
+
+
+/* DIVS DE ERRO E AVISO */
+.error {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.error > p {
+	color: red;
+	font-weight: bold;
+}
+
+.warn {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.warn > p {
+	color: green;
+	font-weight: bold;
+}
+
+/*DIV CASO USUÁRIO NÃO ESTEJA COM EMAIL AUTENTICADO*/
+
+.verifyemailwarn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+.verifyemailwarn > p {
+	background-color: azure;
+	border: 3px solid grey;
+	display: block;
+	height: 50%;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.verifyemailwarn > p > span {
+	font-weight: bold;
+	text-indent: 5px;
+}
+
+.unverifiedemail {
+	font-weight: bold;
+}
+
+
+/*LINKS QUE NÃO SEJAM DO NAVBAR*/
+.nonNavLink {
+	background-color: white;
+	color: black;
+	text-decoration: none;
+	padding: 15px;
+	border: 2px solid black;
+	width: fit-content;
+	font-size: 1.05em;
+}
+
+.nonNavLink:hover {
+	transition: 0.3s;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+  
