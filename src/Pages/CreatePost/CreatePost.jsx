@@ -80,6 +80,14 @@ const CreatePost = ({isEmailVerified}) => {
 			return;
 		}
 
+		if (
+			title.length > maxcharlimit_title ||
+			description.length > maxcharlimit_desc
+		) {
+			setError("Limite de caracteres ultrapassado.")
+			return;	
+		}
+
 		console.log(auth.currentUser.uid)
 
 		const postData = {

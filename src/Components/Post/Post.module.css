@@ -10,6 +10,7 @@
 
 .post > div {
 	padding: 5px;
+	word-wrap: break-word;
 }
 
 .title {
