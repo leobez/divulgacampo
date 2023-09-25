@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {db} from "../firebase/config"
-import { addDoc, collection } from "firebase/firestore"
+import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 
 export const useInsertDocument = (collectionName) => {
@@ -18,7 +18,8 @@ export const useInsertDocument = (collectionName) => {
 				displayName: data.displayName,
 				title: data.title,
 				description: data.description,
-				quizLinks: data.quizLinks
+				quizLinks: data.quizLinks,
+				createdAt: Timestamp.now()
 			})
 			setLoading(false)
 			navigate("/")

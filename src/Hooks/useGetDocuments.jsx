@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {db} from "../firebase/config"
 import { useNavigate } from "react-router-dom"
-import { collection, getDocs, query, where } from "firebase/firestore"
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 
 
 export const useGetDocuments = (collectionName) => {
@@ -19,8 +19,8 @@ export const useGetDocuments = (collectionName) => {
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-
-			const querySnapshot = await getDocs(col)
+			const q = query(col, orderBy('createdAt', 'desc'))
+			const querySnapshot = await getDocs(q)
 
 			let list = []
 			await querySnapshot.forEach(doc => {
@@ -44,7 +44,6 @@ export const useGetDocuments = (collectionName) => {
 			setLoading(true)
 			const col = collection(db, collectionName)
 			const q = query(col, where("uid", "==", uid))
-
 			const querySnapshot = await getDocs(q)
 
 			let list = []
