@@ -64,16 +64,18 @@ const Home = ({isEmailVerified}) => {
 					<Post key={post.postId} postData={post.postData}></Post>
 				))}
 
-				<div className='loading'>
-					{loading && <p>Carregando posts...</p>}
-				</div>
+				<div>
+					<div className='loading'>
+						{loading && <p>Carregando posts...</p>}
+					</div>
 
-				<div className="error">
-					{apiError && <p>{apiError}</p>}
-				</div>
+					<div className="error">
+						{apiError && <p>{apiError}</p>}
+					</div>
 
-				<div className="warn">
-					{warn && <p>{warn}</p>}
+					<div className="warn">
+						{warn && <p>{warn}</p>}
+					</div>
 				</div>
 
 			</div>
