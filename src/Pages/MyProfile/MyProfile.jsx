@@ -8,19 +8,12 @@ const MyProfile = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, getDocumentsByUid} = useGetDocuments("posts")
-	const [warn, setWarn] = useState("")
-	const [posts, setPosts] = useState([])
+	const {loading, apiError, getDocumentsByUid, listOfDocs} = useGetDocuments("posts")
 
 	useEffect(() => {
 
 		const asyncGetDocumentsByUid = async(uid) => {
-			
-			const list = await getDocumentsByUid(uid)
-			if (list.length <= 0) {
-				setWarn("Não há posts.")
-			}
-			setPosts([...list])
+			await getDocumentsByUid(uid)
 		}
 		asyncGetDocumentsByUid(auth.currentUser.uid)
 
@@ -44,7 +37,7 @@ const MyProfile = ({isEmailVerified}) => {
 						<h1>Histórico de postagens: </h1>
 						<div className={styles.history}>
 
-						{posts && posts.map((post) => (
+						{listOfDocs && listOfDocs.map((post) => (
 								<div 
 								key={post.postId} 
 								className={styles.historypost}>
@@ -70,7 +63,7 @@ const MyProfile = ({isEmailVerified}) => {
 									{apiError && <p>{apiError}</p>}
 								</div>
 								<div className="warn">
-									{warn && <p>{warn}</p>}
+									{listOfDocs.length <= 0 && <p>Não há posts.</p>}
 								</div>	
 							</div>
 
