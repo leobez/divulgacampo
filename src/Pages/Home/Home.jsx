@@ -43,7 +43,7 @@ const Home = ({isEmailVerified}) => {
 			<div className={styles.homecontent}>
 				 
 				{listOfDocs && listOfDocs.map((post) => (
-					<Post key={post.postId} postData={post.postData}></Post>
+					<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 				))}
 
 				<div>

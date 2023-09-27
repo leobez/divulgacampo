@@ -24,6 +24,7 @@ import NotFound from './Pages/NotFound/NotFound'
 import ValidationEmailSent from './Pages/ValidationEmailSent/ValidationEmailSent'
 import Config from './Pages/Config/Config'
 import CreatePost from './Pages/CreatePost/CreatePost'
+import PostPage from './Pages/PostPage/PostPage'
 
 function App() {
 
@@ -76,6 +77,7 @@ function App() {
 							<Route path='/resetpassword' element={<ResetPassword/>}/>
 							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
+							<Route path='/post/:id' element={<PostPage/>}/>
 
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>

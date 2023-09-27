@@ -48,7 +48,7 @@ const MyProfile = ({isEmailVerified}) => {
 										{post.postData.description}
 									</div>
 									<div className={styles.historypostlinks}>
-										<Link to="/">Acessar</Link>
+										<Link to={`/post/${post.postId}`}>Acessar</Link>
 										<Link to="/">Editar</Link>
 										<Link to="/">Excluir</Link>
 									</div>

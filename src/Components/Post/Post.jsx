@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Post.module.css'
 import { Link } from 'react-router-dom'
 
-const Post = ({postData}) => {
+const Post = ({postData, postId}) => {
 
 	return (
 		<div className={styles.post}>
@@ -29,7 +29,7 @@ const Post = ({postData}) => {
 			</div>
 
 			<div className={`${styles.linktoenter}`}>
-				<Link to="/">Acessar</Link>
+				<Link to={`/post/${postId}`}>Acessar</Link>
 			</div>
 
 		</div>
