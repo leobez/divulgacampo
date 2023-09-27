@@ -9,30 +9,12 @@ const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, getDocuments} = useGetDocuments("posts")
-	const [posts, setPosts] = useState([])
-	const [warn, setWarn] = useState("")
-
-/* 	useEffect(() => {
-		const verifyParams = new URLSearchParams(window.location.search)
-		const params = verifyParams.get("refresh")
-		if (params) {
-			if (params === "true") {
-				window.location.assign("/")
-			}
-		}
-	}, []) */
+	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
 
 	useEffect(() => {
 
 		const asyncGetDocuments = async() => {
-			const list = await getDocuments()
-			if (list) {
-				if (list.length <= 0) {
-					setWarn("Não há posts.")
-				}
-				setPosts([...list])
-			}
+			await getDocuments()
 		}
 		asyncGetDocuments()
 
@@ -60,7 +42,7 @@ const Home = ({isEmailVerified}) => {
 			
 			<div className={styles.homecontent}>
 				 
-				{posts && posts.map((post) => (
+				{listOfDocs && listOfDocs.map((post) => (
 					<Post key={post.postId} postData={post.postData}></Post>
 				))}
 
@@ -74,7 +56,7 @@ const Home = ({isEmailVerified}) => {
 					</div>
 
 					<div className="warn">
-						{warn && <p>{warn}</p>}
+						{listOfDocs.length <= 0 && <p>Não há posts.</p>}
 					</div>
 				</div>
 

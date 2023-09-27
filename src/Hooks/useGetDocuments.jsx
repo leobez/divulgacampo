@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react"
 import {db} from "../firebase/config"
-import { useNavigate } from "react-router-dom"
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
-
+import { collection, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore"
 
 export const useGetDocuments = (collectionName) => {
 
 	const [loading, setLoading] = useState(false)
 	const [apiError, setApiError] = useState("")
-	const [docs, setDocs] = useState([])
-	const navigate = useNavigate()
 	const [cancelled, setCancelled] = useState(false)
+	const [listOfDocs, setListOfDocs] = useState([])
 
 	const getDocuments = async() => {
 
@@ -19,16 +16,17 @@ export const useGetDocuments = (collectionName) => {
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-			const q = query(col, orderBy('createdAt', 'desc'))
-			const querySnapshot = await getDocs(q)
+			const q = await query(col, orderBy('createdAt', 'desc'))
 
-			let list = []
-			await querySnapshot.forEach(doc => {
-				list.push({postData: doc.data(), postId: doc.id})
-			});
+			await onSnapshot(q, (querySnapshot) => {
+				querySnapshot.docs.forEach(doc => {
+					setListOfDocs(
+						(prev) => [...prev, {postData: doc.data(), postId: doc.id}]
+					)
+				});
+			})
 
 			setLoading(false)
-			return list
 
 		} catch (error) {
 			setApiError(error)
@@ -43,17 +41,16 @@ export const useGetDocuments = (collectionName) => {
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-			const q = query(col, where("uid", "==", uid))
-			const querySnapshot = await getDocs(q)
+			const q = await query(col, where("uid", "==", uid), orderBy("createdAt", "desc"))
 
-			let list = []
-			await querySnapshot.forEach(doc => {
-				list.push({postData: doc.data(), postId: doc.id})
-			});
+			await onSnapshot(q, (querySnapshot) => {
+				querySnapshot.docs.forEach(doc => {
+					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
+				});
+			})
 
 			setLoading(false)
-			return list
-
+			
 		} catch (error) {
 			setApiError(error)
 			setLoading(false)
@@ -68,6 +65,7 @@ export const useGetDocuments = (collectionName) => {
 		loading, 
 		apiError,
 		getDocuments,
-		getDocumentsByUid
+		getDocumentsByUid,
+		listOfDocs,
 	}
 }
