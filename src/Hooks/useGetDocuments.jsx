@@ -22,6 +22,7 @@ export const useGetDocuments = (collectionName, uid=null) => {
 	
 				await onSnapshot(q, (querySnapshot) => {
 					console.log("TRIGGER: getDocuments")
+					if (querySnapshot.docs.length <= 0) setListOfDocs([])
 					querySnapshot.docs.forEach(doc => {
 						setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 					});

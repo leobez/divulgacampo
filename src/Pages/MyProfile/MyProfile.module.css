@@ -63,8 +63,11 @@
 	gap: 5px;
 }
 
-.historypostlinks > a {
+.historypostlinks > a, button {
 	border: 2px solid black;
+	background-color: white;
+	cursor: pointer;
+	font-weight: bold;
 	padding: 5px;
 	flex-basis: 33%;
 	text-align: center;
@@ -82,9 +85,10 @@
 	color: green;
 }
 /* EXLCUIR */
-.historypostlinks > a:nth-child(3):hover{
+.historypostlinks > button:hover{
 	border-color: red;
 	color: red;
+	transition: 0.3s;
 }
 
 .extrainfo {
