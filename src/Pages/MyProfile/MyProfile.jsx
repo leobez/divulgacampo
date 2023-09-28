@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from "./MyProfile.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { useGetDocuments } from '../../Hooks/useGetDocuments'
+import { useDeleteDocument } from '../../Hooks/useDeleteDocument'
 import { Link } from 'react-router-dom'
 
 const MyProfile = ({isEmailVerified}) => {
@@ -9,6 +10,7 @@ const MyProfile = ({isEmailVerified}) => {
 	const auth = useContext(AuthContext)
 
 	const {loading, apiError, getDocumentsByUid, listOfDocs} = useGetDocuments("posts")
+	const {loading: deleteLoading, apiError: deleteApiError, deleteDocument} = useDeleteDocument("posts")
 
 	useEffect(() => {
 
@@ -18,6 +20,10 @@ const MyProfile = ({isEmailVerified}) => {
 		asyncGetDocumentsByUid(auth.currentUser.uid)
 
 	}, [])
+
+	const handleDeleteClick = (e) => {
+		deleteDocument(e.target.id)
+	}
 
 	return (
 		<div className={styles.myprofile}>
@@ -50,7 +56,7 @@ const MyProfile = ({isEmailVerified}) => {
 									<div className={styles.historypostlinks}>
 										<Link to={`/post/${post.postId}`}>Acessar</Link>
 										<Link to="/">Editar</Link>
-										<Link to="/">Excluir</Link>
+										<button id={post.postId} onClick={handleDeleteClick}>Excluir</button>
 									</div>
 								</div>
 							))}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {db} from "../firebase/config"
-import { collection, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore"
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore"
 
 export const useGetDocuments = (collectionName) => {
 
@@ -9,10 +9,8 @@ export const useGetDocuments = (collectionName) => {
 	const [cancelled, setCancelled] = useState(false)
 	const [listOfDocs, setListOfDocs] = useState([])
 
+
 	const getDocuments = async() => {
-
-		if (cancelled) return;
-
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
@@ -35,9 +33,6 @@ export const useGetDocuments = (collectionName) => {
 	}
 
 	const getDocumentsByUid = async(uid) => {
-
-		if (cancelled) return;
-
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
@@ -56,10 +51,6 @@ export const useGetDocuments = (collectionName) => {
 			setLoading(false)
 		}
 	}
-
-	useEffect(() => {
-		return () => setCancelled(true)
-	}, [])
 
 	return {
 		loading, 
