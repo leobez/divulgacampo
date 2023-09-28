@@ -9,17 +9,8 @@ const MyProfile = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, getDocumentsByUid, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, listOfDocs} = useGetDocuments("posts", auth.currentUser.uid)
 	const {loading: deleteLoading, apiError: deleteApiError, deleteDocument} = useDeleteDocument("posts")
-
-	useEffect(() => {
-
-		const asyncGetDocumentsByUid = async(uid) => {
-			await getDocumentsByUid(uid)
-		}
-		asyncGetDocumentsByUid(auth.currentUser.uid)
-
-	}, [])
 
 	const handleDeleteClick = (e) => {
 		deleteDocument(e.target.id)
