@@ -13,16 +13,17 @@ export const useGetDocuments = (collectionName, uid=null) => {
 	useEffect(() => {
 
 		const getDocuments = async() => {
+			if (cancelled) return;
+
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
 				const q = await query(col, orderBy('createdAt', 'desc'))
 	
 				await onSnapshot(q, (querySnapshot) => {
+					console.log("TRIGGER: getDocuments")
 					querySnapshot.docs.forEach(doc => {
-						setListOfDocs(
-							(prev) => [...prev, {postData: doc.data(), postId: doc.id}]
-						)
+						setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 					});
 				})
 
@@ -35,17 +36,22 @@ export const useGetDocuments = (collectionName, uid=null) => {
 		}
 
 		const getDocumentsByUid = async(uid) => {
+			if (cancelled) return;
+
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
 				const q = await query(col, where("uid", "==", uid), orderBy("createdAt", "desc"))
 	
 				await onSnapshot(q, (querySnapshot) => {
+					console.log("TRIGGER: getDocumentsByUid")
+					if (querySnapshot.docs.length <= 0) setListOfDocs([])
 					querySnapshot.docs.forEach(doc => {
 						setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 					});
 				})
 				setLoading(false)
+
 			} catch (error) {
 				setApiError(error)
 				setLoading(false)
@@ -56,7 +62,7 @@ export const useGetDocuments = (collectionName, uid=null) => {
 
 		return () => setCancelled(true)
 
-	}, [])
+	}, [collectionName, uid, cancelled])
 
 	return {
 		loading, 

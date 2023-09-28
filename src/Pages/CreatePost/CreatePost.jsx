@@ -88,8 +88,6 @@ const CreatePost = ({isEmailVerified}) => {
 			return;	
 		}
 
-		console.log(auth.currentUser.uid)
-
 		const postData = {
 			uid: auth.currentUser.uid,
 			displayName: auth.currentUser.displayName,
@@ -101,7 +99,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 		await insertDocument(postData)
 
-		console.log(postData)
+		//console.log(postData)
 	}
 
 	return (
