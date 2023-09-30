@@ -14,7 +14,7 @@ const EditPost = () => {
 		<div className={styles.editpost}>
 
 			{doc && doc[0] && 
-				<EditPostForm post={doc[0]}></EditPostForm>
+				<EditPostForm post={doc[0]} postId={postId}></EditPostForm>
 			}
 			<div className='loading'>
 				{loading && <p>Carregando...</p>}

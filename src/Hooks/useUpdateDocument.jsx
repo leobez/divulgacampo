@@ -3,7 +3,7 @@ import {db} from "../firebase/config"
 import { Timestamp, addDoc, collection, doc } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 
-export const useInsertDocument = (collectionName) => {
+export const useUpdateDocument = (collectionName) => {
 
 	const [loading, setLoading] = useState(false)
 	const [apiError, setApiError] = useState("")
@@ -14,14 +14,7 @@ export const useInsertDocument = (collectionName) => {
 		try {
 			setLoading(true)
 			const docRef = doc(db, collectionName, docId)
-			await addDoc(collection(db, collectionName), {
-				uid: data.uid,
-				displayName: data.displayName,
-				title: data.title,
-				description: data.description,
-				quizLinks: data.quizLinks,
-				createdAt: Timestamp.now()
-			})
+			console.log("ATUALIZANDO POST: ", docId)
 			setLoading(false)
 			navigate("/")
 

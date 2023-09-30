@@ -1,3 +1,105 @@
 .editpostform {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
 
+/* formtextcontent */
+
+.formtextcontent {
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+	border: 3px solid black;
+}
+
+.formtextcontent > div {
+	display: flex;
+}
+
+.formtextcontent > div > input, textarea {
+	flex-basis: 85%;
+}
+
+.formtextcontent > div > div {
+	flex-basis: 15%;
+}
+
+.formtextcontent > div > input {
+	width: 100%;
+	border: none;
+}
+
+.formtextcontent textarea:focus, input:focus {
+	outline: none;
+}
+
+textarea {
+	border: none;
+}
+
+.inputtitle {
+	height: 45px;
+}
+
+.inputdescription {
+	height: 180px;
+	min-height: 180px;
+	resize: vertical;
+	border-top: 3px solid black ;
+}
+
+.wordcounter {
+	/* height: 100%; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-left: 3px solid black;
+	padding: 5px;
+}
+
+.wordcounter > div {
+	font-size: 0.8em;
+}
+
+.wordcounterlimitreached > span {
+	color: red;
+}
+
+/* formquizcontent */
+.formquizcontent {
+	border: 3px solid black;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	position: relative;
+}
+.quizunreachable {
+	z-index: 2;
+	background-color: rgba(128, 128, 128, 0.376);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.formquizcontent > div > div {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border: 2px solid black;
+	padding: 10px;
+}
+.formquizcontent > div > div > label {
+	flex-basis: 80%;
+}
+.formquizcontent > div > div > input {
+	flex-basis: 20%;
 }
