@@ -26,6 +26,10 @@
 	flex-basis: 15%;
 }
 
+.formtextcontent > div:nth-child(2) > div {
+	border-top: 3px solid black ;
+}
+
 .formtextcontent > div > input {
 	width: 100%;
 	border: none;
