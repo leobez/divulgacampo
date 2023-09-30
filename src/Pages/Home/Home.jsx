@@ -9,7 +9,11 @@ const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
+
+	useEffect(() => {
+		getDocuments()
+	}, [])
 
 	return (
 		<div className={styles.home}>
@@ -47,7 +51,7 @@ const Home = ({isEmailVerified}) => {
 					</div>
 
 					<div className="warn">
-						{listOfDocs.length <= 0 && <p>Não há posts.</p>}
+						{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
 					</div>
 				</div>
 

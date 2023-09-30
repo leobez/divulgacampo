@@ -9,7 +9,7 @@ const MyProfile = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs} = useGetDocumentsByUid("posts", auth.currentUser.uid)
+	const {loading, apiError, listOfDocs: userDocs} = useGetDocumentsByUid("posts", auth.currentUser.uid)
 	const {loading: deleteLoading, apiError: deleteApiError, deleteDocument} = useDeleteDocument("posts")
 
 	const handleDeleteClick = (e) => {
@@ -34,7 +34,7 @@ const MyProfile = ({isEmailVerified}) => {
 						<h1>Histórico de postagens: </h1>
 						<div className={styles.history}>
 
-						{listOfDocs && listOfDocs.map((post) => (
+						{userDocs && userDocs.map((post) => (
 								<div 
 								key={post.postId} 
 								className={styles.historypost}>
@@ -60,7 +60,7 @@ const MyProfile = ({isEmailVerified}) => {
 									{apiError && <p>{apiError}</p>}
 								</div>
 								<div className="warn">
-									{listOfDocs.length <= 0 && <p>Não há posts.</p>}
+									{userDocs.length <= 0 && <p>Não há posts.</p>}
 								</div>	
 							</div>
 
