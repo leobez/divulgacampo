@@ -1,0 +1,16 @@
+.configuser {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.configuser > div {
+	display: flex;
+	gap: 10px;
+	text-align: center;
+}
+
+.configuser > div  > span{
+	display: grid;
+	place-items: center;
+}
