@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styles from './EditPost.module.css'
 import { useParams } from 'react-router-dom';
-import { useGetDocuments } from '../../Hooks/useGetDocuments';
+import { useGetDocument } from '../../Hooks/useGet/useGetDocument';
 import EditPostForm from './EditPostForm/EditPostForm';
 
 const EditPost = () => {
 
 	const {postId} = useParams()
 
-	const {loading, apiError, listOfDocs: doc} = useGetDocuments("posts", postId, null, null)
+	const {loading, apiError, listOfDocs: doc} = useGetDocument("posts", postId)
 
 	return (
 		<div className={styles.editpost}>

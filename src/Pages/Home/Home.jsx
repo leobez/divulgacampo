@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
-import { useGetDocuments } from '../../Hooks/useGetDocuments'
+import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
 
 const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs} = useGetDocuments("posts", null, null, true)
+	const {loading, apiError, listOfDocs} = useGetDocuments("posts")
 
 	return (
 		<div className={styles.home}>
