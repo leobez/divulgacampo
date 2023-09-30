@@ -46,7 +46,7 @@ const MyProfile = ({isEmailVerified}) => {
 									</div>
 									<div className={styles.historypostlinks}>
 										<Link to={`/post/${post.postId}`}>Acessar</Link>
-										<Link to="/">Editar</Link>
+										<Link to={`/editpost/${post.postId}`}>Editar</Link>
 										<button id={post.postId} onClick={handleDeleteClick}>Excluir</button>
 									</div>
 								</div>

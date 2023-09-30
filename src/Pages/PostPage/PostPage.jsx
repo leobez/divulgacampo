@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 const PostPage = () => {
 
-	const {id: postId} = useParams()
+	const {postId} = useParams()
 
 	return (
 		<div>
