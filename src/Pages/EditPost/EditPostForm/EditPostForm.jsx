@@ -34,8 +34,35 @@ const EditPostForm = ({post, postId}) => {
 	}, [post])
 
 	const handleSubmit = async(e) => {
-		e.target.preventDefault()
-		//await updateDocument(postId)
+		e.preventDefault()
+
+		if (
+			title.trim() === "" || 
+			title.trim() === undefined || 
+			title.trim() === null ||
+			description.trim() === "" || 
+			description.trim() === undefined ||
+			description.trim() === null
+		) {
+			setError("Preencha todos os campos.")
+			return;
+		}
+
+		if (
+			title.length > maxcharlimit_title ||
+			description.length > maxcharlimit_desc
+		) {
+			setError("Limite de caracteres ultrapassado.")
+			return;	
+		}
+
+		const newData = {
+			title,
+			description
+		}
+		setError("")
+
+		await updateDocument(postId, newData)
 	}
 
 	return (
@@ -112,7 +139,7 @@ const EditPostForm = ({post, postId}) => {
 					</div>
 				</div>
 
-				{!loading ? (<input type="submit" value="Editar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
+				{!loading ? (<input type="submit" value="Editar"/>) : (<input type="submit" className="loadingButton" value="Editando..." disabled/>)}
 
 				<div className="error">
 					{error && <p>{error}</p>}
