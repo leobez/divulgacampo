@@ -8,7 +8,7 @@ const EditPost = () => {
 
 	const {postId} = useParams()
 
-	const {loading, apiError, listOfDocs: doc} = useGetDocuments("posts", null, postId)
+	const {loading, apiError, listOfDocs: doc} = useGetDocuments("posts", postId, null, null)
 
 	return (
 		<div className={styles.editpost}>

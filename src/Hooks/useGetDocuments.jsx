@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {db} from "../firebase/config"
 import { collection, doc, getDoc, onSnapshot, orderBy, query, where } from "firebase/firestore"
 
-export const useGetDocuments = (collectionName, uid=null, docId=null) => {
+export const useGetDocuments = (collectionName, docId=null, uid=null, getAll=null) => {
 
 	const [loading, setLoading] = useState(false)
 	const [apiError, setApiError] = useState("")
@@ -30,6 +30,30 @@ export const useGetDocuments = (collectionName, uid=null, docId=null) => {
 
 		}
 
+		const getDocumentsByUid = async(uid) => {
+			if (cancelled) return;
+
+			try {
+				setLoading(true)
+				const col = collection(db, collectionName)
+				const q = await query(col, where("uid", "==", uid), orderBy("createdAt", "desc"))
+	
+				await onSnapshot(q, (querySnapshot) => {
+					console.log("TRIGGER: getDocumentsByUid")
+					if (querySnapshot.docs.length <= 0) setListOfDocs([])
+					querySnapshot.docs.forEach(doc => {
+						setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
+					});
+				})
+				setLoading(false)
+
+			} catch (error) {
+				setApiError("Algo deu errado.")
+				console.log(error)
+				setLoading(false)
+			}
+		}
+
 		const getDocuments = async() => {
 			if (cancelled) return;
 
@@ -55,41 +79,17 @@ export const useGetDocuments = (collectionName, uid=null, docId=null) => {
 			}
 		}
 
-		const getDocumentsByUid = async(uid) => {
-			if (cancelled) return;
-
-			try {
-				setLoading(true)
-				const col = collection(db, collectionName)
-				const q = await query(col, where("uid", "==", uid), orderBy("createdAt", "desc"))
-	
-				await onSnapshot(q, (querySnapshot) => {
-					console.log("TRIGGER: getDocumentsByUid")
-					if (querySnapshot.docs.length <= 0) setListOfDocs([])
-					querySnapshot.docs.forEach(doc => {
-						setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
-					});
-				})
-				setLoading(false)
-
-			} catch (error) {
-				setApiError("Algo deu errado.")
-				console.log(error)
-				setLoading(false)
-			}
-		}
-		
 		if (docId) {
 			getDocument(docId)
 		}else if (uid) {
 			getDocumentsByUid(uid)
-		} else {
+		} else if (getAll) {
 			getDocuments()
 		}
 
 		return () => setCancelled(true)
 
-	}, [collectionName, uid, cancelled])
+	}, [collectionName, uid, docId, cancelled])
 
 	return {
 		loading, 

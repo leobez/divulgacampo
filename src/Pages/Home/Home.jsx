@@ -9,7 +9,7 @@ const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, listOfDocs} = useGetDocuments("posts", null, null, true)
 
 	return (
 		<div className={styles.home}>

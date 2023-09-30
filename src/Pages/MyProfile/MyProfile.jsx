@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from "./MyProfile.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { useGetDocuments } from '../../Hooks/useGetDocuments'
@@ -9,7 +9,7 @@ const MyProfile = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs} = useGetDocuments("posts", auth.currentUser.uid)
+	const {loading, apiError, listOfDocs} = useGetDocuments("posts", null, auth.currentUser.uid, null)
 	const {loading: deleteLoading, apiError: deleteApiError, deleteDocument} = useDeleteDocument("posts")
 
 	const handleDeleteClick = (e) => {
