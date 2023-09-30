@@ -10,7 +10,12 @@
 	text-align: center;
 }
 
+.configuser > div > a {
+	flex-basis: 30%;
+}
+
 .configuser > div  > span{
 	display: grid;
 	place-items: center;
 }
+

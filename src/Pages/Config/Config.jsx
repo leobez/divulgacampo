@@ -19,11 +19,11 @@ const Config = ({element}) => {
 						Usuário
 					</NavLink>
 
-					<NavLink
+					{/* <NavLink
 						to="/config/appearance"
 						className={({ isActive }) => isActive ? styles.active : ""}>
 						Aparência
-					</NavLink>
+					</NavLink> */}
 
 				</nav>
 			</div>

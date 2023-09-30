@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import AuthContext from '../../../Context/AuthContext'
 import styles from './User.module.css'
+import { Link } from 'react-router-dom'
 
 const User = () => {
 	
@@ -9,20 +10,19 @@ const User = () => {
 	return (
 		<div className={styles.configuser}> 
 			<p>Configuração de usuário</p>
-			<hr />
 			{ auth.currentUser &&
 				<>
 					<div>
-						<button>Trocar de senha </button>
+						<Link className='nonNavLink' to="/">Trocar senha </Link>
 					</div>
 
 					<div>
-						<button>Trocar de email </button>
+						<Link className='nonNavLink' to="/">Trocar email </Link>
 						<span>{auth.currentUser.email}</span>
 					</div>
 
 					<div>
-						<button>Trocar displayName </button>
+						<Link className='nonNavLink' to="/">Trocar displayName </Link>
 						<span>{auth.currentUser.displayName}</span>
 					</div>
 				</>
