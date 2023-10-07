@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, NavLink, useLocation } from 'react-router-dom'
 import { useState, useContext, useMemo } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 
@@ -58,6 +58,7 @@ function App() {
 /*  console.log("isLogged: ", isLogged)
 	console.log("auth.currentUser: ", auth.currentUser)
 	console.log("isEmailVerified: ", isEmailVerified) */
+
 
     return (
 		<div className='App'>

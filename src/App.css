@@ -1,6 +1,7 @@
 .main {
 	grid-area: main;
 	overflow-y: scroll;
+	position: relative;
 }
 
 .main > div {

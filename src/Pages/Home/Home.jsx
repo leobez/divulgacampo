@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
@@ -11,6 +11,19 @@ const Home = ({isEmailVerified}) => {
 
 	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
+	const homeMenuRef = useRef(null)
+
+	useEffect(() => {
+		const MAIN = document.querySelector(".main")
+		const DIV_TO_SCROLL = MAIN.firstChild
+
+		DIV_TO_SCROLL.addEventListener("scroll", (e) => {
+			console.log("scroll", e)
+		})
+
+		console.log(DIV_TO_SCROLL)
+
+	}, [])
 
 	useEffect(() => {
 		console.log("CARREGAR CONTEUDO!")
@@ -23,21 +36,26 @@ const Home = ({isEmailVerified}) => {
 
 	return (
 		<div className={styles.home}>
-			<div className={styles.welcome}>
-				<p> Olá, você esta na tela de home! </p> 
 
-				{!auth.currentUser ? 
-					(<div className={styles.welcomelinkstoauth}>
-						{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
-						<p> OU </p>
-						{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
-					</div>) :
-					(
-						<div className={styles.welcomelinkstopost}>
-							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
-						</div>
-					)
-				}
+			<div className={styles.hometop}>
+				<div className={styles.homemenu} ref={homeMenuRef}>
+					<p> Aqui é o menu da home (Botão de refresh, barra de pesquisa, categorias) </p> 
+				</div>
+				<div className={styles.welcome}>
+
+					{!auth.currentUser ? 
+						(<div className={styles.welcomelinkstoauth}>
+							{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
+							<p> OU </p>
+							{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
+						</div>) :
+						(
+							<div className={styles.welcomelinkstopost}>
+								<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
+							</div>
+						)
+					}
+				</div>
 			</div>
 
 			<hr />
