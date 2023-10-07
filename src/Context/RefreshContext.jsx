@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const RefreshContext = createContext({
-	refresh: false,
+	refresh: null,
 	setRefresh: () => {}
 })
 

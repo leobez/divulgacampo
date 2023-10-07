@@ -7,10 +7,7 @@ const RefreshButton = () => {
 	const {refresh, setRefresh} = useContext(RefreshContext)
 
 	const handleClick = () => {
-		const MAIN = document.querySelector(".main")
-		const DIV_TO_REFRESH = MAIN.firstChild
-
-		setRefresh(true)
+		setRefresh((prev) => !prev)
 	}
 
 	return (

@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState, useContext, useMemo } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 
 // Components
@@ -34,7 +34,12 @@ function App() {
 	const [isLogged, setIsLogged] = useState(false)
 	const [isEmailVerified, setIsEmailVerified] = useState(false)
 	const [loadingUser, setLoadingUser] = useState(true)
-	const [refresh, setRefresh] = useState(false)
+
+	const [refresh, setRefresh] = useState(false);
+	const value = useMemo(
+	  () => ({ refresh, setRefresh }), 
+	  [refresh]
+	);
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
@@ -67,7 +72,7 @@ function App() {
 				<BrowserRouter>
 					<Header/>
 				
-					<RefreshContext.Provider value={{refresh, setRefresh}}>
+					<RefreshContext.Provider value={value}>
 						<div className='navcontainer'>
 							<Navbar/>
 							<SubNavBar/>	
