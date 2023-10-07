@@ -32,13 +32,16 @@
 .homecontentcontainer {
 	display: flex;
 	gap: 10px;
+	justify-content: center;
+	position: relative;
 }
 
 .refreshbutton {
 	height: 60px;
 	flex-basis: 10%;
 	cursor: pointer;
-	justify-self: flex-start;
+	position: absolute;
+	left: 0;
 }
 .refreshbutton:hover {
 	background-color: black;
