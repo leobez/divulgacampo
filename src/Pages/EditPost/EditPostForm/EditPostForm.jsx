@@ -9,7 +9,7 @@ const EditPostForm = ({post, postId}) => {
 	const {loading, apiError, updateDocument} = useUpdateDocument("posts")
 	const [error, setError] = useState("")
 
-	const maxcharlimit_title = 50
+	const maxcharlimit_title = 200
 	const [title, setTitle] = useState("")
 	const titleRef = useRef()
 	const [titlecharcounter, setTitlecharcounter] = useState(0)
@@ -19,7 +19,7 @@ const EditPostForm = ({post, postId}) => {
 		}
 	}, [title])
 
-	const maxcharlimit_desc = 400
+	const maxcharlimit_desc = 1000
 	const [description, setDescription] = useState("")
 	const [descriptioncharcounter, setDescriptioncharcounter] = useState(0)
 	useEffect(() => {

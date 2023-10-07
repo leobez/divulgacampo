@@ -15,7 +15,7 @@ const Post = ({postData, postId}) => {
 				{postData.title}
 			</div>
 
-			<div className={styles.description}>
+{/* 			<div className={styles.description}>
 				{postData.description}
 			</div>
 
@@ -26,7 +26,7 @@ const Post = ({postData, postId}) => {
 						<a href={`${value}`}>{value}</a>
 					</div>
 				))}
-			</div>
+			</div> */}
 
 			<div className={`${styles.linktoenter}`}>
 				<Link to={`/post/${postId}`}>Acessar</Link>

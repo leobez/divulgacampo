@@ -13,6 +13,7 @@ const PostPage = () => {
 		<div className={styles.postpage}>
 			{listOfDocs[0] && 
 				<>
+
 					<div>Criado por: 
 						<span>{listOfDocs[0].displayName}</span>
 					</div>

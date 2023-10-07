@@ -1,16 +1,16 @@
 .post {
 	min-width: 300px;
 	width: 600px;
-	height: 400px;
+	height: 350px;
 
 	box-shadow: 1px 2px 3px black;
 	padding: 20px;
 
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	justify-content: space-between;
 
-	overflow-y: scroll;
+	overflow-y: hidden;
 }
 
 .post > div {
