@@ -34,7 +34,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 		const quiz_label = document.createElement("label")
 		quiz_label.setAttribute("for", `quiz_${amountOfQuizLinks}`)
-		quiz_label.innerText = `Questionário ${amountOfQuizLinks}`
+		quiz_label.innerText = `Questionário ${amountOfQuizLinks+1}`
 
 		const quiz_input = document.createElement("input")
 		quiz_input.setAttribute("type", "text") // CHANGE TO URL
@@ -174,7 +174,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 						<div className={styles.buttonarea}>
 
-							{amountOfQuizLinks <= 10 &&
+							{amountOfQuizLinks < 10 &&
 								<button type="button" onClick={addQuiz} className={styles.addquiz}>
 									Adicionar Questionário +
 								</button>
