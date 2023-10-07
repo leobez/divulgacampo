@@ -4,16 +4,18 @@ import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
+import RefreshButton from '../../Components/RefreshButton/RefreshButton'
 
 const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
+	const [refresh, setRefresh] = useState(false)
 
 	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
 
 	useEffect(() => {
 		getDocuments()
-	}, [])
+	}, [refresh])
 
 	return (
 		<div className={styles.home}>
@@ -33,10 +35,11 @@ const Home = ({isEmailVerified}) => {
 					)
 				}
 			</div>
+
 			<hr />
-			
+
 			<div className={styles.homecontent}>
-				 
+				
 				{listOfDocs && listOfDocs.map((post) => (
 					<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 				))}
@@ -56,6 +59,7 @@ const Home = ({isEmailVerified}) => {
 				</div>
 
 			</div>
+			
 		</div>
 	)
 }

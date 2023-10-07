@@ -2,11 +2,27 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	padding: 10px;
-	gap: 5px;
+	gap: 10px;
 }
 
-.subnavbar > a {
+.subnavbar > div:nth-child(1) {
+	width: 100%;
+	height: 60px;
+	border: 3px solid black;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.subnavbar > div:nth-child(2) {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+}
+
+.subnavbar > div >  a {
 	height: 60px;
 	display: flex;
 	align-items: center;
