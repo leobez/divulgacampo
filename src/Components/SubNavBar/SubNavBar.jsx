@@ -1,18 +1,27 @@
 import React from 'react'
 import styles from './SubNavBar.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import RefreshButton from '../RefreshButton/RefreshButton'
 
 const SubNavBar = () => {
 
+	const location = useLocation()
+
 	return (
 		<div className={styles.subnavbar}>
 
-			<div>
-				<RefreshButton/>
-			</div>
+			{location.pathname === "/" &&
+				<div className={styles.subnavbarunfixed}> 
+					<RefreshButton/>
+				</div>
+			}
+			{location.pathname === "/myprofile" &&
+				<div className={styles.subnavbarunfixed}> 
+					<RefreshButton/>
+				</div>
+			}
 
-			<div>
+			<div className={styles.subnavbarfixed}>
 				<NavLink 
 				className={({ isActive }) => isActive ? styles.configlinkactive : styles.configlink} 
 				to='/config'>
