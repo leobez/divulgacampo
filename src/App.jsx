@@ -26,7 +26,6 @@ import Config from './Pages/Config/Config'
 import CreatePost from './Pages/CreatePost/CreatePost'
 import PostPage from './Pages/PostPage/PostPage'
 import EditPost from './Pages/EditPost/EditPost'
-import RefreshContext from './Context/RefreshContext'
 
 function App() {
 
@@ -34,12 +33,6 @@ function App() {
 	const [isLogged, setIsLogged] = useState(false)
 	const [isEmailVerified, setIsEmailVerified] = useState(false)
 	const [loadingUser, setLoadingUser] = useState(true)
-
-	const [refresh, setRefresh] = useState(false);
-	const value = useMemo(
-	  () => ({ refresh, setRefresh }), 
-	  [refresh]
-	);
 
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
@@ -72,37 +65,35 @@ function App() {
 				<BrowserRouter>
 					<Header/>
 				
-					<RefreshContext.Provider value={value}>
-						<div className='navcontainer'>
-							<Navbar/>
-							<SubNavBar/>	
-						</div>
+					<div className='navcontainer'>
+						<Navbar/>
+						<SubNavBar/>	
+					</div>
 
-						<div className='main'>
-							<Routes>
-								<Route path='*' element={<NotFound/>}/>
-								<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
-								<Route path='/about' element={<About/>}/>
-								<Route path='/resetpassword' element={<ResetPassword/>}/>
-								<Route path='/verifyemail' element={<VerifyEmail/>}/>
-								<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
-								<Route path='/post/:postId' element={<PostPage/>}/>
-								<Route path='/config' element={<Config element={"config"}/>}/>
-								<Route path='/config/user' element={<Config element={"user"}/>}/>
-								<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
+					<div className='main'>
+						<Routes>
+							<Route path='*' element={<NotFound/>}/>
+							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
+							<Route path='/about' element={<About/>}/>
+							<Route path='/resetpassword' element={<ResetPassword/>}/>
+							<Route path='/verifyemail' element={<VerifyEmail/>}/>
+							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
+							<Route path='/post/:postId' element={<PostPage/>}/>
+							<Route path='/config' element={<Config element={"config"}/>}/>
+							<Route path='/config/user' element={<Config element={"user"}/>}/>
+							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
 
-								{/* ROTAS PARA AUTENTICADO */}
-								<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
-								<Route path='/createpost' element={isLogged ? <CreatePost isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
-								<Route path='/editpost/:postId' element={isLogged ? <EditPost/> : <Navigate to="/login"/>}/>
+							{/* ROTAS PARA AUTENTICADO */}
+							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
+							<Route path='/createpost' element={isLogged ? <CreatePost isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
+							<Route path='/editpost/:postId' element={isLogged ? <EditPost/> : <Navigate to="/login"/>}/>
 
-								{/* ROTAS PARA NÃO AUTENTICADO */}
-								<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
-								<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
+							{/* ROTAS PARA NÃO AUTENTICADO */}
+							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
+							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
 
-							</Routes>
-						</div>
-					</RefreshContext.Provider>
+						</Routes>
+					</div>
 
 				</BrowserRouter>
 				<Footer/>

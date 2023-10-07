@@ -9,7 +9,8 @@ export const useGetDocuments = (collectionName) => {
 	const [listOfDocs, setListOfDocs] = useState([])
 
 	const getDocuments = async() => {
-
+		
+		setListOfDocs([])
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)

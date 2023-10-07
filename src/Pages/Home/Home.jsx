@@ -4,23 +4,23 @@ import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
-import RefreshContext from '../../Context/RefreshContext'
 
 const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {refresh} = useContext(RefreshContext)
+	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
+	const [refresh, setRefresh] = useState(false)
 
 	useEffect(() => {
-		console.log("RECARREGAR CONTEUDO!")
+		console.log("CARREGAR CONTEUDO!")
+		getDocuments()
 	}, [refresh])
 
-	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
-
-	useEffect(() => {
-		getDocuments()
-	}, [])
+	const handleRefreshClick = () => {
+		console.log("botao apertado")
+		setRefresh(prev => !prev)
+	}
 
 	return (
 		<div className={styles.home}>
@@ -44,7 +44,9 @@ const Home = ({isEmailVerified}) => {
 			<hr />
 
 			<div className={styles.homecontent}>
-				
+
+				<button onClick={handleRefreshClick}>Recarregar</button>
+
 				{listOfDocs && listOfDocs.map((post) => (
 					<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 				))}

@@ -2,23 +2,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: column;
 	padding: 10px;
-	gap: 10px;
+	gap: 5px;
 }
 
-.subnavbar > .subnavbarunfixed {
-	width: 100%;
-	height: 60px;
-	border: 3px solid black;
-}
-.subnavbar > .subnavbarfixed {
-	display: flex;
-	gap: 10px;
-	width: 100%;
-}
-
-.subnavbar > div >  a {
+.subnavbar > a {
 	height: 60px;
 	display: flex;
 	align-items: center;
