@@ -29,6 +29,23 @@
 	place-items: center;
 }
 
+.homecontentcontainer {
+	display: flex;
+	gap: 10px;
+}
+
+.refreshbutton {
+	height: 60px;
+	flex-basis: 10%;
+	cursor: pointer;
+	justify-self: flex-start;
+}
+.refreshbutton:hover {
+	background-color: black;
+	color: white;
+	transition: 0.3s;
+}
+
 .homecontent {
 	display: flex;
 	flex-direction: column;
