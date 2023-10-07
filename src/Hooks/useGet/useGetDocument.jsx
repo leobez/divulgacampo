@@ -15,6 +15,8 @@ export const useGetDocument = (collectionName, docId=null) => {
 		const getDocument = async(docId) => {
 			if (cancelled) return;
 
+			setListOfDocs([])
+
 			try {
 				setLoading(true)
 				const docRef = doc(db, collectionName, docId)

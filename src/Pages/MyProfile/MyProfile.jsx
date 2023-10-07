@@ -32,6 +32,7 @@ const MyProfile = ({isEmailVerified}) => {
 					<hr />
 					<div className={styles.historycontainer}>
 						<h1>Histórico de postagens: </h1>
+
 						<div className={styles.history}>
 
 						{userDocs && userDocs.map((post) => (
