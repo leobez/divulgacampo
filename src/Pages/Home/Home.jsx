@@ -4,18 +4,23 @@ import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
-import RefreshButton from '../../Components/RefreshButton/RefreshButton'
+import RefreshContext from '../../Context/RefreshContext'
 
 const Home = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
-	const [refresh, setRefresh] = useState(false)
+
+	const {refresh} = useContext(RefreshContext)
+
+	useEffect(() => {
+		console.log("RECARREGAR CONTEUDO!")
+	}, [refresh])
 
 	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
 
 	useEffect(() => {
 		getDocuments()
-	}, [refresh])
+	}, [])
 
 	return (
 		<div className={styles.home}>
