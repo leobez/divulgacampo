@@ -4,19 +4,43 @@
 	gap: 10px;
 }
 
-.hometop {
-	width: 100%;
-}
-
 .homemenu {
 	height: 100px;
 	width: inherit;
 	border: 2px solid black;
-	display: grid;
-	place-items: center;
+	display: flex;
+	align-items: center;
 	z-index: 2;
 	background-color: white;
-	position: fixed;
+	position: sticky;
+	top: 0;
+	padding: 10px;
+	gap: 20px;
+}
+
+.refreshbutton {
+	height: 60px;
+	flex-basis: 10%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px;
+	justify-self: flex-start;
+}
+
+.refreshbutton:hover {
+	background-color: black;
+	transition: 0.3s;
+}
+.refreshbutton:hover p {
+	color: white;
+	transition: 0.3s;
+}
+.refreshbutton:hover img {
+	filter: invert(100%);
+	transition: 0.3s;
 }
 
 .welcome {
@@ -24,7 +48,6 @@
 	flex-direction: column;
 	gap: 10px;
 	position: relative;
-	margin-top: 110px;
 }
 
 .welcomelinkstoauth {
@@ -47,41 +70,6 @@
 	display: grid;
 	place-items: center;
 }
-
-.homecontentcontainer {
-	display: flex;
-	gap: 10px;
-	justify-content: center;
-	position: relative;
-	z-index: 1;
-}
-
-.refreshbutton {
-	height: 60px;
-	flex-basis: 10%;
-	cursor: pointer;
-	position: absolute;
-	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-	padding: 10px;
-}
-
-.refreshbutton:hover {
-	background-color: black;
-	transition: 0.3s;
-}
-.refreshbutton:hover p {
-	color: white;
-	transition: 0.3s;
-}
-.refreshbutton:hover img {
-	filter: invert(100%);
-	transition: 0.3s;
-}
-
 
 .homecontent {
 	display: flex;

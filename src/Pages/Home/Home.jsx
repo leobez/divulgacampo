@@ -36,36 +36,36 @@ const Home = ({isEmailVerified}) => {
 
 	return (
 		<div className={styles.home}>
+		
+			<div className={styles.homemenu} ref={homeMenuRef}>
+				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
+					<p>Recarregar</p>				
+					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
+				</button>
+				<p>
+					Bem vindo ao Divulga Campo ! (Aqui ainda vai: barra de pesquisa, menu de categorias)
+				</p>
+			</div>
 
-			<div className={styles.hometop}>
-				<div className={styles.homemenu} ref={homeMenuRef}>
-					<p> Aqui é o menu da home (Botão de refresh, barra de pesquisa, categorias) </p> 
-				</div>
-				<div className={styles.welcome}>
+			<div className={styles.welcome}>
 
-					{!auth.currentUser ? 
-						(<div className={styles.welcomelinkstoauth}>
-							{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
-							<p> OU </p>
-							{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
-						</div>) :
-						(
-							<div className={styles.welcomelinkstopost}>
-								<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
-							</div>
-						)
-					}
-				</div>
+				{!auth.currentUser ? 
+					(<div className={styles.welcomelinkstoauth}>
+						{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
+						<p> OU </p>
+						{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
+					</div>) :
+					(
+						<div className={styles.welcomelinkstopost}>
+							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
+						</div>
+					)
+				}
 			</div>
 
 			<hr />
 
 			<div className={styles.homecontentcontainer}>
-
-				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
-					<p>Recarregar</p>				
-					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
-				</button>
 
 				<div className={styles.homecontent}>
 					{listOfDocs && listOfDocs.map((post) => (

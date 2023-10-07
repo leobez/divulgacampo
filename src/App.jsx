@@ -26,6 +26,7 @@ import Config from './Pages/Config/Config'
 import CreatePost from './Pages/CreatePost/CreatePost'
 import PostPage from './Pages/PostPage/PostPage'
 import EditPost from './Pages/EditPost/EditPost'
+import ChangeName from './Pages/Config/User/ChangeName/ChangeName'
 
 function App() {
 
@@ -80,14 +81,17 @@ function App() {
 							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
+
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>
+
 							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
 							<Route path='/createpost' element={isLogged ? <CreatePost isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
 							<Route path='/editpost/:postId' element={isLogged ? <EditPost/> : <Navigate to="/login"/>}/>
+							<Route path='/changename' element={isLogged ? <ChangeName/> : <Navigate to="/login"/>}/>
 
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>

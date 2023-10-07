@@ -24,7 +24,7 @@ const User = () => {
 					</div>
 
 					<div>
-						<Link className='nonNavLink' to="/">Trocar nome </Link>
+						<Link className='nonNavLink' to="/changename">Trocar nome </Link>
 					</div>
 
 					<div>
