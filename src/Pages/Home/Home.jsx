@@ -44,7 +44,10 @@ const Home = ({isEmailVerified}) => {
 
 			<div className={styles.homecontentcontainer}>
 
-				<button onClick={handleRefreshClick} className={styles.refreshbutton}>Recarregar</button>
+				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
+					<p>Recarregar</p>				
+					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
+				</button>
 
 				<div className={styles.homecontent}>
 					{listOfDocs && listOfDocs.map((post) => (

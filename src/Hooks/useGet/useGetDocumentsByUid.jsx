@@ -14,7 +14,7 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 
 		const getDocumentsByUid = async(uid) => {
 			if (cancelled) return;
-
+			setListOfDocs([])
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
