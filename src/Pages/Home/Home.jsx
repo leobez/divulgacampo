@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
@@ -11,19 +11,6 @@ const Home = ({isEmailVerified}) => {
 
 	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
-	const homeMenuRef = useRef(null)
-
-	useEffect(() => {
-		const MAIN = document.querySelector(".main")
-		const DIV_TO_SCROLL = MAIN.firstChild
-
-		DIV_TO_SCROLL.addEventListener("scroll", (e) => {
-			console.log("scroll", e)
-		})
-
-		console.log(DIV_TO_SCROLL)
-
-	}, [])
 
 	useEffect(() => {
 		console.log("CARREGAR CONTEUDO!")
@@ -37,7 +24,7 @@ const Home = ({isEmailVerified}) => {
 	return (
 		<div className={styles.home}>
 		
-			<div className={styles.homemenu} ref={homeMenuRef}>
+			<div className={styles.homemenu}>
 				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
 					<p>Recarregar</p>				
 					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />

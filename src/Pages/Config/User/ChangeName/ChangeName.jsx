@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import styles from './ChangeName.module.css'
+import { useChangeUserInfo } from '../../../../Hooks/useChangeUserInfo'
 
 const ChangeName = () => {
 
 	const [name, setName] = useState("")
 	const [error, setError] = useState("")
 
+	const {loading, authError, updateName} = useChangeUserInfo()
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault()
 
 		if (
@@ -23,7 +25,7 @@ const ChangeName = () => {
 			return;
 		}
 
-		
+		await updateName(name)
 
 
 	}
@@ -44,14 +46,13 @@ const ChangeName = () => {
 						onChange={(e) => setName(e.target.value)}/>
 					</div>
 
-					<input type="submit" value="Mudar"/>
-
-{/* 					{!loading ? 
+					{!loading ? 
 					(<input type="submit" value="Mudar"/>) : 
-					(<input type="submit" className="loadingButton" value="Carregando..." disabled/>)} */}
+					(<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 
 					<div className="error">
 						{error && <p>{error}</p>}
+						{authError && <p>{authError}</p>}
 					</div>
 				</form>
 			</div>
