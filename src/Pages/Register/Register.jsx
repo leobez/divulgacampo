@@ -32,6 +32,15 @@ const Register = () => {
 			return;
 		}
 
+		if (name.trim().length > 40) {
+			setError("Tamanho máximo para nome: 40 caracteres")
+			return;
+		}
+		if (password.trim().length > 80) {
+			setError("Tamanho máximo para senha: 80 caracteres")
+			return;
+		}
+
 		if (password !== passwordAgain) {
 			setError("Senhas devem ser iguais.")
 			return;

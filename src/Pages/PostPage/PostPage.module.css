@@ -8,6 +8,7 @@
 .postpage > div {
 	overflow-wrap: break-word;
 	padding: 10px;
+	text-align: justify;
 }
 .postpage > div:nth-child(1)  > span::before{
 	content: " ";
