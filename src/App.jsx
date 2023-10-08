@@ -27,6 +27,7 @@ import CreatePost from './Pages/CreatePost/CreatePost'
 import PostPage from './Pages/PostPage/PostPage'
 import EditPost from './Pages/EditPost/EditPost'
 import ChangeName from './Pages/Config/User/ChangeName/ChangeName'
+import DeleteAccount from './Pages/Config/User/DeleteAccount/DeleteAccount'
 
 function App() {
 
@@ -92,7 +93,9 @@ function App() {
 							<Route path='/createpost' element={isLogged ? <CreatePost isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
 							<Route path='/editpost/:postId' element={isLogged ? <EditPost/> : <Navigate to="/login"/>}/>
 							<Route path='/changename' element={isLogged ? <ChangeName/> : <Navigate to="/login"/>}/>
+							<Route path='/deleteaccount' element={isLogged ? <DeleteAccount/> : <Navigate to="/"/>}/>
 
+							
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>

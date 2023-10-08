@@ -28,7 +28,7 @@ const User = () => {
 					</div>
 
 					<div>
-						<Link className='nonNavLink' to="/"> Excluir conta </Link>
+						<Link className='nonNavLink' to="/deleteaccount"> Excluir conta </Link>
 					</div>
 				</>
 			}

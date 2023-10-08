@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 
 import AuthContext from '../Context/AuthContext'
-import { updateProfile } from "firebase/auth"
+import { deleteUser, updateProfile } from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 
 export const useChangeUserInfo = () => {
@@ -28,10 +28,23 @@ export const useChangeUserInfo = () => {
 		}
 	}
 
+	const deleteUserAccount = async() => {
+		try {
+			setLoading(true)
+			await deleteUser(auth.currentUser)
+			setLoading(false)
+			navigate("/")
+		} catch (error) {
+			setLoading(false)
+			setAuthError("Algo deu errado.")
+		}
+	}
+
 
 	return {
 		loading,
 		authError,
-		updateName	
+		updateName,
+		deleteUserAccount,
 	}
 }
