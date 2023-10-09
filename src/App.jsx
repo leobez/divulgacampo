@@ -82,12 +82,9 @@ function App() {
 							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
-
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>
-
 							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
-
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
@@ -97,7 +94,6 @@ function App() {
 							<Route path='/deleteaccount' element={isLogged ? <DeleteAccount/> : <Navigate to="/"/>}/>
 							<Route path='/changepassword' element={isLogged ? <ChangePassword/>: <Navigate to="/login"/>}/>
 
-							
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
