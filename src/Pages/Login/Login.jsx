@@ -61,7 +61,7 @@ const Login = () => {
 
 					<div className='extrabuttons'>
 						<Link to="/register" className="nonNavLink">Não tem conta?</Link>
-						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
+						<Link to="/forgotpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 
 					<div className="error">

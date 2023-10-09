@@ -18,7 +18,6 @@ import Home from './Pages/Home/Home'
 import Register from './Pages/Register/Register'
 import MyProfile from './Pages/MyProfile/MyProfile'
 import About from './Pages/About/About'
-import ResetPassword from './Pages/ResetPassword/ResetPassword'
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
 import NotFound from './Pages/NotFound/NotFound'
 import ValidationEmailSent from './Pages/ValidationEmailSent/ValidationEmailSent'
@@ -28,6 +27,8 @@ import PostPage from './Pages/PostPage/PostPage'
 import EditPost from './Pages/EditPost/EditPost'
 import ChangeName from './Pages/Config/User/ChangeName/ChangeName'
 import DeleteAccount from './Pages/Config/User/DeleteAccount/DeleteAccount'
+import ChangePassword from './Pages/Config/User/ChangePassword/ChangePassword'
+import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 
 function App() {
 
@@ -78,7 +79,6 @@ function App() {
 							<Route path='*' element={<NotFound/>}/>
 							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
 							<Route path='/about' element={<About/>}/>
-							<Route path='/resetpassword' element={<ResetPassword/>}/>
 							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
@@ -87,6 +87,9 @@ function App() {
 							<Route path='/config/user' element={<Config element={"user"}/>}/>
 
 							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
+
+							<Route path='/changepassword' element={<ChangePassword/>}/>
+							<Route path='/forgotpassword' element={<ForgotPassword/>}/>
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>

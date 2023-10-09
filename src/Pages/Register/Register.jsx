@@ -107,7 +107,7 @@ const Register = () => {
 
 					<div className='extrabuttons'>
 						<Link to="/login" className="nonNavLink">Já criou uma conta?</Link>
-						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
+						<Link to="/forgotpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 
 					<div className="error">

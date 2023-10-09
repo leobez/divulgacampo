@@ -20,7 +20,7 @@ const User = () => {
 					<hr />
 
 					<div>
-						<Link className='nonNavLink' to="/">Trocar senha </Link>
+						<Link className='nonNavLink' to="/changepassword">Trocar senha </Link>
 					</div>
 
 					<div>
