@@ -65,6 +65,7 @@ function App() {
 
     return (
 		<div className='App'>
+			
 			<AuthContext.Provider value={auth}>
 				<BrowserRouter>
 					<Header/>

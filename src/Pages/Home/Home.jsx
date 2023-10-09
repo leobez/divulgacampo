@@ -23,7 +23,6 @@ const Home = ({isEmailVerified}) => {
 
 	return (
 		<div className={styles.home}>
-		
 			<div className={styles.homemenu}>
 				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
 					<p>Recarregar</p>				
