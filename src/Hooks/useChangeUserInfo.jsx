@@ -31,7 +31,7 @@ export const useChangeUserInfo = () => {
 				displayName: newName
 			})
 			setLoading(false)
-			navigate("/config/user?change=displayName")
+			navigate("/config/user?changed=displayName")
 		} catch (error) {
 			setLoading(false)
 			setAuthError("Algo deu errado.")
@@ -73,7 +73,7 @@ export const useChangeUserInfo = () => {
 			// Change the users password
 			await updatePassword(auth.currentUser, newPassword)
 			setLoading(false)
-			navigate("/config/user?change=password")
+			navigate("/config/user?changed=password")
 
 		} catch (error) {
 			setLoading(false)
