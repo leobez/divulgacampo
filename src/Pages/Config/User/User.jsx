@@ -18,13 +18,16 @@ const User = () => {
 					<p className={styles.info}>Seu email é: <span>{auth.currentUser.email}</span></p>
 					<p className={styles.info}>Seu nome é: <span>{auth.currentUser.displayName}</span></p>
 					<hr />
-
 					<div>
-						<Link className='nonNavLink' to="/changepassword">Trocar senha </Link>
+						<Link className='nonNavLink' to="/changename">Trocar nome </Link>
 					</div>
 
 					<div>
-						<Link className='nonNavLink' to="/changename">Trocar nome </Link>
+						<Link className='nonNavLink' to="/changeemail"> Trocar email </Link>
+					</div>
+
+					<div>
+						<Link className='nonNavLink' to="/changepassword">Trocar senha </Link>
 					</div>
 
 					<div>
