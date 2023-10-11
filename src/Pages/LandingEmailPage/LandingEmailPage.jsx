@@ -46,20 +46,31 @@ const LandingEmailPage = () => {
 		}
 	}
 
+	const recoverUserEmail = async(auth, actionCode) => {
+		try {
+			//await applyActionCode(auth, actionCode)
+			console.log("RECUPERAR EMAIL")
+		} catch (error) {
+			if (error.message.includes("invalid-action-code")) {
+				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
+			} else {
+				setError("Algo deu errado.")
+			}
+		}
+	}
+
 	useEffect(() => {
 
 		const verifyAction = async(auth, actionCode, mode) => {
 			switch (mode) {
 				case "resetPassword": 
-					console.log("RESETAR SENHA")
 					await resetUserPassword(getAuth(), actionCode)
 					break;
 				case "verifyEmail":
-					console.log("VERIFICAR EMAIL")
 					await verififyUserEmail(auth, actionCode)
 					break;
 				case "recoverEmail":
-					console.log("RECUPERAR EMAIL")
+					await recoverUserEmail(auth, actionCode)
 					break;
 				default:
 					console.log("DEFAULT")
