@@ -31,6 +31,7 @@ import ChangePassword from './Pages/Config/User/ChangePassword/ChangePassword'
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 import ChangeEmail from './Pages/Config/User/ChangeEmail/ChangeEmail'
 import CreateNewPassword from './Pages/ForgotPassword/CreateNewPassword/CreateNewPassword'
+import LandingEmailPage from './Pages/LandingEmailPage/LandingEmailPage'
 
 function App() {
 
@@ -78,12 +79,15 @@ function App() {
 					</div>
 
 					<div className='main'>
+
 						<Routes>
 							<Route path='*' element={<NotFound/>}/>
 							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
 							<Route path='/about' element={<About/>}/>
-							<Route path='/verifyemail' element={<VerifyEmail/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
+
+							<Route path='/landingemailpage' element={<LandingEmailPage/>}/>
+
 							<Route path='/post/:postId' element={<PostPage/>}/>
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { sendPasswordResetEmail, getAuth, generatePasswordResetLink } from 'firebase/auth'
+import { sendPasswordResetEmail, getAuth } from 'firebase/auth'
 
 export const useForgotPassword = () => {
 
@@ -18,7 +18,7 @@ export const useForgotPassword = () => {
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
-			setAuthError("Algo deu errado.")
+			setApiError("Algo deu errado.")
 		}
 	}
 
