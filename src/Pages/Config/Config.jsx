@@ -30,6 +30,7 @@ const Config = ({element}) => {
 			
 			<div className={styles.configcontainer}>
 				{element === "config" && <p>{<Navigate to='user'/>}</p>}
+				
 				{element === "user" && <User/>}
 				{element === "appearance" && <p>Configuração de aparência</p>}
 				{element === "accessibility" && <p>Configuração de acessibilidade</p>}

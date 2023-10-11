@@ -6,12 +6,15 @@
 
 .configuser > div {
 	display: flex;
-	gap: 10px;
 	text-align: center;
+	align-items: center;
 }
 
 .configuser > div > a {
-	flex-basis: 30%;
+	width: 40%;
+}
+.configuser > div > button {
+	min-width: 40%;
 }
 
 .configuser > div  > span{

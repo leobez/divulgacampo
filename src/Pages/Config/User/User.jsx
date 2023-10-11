@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../../Context/AuthContext'
 import styles from './User.module.css'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const User = () => {
-	
+
+
 	const auth = useContext(AuthContext)
 
 	return (

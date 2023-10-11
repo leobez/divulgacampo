@@ -58,6 +58,9 @@ const LandingEmailPage = () => {
 					console.log("VERIFICAR EMAIL")
 					await verififyUserEmail(auth, actionCode)
 					break;
+				case "recoverEmail":
+					console.log("RECUPERAR EMAIL")
+					break;
 				default:
 					console.log("DEFAULT")
 					setWarn("...")
