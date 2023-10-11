@@ -84,9 +84,7 @@ function App() {
 							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
 							<Route path='/about' element={<About/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
-
 							<Route path='/landingemailpage' element={<LandingEmailPage/>}/>
-
 							<Route path='/post/:postId' element={<PostPage/>}/>
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>

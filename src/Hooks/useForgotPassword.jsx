@@ -12,7 +12,7 @@ export const useForgotPassword = () => {
 
 		try {
 			setLoading(true)
-			await sendPasswordResetEmail(getAuth(), email)
+			await sendPasswordResetEmail(auth, email)
 			setLoading(false)
 			return true
 		} catch (error) {

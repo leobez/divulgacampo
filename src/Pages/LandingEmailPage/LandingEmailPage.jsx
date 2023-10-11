@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { applyActionCode } from 'firebase/auth'
+import { applyActionCode, confirmPasswordReset, getAuth } from 'firebase/auth'
 import styles from './LandingEmailPage.module.css'
 
 const LandingEmailPage = () => {
@@ -19,7 +19,9 @@ const LandingEmailPage = () => {
 
 	const resetUserPassword = async(auth, actionCode) => {
 		try {
-			await applyActionCode(auth, actionCode)
+			const randomPassword = `senha${Math.floor(Math.random() * 100)}`
+			await confirmPasswordReset(auth, actionCode, randomPassword);
+			setWarn(`Sua nova senha é: ${randomPassword}. Entre e troque sua senha imediatamente.`)
 		} catch (error) {
 			console.log(error)
 			if (error.message.includes("invalid-action-code")) {
@@ -50,7 +52,7 @@ const LandingEmailPage = () => {
 			switch (mode) {
 				case "resetPassword": 
 					console.log("RESETAR SENHA")
-					await resetUserPassword(auth, actionCode)
+					await resetUserPassword(getAuth(), actionCode)
 					break;
 				case "verifyEmail":
 					console.log("VERIFICAR EMAIL")
