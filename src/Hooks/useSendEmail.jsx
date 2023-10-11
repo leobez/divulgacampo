@@ -8,6 +8,5 @@ export const useSendEmail = () => {
 	return {
 		error,
 		loading,
-		
 	}
 } 
