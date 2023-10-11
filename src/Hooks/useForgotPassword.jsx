@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { sendPasswordResetEmail, getAuth } from 'firebase/auth'
+import { sendPasswordResetEmail, getAuth, generatePasswordResetLink } from 'firebase/auth'
 
 export const useForgotPassword = () => {
 
@@ -7,10 +7,14 @@ export const useForgotPassword = () => {
 	const [loading, setLoading] = useState(false)
 
 	const forgotUserPassword = async(email) => {
+
+		const auth = getAuth()
+
 		try {
 			setLoading(true)
 			await sendPasswordResetEmail(getAuth(), email)
 			setLoading(false)
+			return true
 		} catch (error) {
 			setLoading(false)
 			console.log(error)

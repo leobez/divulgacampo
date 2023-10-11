@@ -30,6 +30,7 @@ import DeleteAccount from './Pages/Config/User/DeleteAccount/DeleteAccount'
 import ChangePassword from './Pages/Config/User/ChangePassword/ChangePassword'
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 import ChangeEmail from './Pages/Config/User/ChangeEmail/ChangeEmail'
+import CreateNewPassword from './Pages/ForgotPassword/CreateNewPassword/CreateNewPassword'
 
 function App() {
 
@@ -101,6 +102,7 @@ function App() {
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
 							<Route path='/forgotpassword' element={!isLogged ? <ForgotPassword/>:<Navigate to="/"/>}/>
+							<Route path='/createnewpassword' element={!isLogged ? <CreateNewPassword/>:<Navigate to="/"/>}/>
 
 						</Routes>
 					</div>

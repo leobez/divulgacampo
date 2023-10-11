@@ -7,7 +7,7 @@ const ForgotPassword = () => {
 
 	const [email, setEmail] = useState(undefined)
 	const [error, setError] = useState("")
-
+	const [passwordResetEmailSent, setPasswordResetEmailSent] = useState(false)
 	const {apiError, loading, forgotUserPassword} = useForgotPassword()
 
 	const handleSubmit = async(e) => {
@@ -18,8 +18,8 @@ const ForgotPassword = () => {
 			return;
 		}
 
-		await forgotUserPassword(email)
-	
+		const resp = await forgotUserPassword(email)
+		setPasswordResetEmailSent(resp)
 	}
 
 	return (
@@ -39,13 +39,20 @@ const ForgotPassword = () => {
 						onChange={(e) => setEmail(e.target.value)}/>
 					</div>
 
-					{/* {!loading ? (<input type="submit" value="Enviar"/>):(
-					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)} */}
-					<input type="submit" value="Enviar"/>
+					{!loading ? (<input type="submit" value="Enviar"/>):(
+					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
 
 					<div className="error">
 						{error && <p>{error}</p>}
+						{apiError && <p>{apiError}</p>}
 					</div>
+
+					{passwordResetEmailSent &&
+						<div className="warn">
+							<p>E-mail para restaurar senha foi enviado!</p>
+						</div>
+					}
+					
 				</form>
 			</div>
 		</div>
