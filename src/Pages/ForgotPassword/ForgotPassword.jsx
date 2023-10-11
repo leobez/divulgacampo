@@ -1,15 +1,25 @@
 import React from 'react'
 import styles from "./ForgotPassword.module.css"
 import { useState } from 'react'
+import { useForgotPassword } from '../../Hooks/useForgotPassword'
 
 const ForgotPassword = () => {
 
 	const [email, setEmail] = useState(undefined)
 	const [error, setError] = useState("")
 
-	const handleSubmit = (e) => {
+	const {apiError, loading, forgotUserPassword} = useForgotPassword()
+
+	const handleSubmit = async(e) => {
 		e.preventDefault()
-		console.log(email)
+
+		if (email === undefined || email.trim() === "") {
+			setError("Preencha todos os campos.")
+			return;
+		}
+
+		await forgotUserPassword(email)
+	
 	}
 
 	return (

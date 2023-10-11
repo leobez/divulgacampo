@@ -23,7 +23,7 @@ export const useChangeUserInfo = () => {
 		apiError: getDocumentsByUidApiError, 
 		listOfDocs
 	} = useGetDocumentsByUid("posts", auth.currentUser.uid)
-
+	
 	const updateName = async(newName) => {
 		try {
 			setLoading(true)
