@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { sendPasswordResetEmail, getAuth } from 'firebase/auth'
 
 export const useForgotPassword = () => {
 
@@ -8,7 +9,7 @@ export const useForgotPassword = () => {
 	const forgotUserPassword = async(email) => {
 		try {
 			setLoading(true)
-			console.log(email)
+			await sendPasswordResetEmail(getAuth(), email)
 			setLoading(false)
 		} catch (error) {
 			setLoading(false)
