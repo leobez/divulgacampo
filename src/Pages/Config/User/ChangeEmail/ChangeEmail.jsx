@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styles from './ChangeEmail.module.css'
 import { useState } from 'react'
 import AuthContext from '../../../../Context/AuthContext' 
-import { EmailAuthProvider, reauthenticateWithCredential, updateEmail } from 'firebase/auth'
+import { EmailAuthProvider, reauthenticateWithCredential, sendEmailVerification, updateEmail } from 'firebase/auth'
 import { useAuthentication } from '../../../../Hooks/useAuthentication'
 
 const ChangeEmail = () => {
@@ -51,6 +51,7 @@ const ChangeEmail = () => {
 			const credential = EmailAuthProvider.credential(auth.currentUser.email, password)
 			await reauthenticateWithCredential(auth.currentUser, credential)
 			await updateEmail(auth.currentUser, email)
+			await sendEmailVerification(auth.currentUser)
 			setWarn("Seu e-mail foi atualizado.")
 			logoutUser(auth)
 			setLoading(false)
@@ -91,7 +92,7 @@ const ChangeEmail = () => {
 						name="password-again" 
 						onChange={(e) => setPasswordAgain(e.target.value)}/>
 					</div>
-
+					<hr />
 					<div>
 						<label htmlFor="email">Digite seu novo e-mail: </label>
 						<input 
