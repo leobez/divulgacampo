@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './ChangeEmail.module.css'
 import { useState } from 'react'
+import { useSendEmail } from '../../../../Hooks/useSendEmail'
+import AuthContext from '../../../../Context/AuthContext' 
 
 const ChangeEmail = () => {
 
+	const auth = useContext(AuthContext)
 	const [email, setEmail] = useState(undefined)
 	const [error, setError] = useState("")
+
+	const {error: email_error, loading, sendEmail} = useSendEmail()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -18,10 +23,24 @@ const ChangeEmail = () => {
 		console.log("EMAIL: ", email)
 	}
 
+	const handleSubmit2 = (e) => {
+		e.preventDefault()
+
+		data = {
+			serviceId: 'service_3xbqpjb', 
+			templateId: 'template_vyln8oj', 
+			templateParams: {
+				name: auth.currentUser.displayName,
+				message: "Clique no botão para alterar seu email."
+			}
+		}
+
+	}
+
     return (
         <div className={styles.changeemail}>
             <div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={handleSubmit2} className={styles.form}>
 
 					<div className='formtitle'>
 						<h1>Alterar email</h1>
