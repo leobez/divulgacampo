@@ -108,6 +108,7 @@ a:hover {
 
 /* FORMULÁRIO DE LOGIN E CADASTRO */
 form {
+	min-width: 320px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
