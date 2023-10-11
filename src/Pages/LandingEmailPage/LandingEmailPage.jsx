@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { applyActionCode } from 'firebase/auth'
+import styles from './LandingEmailPage.module.css'
 
 const LandingEmailPage = () => {
 
@@ -16,13 +17,16 @@ const LandingEmailPage = () => {
 	const mode = verifyEmailParams.get('mode')
 	const actionCode = verifyEmailParams.get('oobCode')
 
-	const resetUserPassword = async() => {
+	const resetUserPassword = async(auth, actionCode) => {
 		try {
-			
-
+			await applyActionCode(auth, actionCode)
 		} catch (error) {
 			console.log(error)
-			setError("Algo deu errado: resetUserPassword")
+			if (error.message.includes("invalid-action-code")) {
+				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
+			} else {
+				setError("Algo deu errado.")
+			}
 		}
 	}
 
@@ -30,10 +34,13 @@ const LandingEmailPage = () => {
 		try {
 			await applyActionCode(auth, actionCode)
 			setWarn("Email verificado com sucesso!")
-			navigate("/login")
+			setTimeout(() => navigate("/login"), 1500)
 		} catch (error) {
-			console.log(error)
-			setError("Algo deu errado: verififyUserEmail")
+			if (error.message.includes("invalid-action-code")) {
+				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
+			} else {
+				setError("Algo deu errado.")
+			}
 		}
 	}
 
@@ -51,16 +58,8 @@ const LandingEmailPage = () => {
 					break;
 				default:
 					console.log("DEFAULT")
+					setWarn("...")
 			} 
-
-/* 			try {
-				const resp = await applyActionCode(auth, actionCode)
-				//navigate("/?refresh=true")
-				navigate("/login")
-			} catch (error) {
-				setError(error.message)
-				navigate("/")
-			} */
 		}
 
 		verifyAction(auth, actionCode, mode)
