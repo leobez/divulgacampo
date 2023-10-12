@@ -6,12 +6,16 @@ import { useForgotPassword } from '../../Hooks/useForgotPassword'
 const ForgotPassword = () => {
 
 	const [email, setEmail] = useState(undefined)
+
 	const [error, setError] = useState("")
-	const [passwordResetEmailSent, setPasswordResetEmailSent] = useState(false)
+	const [success, setSuccess] = useState(null)
+
 	const {apiError, loading, forgotUserPassword} = useForgotPassword()
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
+		setError("")
+		setSuccess(null)
 
 		if (email === undefined || email.trim() === "") {
 			setError("Preencha todos os campos.")
@@ -19,14 +23,14 @@ const ForgotPassword = () => {
 		}
 
 		const resp = await forgotUserPassword(email)
-		setPasswordResetEmailSent(resp)
+		setSuccess("E-mail para restaurar senha foi enviado!")
 	}
 
 	return (
 		<div className={styles.forgotpassword}>
 			 <div>
-				<form onSubmit={handleSubmit} className={styles.form}>
-					<div className='formtitle'>
+				<form onSubmit={handleSubmit} className="form">
+					<div>
 						<h1>Mude sua senha</h1>
 					</div>
 
@@ -39,17 +43,21 @@ const ForgotPassword = () => {
 						onChange={(e) => setEmail(e.target.value)}/>
 					</div>
 
-					{!loading ? (<input type="submit" value="Enviar"/>):(
-					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
-
+					<div>
+						{!loading ? (<input type="submit" value="Enviar"/>):(
+						<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
+					</div>
+				
 					<div className="error">
-						{error && <p>{error}</p>}
-						{apiError && <p>{apiError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{apiError && <p><span>{apiError}</span></p>}
 					</div>
 
-					{passwordResetEmailSent &&
-						<div className="warn">
-							<p>E-mail para restaurar senha foi enviado!</p>
+					{success &&
+						<div className="success">
+							<p>
+								<span>{success}</span>
+							</p>
 						</div>
 					}
 					
