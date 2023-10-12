@@ -129,10 +129,7 @@ a:hover, input[type="submit"]:hover, button:hover  {
 	- warning: Any custom message you wanna show. Barely used.
 	- success: usually when an api has completed its task.
 */
-.error, .warn, .success {
-	width: 100%;
-	display: flex;
-}
+.error, .warn, .success {}
 .error > p > span {
 	color: red;
 }

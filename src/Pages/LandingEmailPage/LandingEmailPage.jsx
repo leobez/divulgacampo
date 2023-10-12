@@ -8,7 +8,7 @@ import styles from './LandingEmailPage.module.css'
 const LandingEmailPage = () => {
 
 	const [error, setError] = useState("")
-	const [warn, setWarn] = useState("")
+	const [success, setSuccess] = useState("")
 
 	const auth = useContext(AuthContext)
 	const navigate = useNavigate()
@@ -21,7 +21,7 @@ const LandingEmailPage = () => {
 		try {
 			const randomPassword = `senha${Math.floor(Math.random() * 100)}`
 			await confirmPasswordReset(auth, actionCode, randomPassword);
-			setWarn(`Sua nova senha é: ${randomPassword}. Entre e troque sua senha imediatamente.`)
+			setSuccess(`Sua nova senha é: ${randomPassword}. Entre e troque sua senha imediatamente.`)
 		} catch (error) {
 			console.log(error)
 			if (error.message.includes("invalid-action-code")) {
@@ -35,7 +35,7 @@ const LandingEmailPage = () => {
 	const verififyUserEmail = async(auth, actionCode) => {
 		try {
 			await applyActionCode(auth, actionCode)
-			setWarn("Email verificado com sucesso!")
+			setSuccess("Email verificado com sucesso!")
 			setTimeout(() => navigate("/login"), 1500)
 		} catch (error) {
 			if (error.message.includes("invalid-action-code")) {
@@ -74,7 +74,7 @@ const LandingEmailPage = () => {
 					break;
 				default:
 					console.log("DEFAULT")
-					setWarn("...")
+					setSuccess("...")
 			} 
 		}
 
@@ -85,9 +85,9 @@ const LandingEmailPage = () => {
 	return (
 		<div className={styles.landingemailpage}>
 			{error ? 
-				(<div className='error'><p>{error}</p></div>) 
+				(<div className='error'><p><span>{error}</span></p></div>) 
 				:
-				(<div className='warn'><p>{warn}</p></div>
+				(<div className='success'><p><span>{success}</span></p></div>
 			)}
 		</div>
 	)
