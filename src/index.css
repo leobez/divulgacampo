@@ -48,11 +48,18 @@ h1 {
 	font-size: 1.2em;
 }
 
-a {
+a, input[type="submit"], button  {
 	font-size: 1.1em;
 	text-decoration: none;
 	cursor: pointer;
 	transition: 0.3s;
+	color: black;
+	border: 3px solid black;
+	background-color: white;
+}
+a:hover, input[type="submit"]:hover, button:hover  {
+	color: white;
+	background-color: black;
 }
 
 /* Class for when a link element is active (is the page being accessed) */
@@ -61,15 +68,15 @@ a {
 	color: white;
 }
 
-
 /*  Forms, all must have: 
 	- title
 	- fields inside divs 
 	- each field with one label and one input
 	- Submit button
+	
+	If more elements are needed, add it on the element module.css file. 
 */
-
-form {
+.form {
 	min-width: 320px;
 	display: flex;
 	flex-direction: column;
@@ -80,15 +87,16 @@ form {
 	text-align: center;
 	border-bottom: 2px solid black;
 	padding-bottom: 10px;
+	margin-top: 20px;
 }
-
-form > div {
+/* Each field */
+.form > div {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
 }
-
-form label {
+/* Each Label */
+.form > div > label {
 	height: 10px;
 	display: flex;
 	align-items: center;
@@ -96,39 +104,45 @@ form label {
 	flex-basis: 32%;
 	text-align: left;
 }
-
-form input {
+/* Each input */
+.form > div > input {
 	height: 45px;
 	padding: 5px;
 	border: 3px double black;
-	font-size: 1.05em;
 }
-
-form input[type="submit"] {
+/* Submit input */
+.form > div > input[type="submit"] {
 	min-height: 60px;
 	width: 100%;
 	align-self: center;
-	border-radius: 0px;
-
-	border: 3px solid black;
-	background-color: white;
-	color: black;
-	font-size: 1.2em;
-	font-weight: bold;
-	cursor: pointer;
-	transition: 0.3s;
 }
-
-form input[type="submit"].loadingButton {
+/* When a submit button is pressed, it gets this 'loadingButton' class*/
+.form > div > input[type="submit"].loadingButton {
 	background-color: black;
 	color: white;
 }
 
-form input[type="submit"]:hover {
-	color: white;
-	background-color: black;
+/* These divs are used when there is the need to show
+	- error: usually apiErrors, or user input errors.
+	- warning: Any custom message you wanna show. Barely used.
+	- success: usually when an api has completed its task.
+*/
+.error, .warn, .success {
+	width: 100%;
+	display: flex;
+}
+.error > p {
+	color: red;
+}
+.warn > p {
+	color: orange;
+}
+.success > p {
+	color: green;
 }
 
+
+/* REMOVE THIS */
 textarea::placeholder {
 	text-align: center;
 }
@@ -137,38 +151,8 @@ textarea {
 	padding: 10px 5px;
 }
 
-.extrabuttons {
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
-}
 
-.extrabuttons a {
-	border: 3px solid black;
-}
 
-/* DIVS DE ERRO E AVISO */
-.error {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.error > p {
-	color: red;
-	font-weight: bold;
-}
-
-.warn {
-	width: 100%;
-	display: flex;
-	padding: 0px 10px;
-}
-
-.warn > p {
-	color: green;
-	font-weight: bold;
-}
 
 /*DIV CASO USUÁRIO NÃO ESTEJA COM EMAIL AUTENTICADO*/
 
@@ -217,7 +201,3 @@ textarea {
 	cursor: pointer;
 }
 
-.active {
-    background-color: black;
-    color: white;
-}
