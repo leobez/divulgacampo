@@ -67,8 +67,8 @@ const Login = () => {
 					</div>
 
 					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
 					</div>
 
 				</form>

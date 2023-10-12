@@ -115,6 +115,7 @@ a:hover, input[type="submit"]:hover, button:hover  {
 	min-height: 60px;
 	width: 100%;
 	align-self: center;
+	border-style: solid;
 }
 /* When a submit button is pressed, it gets this 'loadingButton' class*/
 .form > div > input[type="submit"].loadingButton {
@@ -131,13 +132,13 @@ a:hover, input[type="submit"]:hover, button:hover  {
 	width: 100%;
 	display: flex;
 }
-.error > p {
+.error > p > span {
 	color: red;
 }
-.warn > p {
+.warn > p > span {
 	color: orange;
 }
-.success > p {
+.success > p > span {
 	color: green;
 }
 

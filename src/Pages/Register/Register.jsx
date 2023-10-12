@@ -59,9 +59,9 @@ const Register = () => {
 	return (
 		<div className={styles.register}>
 			<div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={handleSubmit} className="form">
 
-					<div className='formtitle'>
+					<div>
 						<h1>Cadastre-se !</h1>
 					</div>
 
@@ -101,18 +101,20 @@ const Register = () => {
 						name="password-again" 
 						onChange={(e) => setPasswordAgain(e.target.value)}/>
 					</div>
-
-					{!loading ? (<input type="submit" value="Cadastrar"/>):(
-					<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
-
-					<div className='extrabuttons'>
+					
+					<div>
+						{!loading ? (<input type="submit" value="Cadastrar"/>):(
+						<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
+					</div>
+			
+					<div className={styles.extralinks}>
 						<Link to="/login" className="nonNavLink">Já criou uma conta?</Link>
 						<Link to="/forgotpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 
 					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
 					</div>
 				</form>
 			</div>
