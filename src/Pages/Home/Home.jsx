@@ -28,7 +28,7 @@ const Home = () => {
 					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 				</button>
 				<p>
-					Bem vindo ao Divulga Campo ! (Aqui ainda vai: barra de pesquisa, menu de categorias)
+					Bem vindo ao Divulga Campo !
 				</p>
 			</div>
 
