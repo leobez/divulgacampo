@@ -4,3 +4,17 @@
 	display: flex;
 	justify-content: center;
 }
+
+.landingemailpage > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+}
+.landingemailpage > div > a{
+	height: 60px;
+	width: 120px;
+	display: grid;
+	place-items: center;
+	border-width: 2px;
+}

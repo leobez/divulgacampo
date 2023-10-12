@@ -4,6 +4,7 @@ import AuthContext from '../../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { applyActionCode, confirmPasswordReset, getAuth } from 'firebase/auth'
 import styles from './LandingEmailPage.module.css'
+import { Link } from 'react-router-dom'
 
 const LandingEmailPage = () => {
 
@@ -48,8 +49,8 @@ const LandingEmailPage = () => {
 
 	const recoverUserEmail = async(auth, actionCode) => {
 		try {
-			//await applyActionCode(auth, actionCode)
-			console.log("RECUPERAR EMAIL")
+			await applyActionCode(auth, actionCode)
+			setSuccess("Seu e-mail foi recuperado. Entre e troque sua senha imediatamente.")
 		} catch (error) {
 			if (error.message.includes("invalid-action-code")) {
 				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
@@ -73,7 +74,6 @@ const LandingEmailPage = () => {
 					await recoverUserEmail(auth, actionCode)
 					break;
 				default:
-					console.log("DEFAULT")
 					setSuccess("...")
 			} 
 		}
@@ -84,10 +84,15 @@ const LandingEmailPage = () => {
 
 	return (
 		<div className={styles.landingemailpage}>
-			{error ? 
+				{error ? 
 				(<div className='error'><p><span>{error}</span></p></div>) 
 				:
-				(<div className='success'><p><span>{success}</span></p></div>
+				(<div className='success'>
+					<p>
+						<span>{success}</span>
+					</p>
+					<Link to="/login">Entre</Link>
+				</div>
 			)}
 		</div>
 	)
