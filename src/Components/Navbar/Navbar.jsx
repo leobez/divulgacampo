@@ -10,13 +10,15 @@ const Navbar = () => {
 	const auth = useContext(AuthContext)
 
 	const {logoutUser} = useAuthentication()
-
+	
 	const handleLogout = async () => {
 		await logoutUser(auth)
 	}
 
 	return (
-		<nav className="navbar">
+		<nav className={styles.navbar}>
+
+			{/* LINKS FOR ALL USERS */}
 			<NavLink
 				to="/"
 				className={({ isActive }) => isActive ? "active" : ""}>
@@ -29,6 +31,7 @@ const Navbar = () => {
 				Sobre
 			</NavLink>
 
+			{/* LINKS FOR AUTHENTICATED/NON-AUTHENTICADED USERS */}
 			{auth.currentUser ?
 				(
 					<>
@@ -66,7 +69,6 @@ const Navbar = () => {
 					</>
 				)
 			}
-
 		</nav>
 	)
 }

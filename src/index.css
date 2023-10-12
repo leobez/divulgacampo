@@ -6,6 +6,8 @@ font-family: 'Poppins', sans-serif;
 font-family: 'Sora', sans-serif;
 */
 
+/* General styles */
+
 :root {
 
 }
@@ -14,7 +16,6 @@ font-family: 'Sora', sans-serif;
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-
 	font-family: 'Sora', sans-serif;
 	font-size: 1.01em;
 	color: black;
@@ -31,12 +32,12 @@ html, body {
 	justify-content: center;
 }
 
-span {
-	font-weight: bold;
-}
-
 #root {
 	max-width: 1920px;
+}
+
+span {
+	font-weight: bold;
 }
 
 p {
@@ -45,79 +46,38 @@ p {
 
 h1 {
 	font-size: 1.2em;
-	font-weight: bold;
 }
 
 a {
 	font-size: 1.1em;
-	font-weight: bold;
 	text-decoration: none;
-}
-
-a:hover {
-	transition: 0.3s;
 	cursor: pointer;
-}
-
-/* NAVBAR */
-.navbar {
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 5px;
-	font-size: 1em;
-}
-
-.navbar > a {
-	text-decoration: none;
-	padding: 10px;
-	border: 3px solid black;
-	width: 200px;
-	text-align: center;
-	font-weight: bold;
-}
-
-.navbar > a:hover {
-	background-color: black;
-	color: white;
-}
-
-.navbar > button {
-	text-decoration: none;
-	padding: 10px;
-	border: 3px solid black;
-	width: 200px;
-	text-align: center;
-	background-color: white;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.navbar > button:hover {
 	transition: 0.3s;
-	border: 3px solid red;
-	color: red;
 }
 
+/* Class for when a link element is active (is the page being accessed) */
 .active {
 	background-color: #000;
 	color: white;
 }
 
 
-/* FORMULÁRIO DE LOGIN E CADASTRO */
+/*  Forms, all must have: 
+	- title
+	- fields inside divs 
+	- each field with one label and one input
+	- Submit button
+*/
+
 form {
 	min-width: 320px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
 }
-
-.formtitle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+/* Title */
+.form > div:nth-child(1) {
+	text-align: center;
 	border-bottom: 2px solid black;
 	padding-bottom: 10px;
 }
@@ -261,4 +221,3 @@ textarea {
     background-color: black;
     color: white;
 }
-

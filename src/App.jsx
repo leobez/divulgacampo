@@ -63,7 +63,6 @@ function App() {
 	console.log("auth.currentUser: ", auth.currentUser)
 	console.log("isEmailVerified: ", isEmailVerified) */
 
-
     return (
 		<div className='App'>
 			
