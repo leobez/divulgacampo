@@ -53,13 +53,13 @@ const MyProfile = ({isEmailVerified}) => {
 							))}
 
 							<div className={styles.extrainfo}>
-								<div className='loading'>
+								<div>
 									{loading && <p>Carregando posts...</p>}
 								</div>
 								<div className="error">
 									{apiError && <p>{apiError}</p>}
 								</div>
-								<div className="warn">
+								<div>
 									{userDocs.length <= 0 && <p>Não há posts.</p>}
 								</div>	
 							</div>

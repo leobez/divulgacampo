@@ -27,11 +27,10 @@
 	width: 200px;
 	text-align: center;
 	background-color: white;
-	cursor: pointer;
 }
 
 .navbar > button:hover {
-	transition: 0.3s;
 	border: 3px solid red;
 	color: red;
+	background-color: white;
 }
