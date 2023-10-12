@@ -52,16 +52,49 @@ const EditPostForm = ({post, postId}) => {
 	const [error, setError] = useState("")
 	const {loading, apiError, updateDocument} = useUpdateDocument("posts")
 
+	useEffect(() => {
+		console.log(post)
+		setTitle(post.title)
+		setDescription(post.description)
+	}, [post, postId])
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault()
+		setError("")
+
+		if (
+			title.trim() === "" || 
+			title.trim() === undefined || 
+			title.trim() === null ||
+			description.trim() === "" || 
+			description.trim() === undefined ||
+			description.trim() === null
+		) {
+			setError("Preencha todos os campos.")
+			return;
+		}
+
+		if (
+			title.length > maxcharlimit_title ||
+			description.length > maxcharlimit_desc
+		) {
+			setError("Limite de caracteres ultrapassado.")
+			return;	
+		}
+
+		const newData = {
+			title,
+			description
+		}
+
+		await updateDocument(postId, newData)
 	}
 	
 	return (
-		<div className={styles.editpostform}>
-			<form onSubmit={handleSubmit}>
+		<>
+			<form onSubmit={handleSubmit} className={styles.editpostform}>
 				<div>
-					<h1><span>Divulgue sua pesquisa de campo!</span></h1>
+					<h1><span>Editando a postagem: {postId}</span></h1>
 				</div>
 
 				<div>
@@ -71,6 +104,7 @@ const EditPostForm = ({post, postId}) => {
 						name='titulo'
 						placeholder='Titulo'
 						ref={titleRef}
+						value={title}
 						onChange={(e) => setTitle(e.target.value)}
 					/>
 					<div className={styles.wordcounter}>
@@ -92,6 +126,7 @@ const EditPostForm = ({post, postId}) => {
 						type='text' 
 						name='description'
 						placeholder='Descrição'
+						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 					<div className={styles.wordcounter}>
@@ -128,7 +163,7 @@ const EditPostForm = ({post, postId}) => {
 				</div>
 
 				<div>
-					{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
+					{!loading ? (<input type="submit" value="Editar"/>) : (<input type="submit" className="loadingButton" value="Editando..." disabled/>)}
 				</div>
 				
 				<div className="error">
@@ -137,7 +172,7 @@ const EditPostForm = ({post, postId}) => {
 				</div>
 
 			</form>
-		</div>
+		</>
 	)
 }
 
