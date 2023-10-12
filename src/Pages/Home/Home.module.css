@@ -1,7 +1,7 @@
 .home {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 5px;
 }
 
 .homemenu {
@@ -19,6 +19,7 @@
 }
 
 .refreshbutton {
+	border-width: 2px;
 	height: 60px;
 	flex-basis: 10%;
 	cursor: pointer;
@@ -54,6 +55,16 @@
 	gap: 10px;
 	align-items: center;
 	z-index: 1;
+	margin-left: 10px;
+}
+.welcomelinkstoauth > a {
+	border-width: 2px;
+	height: 50px;
+	padding: 10px;
+	font-size: 1.01em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .welcomelinkstopost {
@@ -68,6 +79,7 @@
 	height: 100px;
 	display: grid;
 	place-items: center;
+	border-width: 2px;
 }
 
 .homecontent {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
 
-const Home = ({isEmailVerified}) => {
+const Home = () => {
 
 	const auth = useContext(AuthContext)
 
@@ -13,7 +13,6 @@ const Home = ({isEmailVerified}) => {
 	const [refresh, setRefresh] = useState(false)
 
 	useEffect(() => {
-		console.log("CARREGAR CONTEUDO!")
 		getDocuments()
 	}, [refresh])
 
@@ -37,13 +36,13 @@ const Home = ({isEmailVerified}) => {
 
 				{!auth.currentUser ? 
 					(<div className={styles.welcomelinkstoauth}>
-						{!auth.currentUser && <Link to="/register" className="nonNavLink">Cadastre-se</Link>}
+						{!auth.currentUser && <Link to="/register" >Cadastre-se</Link>}
 						<p> OU </p>
-						{!auth.currentUser && <Link to="/login" className="nonNavLink">Entre</Link>}
+						{!auth.currentUser && <Link to="/login" >Entre</Link>}
 					</div>) :
 					(
 						<div className={styles.welcomelinkstopost}>
-							<Link to="/createpost" className='nonNavLink'>Divulgue sua pesquisa de campo +</Link>
+							<Link to="/createpost" >Divulgue sua pesquisa de campo +</Link>
 						</div>
 					)
 				}

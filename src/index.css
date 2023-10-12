@@ -144,6 +144,11 @@ a:hover, input[type="submit"]:hover, button:hover  {
 }
 
 
+
+
+
+
+
 /* REMOVE THIS */
 textarea::placeholder {
 	text-align: center;
@@ -152,11 +157,6 @@ textarea {
 	border: none;
 	padding: 10px 5px;
 }
-
-
-
-
-/*DIV CASO USUÁRIO NÃO ESTEJA COM EMAIL AUTENTICADO*/
 
 .verifyemailwarn {
 	display: flex;
@@ -184,22 +184,3 @@ textarea {
 .unverifiedemail {
 	font-weight: bold;
 }
-
-/*LINKS QUE NÃO SEJAM DO NAVBAR*/
-.nonNavLink {
-	background-color: white;
-	color: black;
-	text-decoration: none;
-	padding: 15px;
-	border: 2px solid black;
-	width: fit-content;
-	font-size: 1.05em;
-}
-
-.nonNavLink:hover {
-	transition: 0.3s;
-	background-color: black;
-	color: white;
-	cursor: pointer;
-}
-
