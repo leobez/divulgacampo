@@ -2,43 +2,42 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0px 10px;
 	font-weight: bold;
 	font-size: 1.5em;
 	border: 2px solid black;
 	grid-area: header;
 }
 
-.header a {
-	text-decoration: none;
+.header > .headerlink {
+	height: 60px;
+	margin-left: 10px;
+	display: flex;
+}
+.header > .headerlink:hover {
+	background-color: white;
 }
 
-.header div {
-	cursor: pointer;
+.header > .headerlink > span {
+	padding: 0px 10px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	transition: 0.3s;
 }
 
-.header span {
-	padding: 5px;
-	transition: 0.2s;
-	border: 3px solid black;
-
-}
-
-.header .divulga {
+.header > .headerlink > .divulga {
 	background-color: white;
 	color: black;
 }
-.header .campo {
+.header > .headerlink > .campo {
 	background-color: black;
 	color: white;
 }
-
-.header div:hover > .divulga {
+.header > .headerlink:hover .divulga {
 	background-color: black;
 	color: white;
 }
-
-.header div:hover > .campo {
+.header > .headerlink:hover .campo {
 	background-color: white;
 	color: black;
 }
