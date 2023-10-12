@@ -28,6 +28,7 @@ const EditPostForm = ({post, postId}) => {
 
 	const [amountOfQuizLinks, setAmountOfQuizLinks] = useState(0)
 	const quizContainerRef = useRef()
+
 	const addQuiz = () => {
 		const quiz_div = document.createElement("div")
 		quiz_div.setAttribute("class", "quizcontainer")
@@ -43,7 +44,10 @@ const EditPostForm = ({post, postId}) => {
 		setAmountOfQuizLinks((prev) => prev+1)
 		quiz_div.append(quiz_label, quiz_input)
 		quizContainerRef.current.appendChild(quiz_div)
+		console.log(quiz_input)
+		return quiz_input
 	}
+
 	const removeQuiz = () => {
 		quizContainerRef.current.removeChild(quizContainerRef.current.children[amountOfQuizLinks-1])
 		setAmountOfQuizLinks((prev) => prev-1)
@@ -56,7 +60,27 @@ const EditPostForm = ({post, postId}) => {
 		console.log(post)
 		setTitle(post.title)
 		setDescription(post.description)
-	}, [post, postId])
+
+	}, [])
+
+	const [cancelled, setCancelled] = useState(false)
+	useEffect(() => {
+		const currentAmountOfLinks = Object.keys(post.quizLinks).length
+
+		if (cancelled) return;
+
+		if (Number(amountOfQuizLinks) === Number(currentAmountOfLinks)) {
+			return () => setCancelled(true)
+		}
+
+		const addInitialQuiz = () => {
+			const quiz = addQuiz()
+			const quizNumber = Number(quiz.name.replace("quiz_", ""))
+			quiz.value = `${post.quizLinks[quizNumber]}`	
+		}
+		addInitialQuiz()
+		
+	}, [amountOfQuizLinks])
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
