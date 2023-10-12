@@ -1,0 +1,15 @@
+.validationemailsent {
+	height: 100%;
+	display: grid;
+	place-items: center;
+}
+
+.validationemailsent > div {
+	border: 3px solid black;
+	height: 320px;
+	width: fit-content;
+	padding: 0px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

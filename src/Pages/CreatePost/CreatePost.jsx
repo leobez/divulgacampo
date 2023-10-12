@@ -111,7 +111,7 @@ const CreatePost = ({isEmailVerified}) => {
 			) : (
 				<form onSubmit={handleSubmit} className={styles.createpostform}>
 
-					<div className='formtitle'>
+					<div>
 						<h1><span>Divulgue sua pesquisa de campo!</span></h1>
 					</div>
 
