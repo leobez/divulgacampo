@@ -87,6 +87,7 @@
 .editpostform > div:nth-child(4) > .linksarea > div > input {
 	height: 40px;
 	flex-basis: 80%;
+	padding: 0px 5px;
 }
 
 .editpostform > div:nth-child(4) > .buttonarea {

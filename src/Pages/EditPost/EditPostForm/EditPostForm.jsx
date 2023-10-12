@@ -127,9 +127,7 @@ const EditPostForm = ({post, postId}) => {
 			quizLinks,
 		}
 
-		console.log(newData)
-
-		//await updateDocument(postId, newData)
+		await updateDocument(postId, newData)
 	}
 	
 	return (
