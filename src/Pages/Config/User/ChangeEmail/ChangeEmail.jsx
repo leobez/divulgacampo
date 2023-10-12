@@ -53,8 +53,8 @@ const ChangeEmail = () => {
 			await updateEmail(auth.currentUser, email)
 			await sendEmailVerification(auth.currentUser)
 			setSuccess("Seu e-mail foi atualizado.")
-			logoutUser(auth)
 			setLoading(false)
+			setTimeout(() => logoutUser(auth), 1500)
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
