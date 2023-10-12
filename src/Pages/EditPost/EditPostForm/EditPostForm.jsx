@@ -6,8 +6,6 @@ import { useUpdateDocument } from '../../../Hooks/useUpdateDocument'
 const EditPostForm = ({post, postId}) => {
 
 	const auth = useContext(AuthContext)
-	const {loading, apiError, updateDocument} = useUpdateDocument("posts")
-	const [error, setError] = useState("")
 
 	const maxcharlimit_title = 200
 	const [title, setTitle] = useState("")
@@ -28,122 +26,114 @@ const EditPostForm = ({post, postId}) => {
 		}
 	}, [description])
 
-	useEffect(() => {
-		setTitle(post.title)
-		setDescription(post.description)
-	}, [post])
+	const [amountOfQuizLinks, setAmountOfQuizLinks] = useState(0)
+	const quizContainerRef = useRef()
+	const addQuiz = () => {
+		const quiz_div = document.createElement("div")
+		quiz_div.setAttribute("class", "quizcontainer")
+		const quiz_label = document.createElement("label")
+		quiz_label.setAttribute("for", `quiz_${amountOfQuizLinks}`)
+		quiz_label.innerText = `Questionário ${amountOfQuizLinks+1}`
 
-	const handleSubmit = async(e) => {
-		e.preventDefault()
+		const quiz_input = document.createElement("input")
+		quiz_input.setAttribute("type", "text") // CHANGE TO URL
+		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
+		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
 
-		if (
-			title.trim() === "" || 
-			title.trim() === undefined || 
-			title.trim() === null ||
-			description.trim() === "" || 
-			description.trim() === undefined ||
-			description.trim() === null
-		) {
-			setError("Preencha todos os campos.")
-			return;
-		}
-
-		if (
-			title.length > maxcharlimit_title ||
-			description.length > maxcharlimit_desc
-		) {
-			setError("Limite de caracteres ultrapassado.")
-			return;	
-		}
-
-		const newData = {
-			title,
-			description
-		}
-		setError("")
-
-		await updateDocument(postId, newData)
+		setAmountOfQuizLinks((prev) => prev+1)
+		quiz_div.append(quiz_label, quiz_input)
+		quizContainerRef.current.appendChild(quiz_div)
+	}
+	const removeQuiz = () => {
+		quizContainerRef.current.removeChild(quizContainerRef.current.children[amountOfQuizLinks-1])
+		setAmountOfQuizLinks((prev) => prev-1)
 	}
 
+	const [error, setError] = useState("")
+	const {loading, apiError, updateDocument} = useUpdateDocument("posts")
+
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+	}
+	
 	return (
 		<div className={styles.editpostform}>
 			<form onSubmit={handleSubmit}>
-				<div className='formtitle'>
-					<h1><span>Editando postagem: {postId}</span></h1>
+				<div>
+					<h1><span>Divulgue sua pesquisa de campo!</span></h1>
 				</div>
 
-				<div className={styles.formtextcontent}>
-					<div>
-						<input 
-							className={styles.inputtitle}
-							type='text' 
-							name='titulo'
-							placeholder='Titulo'
-							ref={titleRef}
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-						/>
-						<div className={styles.wordcounter}>
-							{titlecharcounter <= maxcharlimit_title ? (
-								<div>
-									<span>
-										{titlecharcounter}/{maxcharlimit_title}
-									</span>
-								</div>
-							) : (
-								<div className={styles.wordcounterlimitreached} >
-									<span>
-										{titlecharcounter}/{maxcharlimit_title}
-									</span>
-								</div>
-							)}
-						</div>
+				<div>
+					<input 
+						className={styles.inputtitle}
+						type='text' 
+						name='titulo'
+						placeholder='Titulo'
+						ref={titleRef}
+						onChange={(e) => setTitle(e.target.value)}
+					/>
+					<div className={styles.wordcounter}>
+						{titlecharcounter <= maxcharlimit_title ? (
+							<span>
+								{titlecharcounter}/{maxcharlimit_title}
+							</span>
+						) : (
+							<span className={styles.wordcounterlimitreached}>
+								{titlecharcounter}/{maxcharlimit_title}
+							</span>
+						)}
 					</div>
+				</div>
 					
-					<div>
-						<textarea 
-							className={styles.inputdescription}
-							type='text' 
-							name='description'
-							placeholder='Descrição'
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
-						/>
-						<div className={`${styles.wordcounter} ${styles.bordertop}`}>
-							{descriptioncharcounter <= maxcharlimit_desc ? (
-								<div>
-									<span>
-										{descriptioncharcounter}/{maxcharlimit_desc}
-									</span>
-								</div>
-							) : (
-								<div className={styles.wordcounterlimitreached} >
-									<span>
-										{descriptioncharcounter}/{maxcharlimit_desc}
-									</span>
-								</div>
-							)}
-						</div>
+				<div>
+					<textarea 
+						className={styles.inputdescription}
+						type='text' 
+						name='description'
+						placeholder='Descrição'
+						onChange={(e) => setDescription(e.target.value)}
+					/>
+					<div className={styles.wordcounter}>
+						{descriptioncharcounter <= maxcharlimit_desc ? (
+							<span>
+								{descriptioncharcounter}/{maxcharlimit_desc}
+							</span>
+						) : (
+							<span className={styles.wordcounterlimitreached} >
+								{descriptioncharcounter}/{maxcharlimit_desc}
+							</span>
+						)}
+					</div>
+				</div>
+	
+				<div>
+					<div className={styles.linksarea} ref={quizContainerRef}>
+					</div>
+					<hr />
+					<div className={styles.buttonarea}>
+
+						{amountOfQuizLinks < 10 &&
+							<button type="button" onClick={addQuiz} className={styles.addquiz}>
+								Adicionar Questionário +
+							</button>
+							}
+
+						{amountOfQuizLinks > 0 &&
+							<button type="button" onClick={removeQuiz} className={styles.removequiz}>
+								Remover Questionário -
+							</button>
+						}
 					</div>
 				</div>
 
-				<div className={styles.formquizcontent}>
-					<div className={styles.quizunreachable}></div>
-					<div className={styles.linksarea}>
-						{Object.values(post.quizLinks).map((link, index) => (
-							<div className={styles.quizcontainer} key={index}>
-								<label htmlFor={`quiz_${index}`}>Questionário {index}</label>
-								<input type="text" name={`quiz_${index}`} value={link}disabled/>
-							</div>
-						))}
-					</div>
+				<div>
+					{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
 				</div>
-
-				{!loading ? (<input type="submit" value="Editar"/>) : (<input type="submit" className="loadingButton" value="Editando..." disabled/>)}
-
+				
 				<div className="error">
-					{error && <p>{error}</p>}
-					{apiError && <p>{apiError}</p>}
+					{error && <p><span>{error}</span></p>}
+					{apiError && <p><span>{apiError}</span></p>}
 				</div>
 
 			</form>

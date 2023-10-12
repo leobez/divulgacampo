@@ -22,7 +22,6 @@ export const useGetDocument = (collectionName, docId=null) => {
 				const docRef = doc(db, collectionName, docId)
 				const docSnap = await getDoc(docRef)
 				setLoading(false)
-				console.log("teste: ", [docSnap.data()])
 				setListOfDocs([docSnap.data()])
 			} catch (error) {
 				setApiError("Algo deu errado.")

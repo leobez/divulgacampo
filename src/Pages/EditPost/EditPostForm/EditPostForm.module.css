@@ -1,109 +1,116 @@
 .editpostform {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-/* formtextcontent */
-
-.formtextcontent {
+	width: 700px;
 	display: flex;
 	flex-direction: column;
-	gap: 0px;
-	border: 3px solid black;
+	gap: 10px;
 }
 
-.formtextcontent > div {
+.editpostform > div {
 	display: flex;
 }
 
-.formtextcontent > div > input, textarea {
-	flex-basis: 85%;
-}
-
-.formtextcontent > div > div {
-	flex-basis: 15%;
-}
-
-.formtextcontent > div:nth-child(2) > div {
-	border-top: 3px solid black ;
-}
-
-.formtextcontent > div > input {
-	width: 100%;
-	border: none;
-}
-
-.formtextcontent textarea:focus, input:focus {
-	outline: none;
-}
-
-textarea {
-	border: none;
-}
-
-.inputtitle {
-	height: 45px;
-}
-
-.inputdescription {
-	height: 180px;
-	min-height: 180px;
-	resize: vertical;
-	border-top: 3px solid black ;
-}
-
-.wordcounter {
-	/* height: 100%; */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-left: 3px solid black;
-	padding: 5px;
-}
-
-.wordcounter > div {
-	font-size: 0.8em;
-}
-
-.wordcounterlimitreached > span {
+.wordcounterlimitreached {
 	color: red;
 }
 
-/* formquizcontent */
-.formquizcontent {
-	border: 3px solid black;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	position: relative;
+/* Form Title */
+.editpostform > div:nth-child(1) {
+	align-items: center;
+	justify-content: center;
 }
-.quizunreachable {
-	z-index: 2;
-	background-color: rgba(128, 128, 128, 0.376);
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-.linksarea {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-.formquizcontent > div > div {
-	display: flex;
-	flex-direction: column;
+
+/* Title input */
+.editpostform > div:nth-child(2) {
+	height: 60px;
 	gap: 5px;
+}
+.editpostform > div:nth-child(2) > input {
+	flex-basis: 85%;
+	border: 1px solid black;
+	padding: 0px 5px;
+}
+.editpostform > div:nth-child(2) > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Desc input */
+.editpostform > div:nth-child(3) {
+	height: fit-content;
+	gap: 5px;
+}
+.editpostform > div:nth-child(3) > textarea {
+	flex-basis: 85%;
+	border: 1px solid black;
+	resize: vertical;
+	min-height: 200px;
+}
+.editpostform > div:nth-child(3) > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 5px;
+}
+
+/* Quiz area*/
+.editpostform > div:nth-child(4) {
+	display: flex;
+	flex-direction: column;
 	border: 2px solid black;
 	padding: 10px;
 }
-.formquizcontent > div > div > label {
+.editpostform > div:nth-child(4) > .linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.editpostform > div:nth-child(4) > .linksarea > div {
+	height: 50px;
+	gap: 10px;
+	display: flex;
+	align-items: center;
+}
+.editpostform > div:nth-child(4) > .linksarea > div > label {
+	height: 40px;
+	flex-basis: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.editpostform > div:nth-child(4) > .linksarea > div > input {
+	height: 40px;
 	flex-basis: 80%;
 }
-.formquizcontent > div > div > input {
-	flex-basis: 20%;
+
+.editpostform > div:nth-child(4) > .buttonarea {
+	display: flex;
+	gap: 10px;
+	margin-top: 5px;
+}
+.editpostform > div:nth-child(4) > .buttonarea > button {
+	flex-basis: 50%;
+	height: 60px;
+	border-width: 2px;
+}
+
+/* Submit button */
+.editpostform > div:nth-child(5) {
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+}
+.editpostform > div:nth-child(5) > input[type="submit"] {
+	height: 60px;
+	width: 100%;
+	padding: 10px;
+}
+
+/* errorarea */
+.editpostform > div:nth-child(6) {
 }
