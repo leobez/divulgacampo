@@ -79,6 +79,7 @@ a:hover, input[type="submit"]:hover, button:hover  {
 */
 .form {
 	min-width: 320px;
+	max-width: 600px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
@@ -129,7 +130,6 @@ a:hover, input[type="submit"]:hover, button:hover  {
 	- warning: Any custom message you wanna show. Barely used.
 	- success: usually when an api has completed its task.
 */
-.error, .warn, .success {}
 .error > p > span {
 	color: red;
 }

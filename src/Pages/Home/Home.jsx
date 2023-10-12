@@ -58,15 +58,15 @@ const Home = () => {
 					))}
 
 					<div>
-						<div className='loading'>
+						<div>
 							{loading && <p>Carregando posts...</p>}
 						</div>
 
-						<div className="error">
+						<div>
 							{apiError && <p>{apiError}</p>}
 						</div>
 
-						<div className="warn">
+						<div>
 							{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
 						</div>
 					</div>

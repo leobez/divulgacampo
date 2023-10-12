@@ -105,70 +105,69 @@ const CreatePost = ({isEmailVerified}) => {
 	return (
 		<div className={styles.createpost}>
 			{!isEmailVerified ? (
-				<div className='unverifiedemail'>
+				<div>
 					<p>Verifique seu email para ter acesso a essas informações.</p>
 				</div>
 			) : (
+
 				<form onSubmit={handleSubmit} className={styles.createpostform}>
 
 					<div>
 						<h1><span>Divulgue sua pesquisa de campo!</span></h1>
 					</div>
 
-					<div className={styles.formtextcontent}>
-						<div>
-							<input 
-								className={styles.inputtitle}
-								type='text' 
-								name='titulo'
-								placeholder='Titulo'
-								ref={titleRef}
-								onChange={(e) => setTitle(e.target.value)}
-							/>
-							<div className={styles.wordcounter}>
-								{titlecharcounter <= maxcharlimit_title ? (
-									<div>
-										<span>
-											{titlecharcounter}/{maxcharlimit_title}
-										</span>
-									</div>
-								) : (
-									<div className={styles.wordcounterlimitreached} >
-										<span>
-											{titlecharcounter}/{maxcharlimit_title}
-										</span>
-									</div>
-								)}
-							</div>
-						</div>
-						
-						<div>
-							<textarea 
-								className={styles.inputdescription}
-								type='text' 
-								name='description'
-								placeholder='Descrição'
-								onChange={(e) => setDescription(e.target.value)}
-							/>
-							<div className={`${styles.wordcounter} ${styles.bordertop}`}>
-								{descriptioncharcounter <= maxcharlimit_desc ? (
-									<div>
-										<span>
-											{descriptioncharcounter}/{maxcharlimit_desc}
-										</span>
-									</div>
-								) : (
-									<div className={styles.wordcounterlimitreached} >
-										<span>
-											{descriptioncharcounter}/{maxcharlimit_desc}
-										</span>
-									</div>
-								)}
-							</div>
+					<div>
+						<input 
+							className={styles.inputtitle}
+							type='text' 
+							name='titulo'
+							placeholder='Titulo'
+							ref={titleRef}
+							onChange={(e) => setTitle(e.target.value)}
+						/>
+						<div className={styles.wordcounter}>
+							{titlecharcounter <= maxcharlimit_title ? (
+								<div>
+									<span>
+										{titlecharcounter}/{maxcharlimit_title}
+									</span>
+								</div>
+							) : (
+								<div className={styles.wordcounterlimitreached} >
+									<span>
+										{titlecharcounter}/{maxcharlimit_title}
+									</span>
+								</div>
+							)}
 						</div>
 					</div>
-
-					<div className={styles.formquizcontent} >
+					
+					<div>
+						<textarea 
+							className={styles.inputdescription}
+							type='text' 
+							name='description'
+							placeholder='Descrição'
+							onChange={(e) => setDescription(e.target.value)}
+						/>
+						<div className={styles.wordcounter}>
+							{descriptioncharcounter <= maxcharlimit_desc ? (
+								<div>
+									<span>
+										{descriptioncharcounter}/{maxcharlimit_desc}
+									</span>
+								</div>
+							) : (
+								<div className={styles.wordcounterlimitreached} >
+									<span>
+										{descriptioncharcounter}/{maxcharlimit_desc}
+									</span>
+								</div>
+							)}
+						</div>
+					</div>
+	
+					<div>
 						<div className={styles.linksarea} ref={quizContainerRef}>
 						</div>
 
@@ -187,11 +186,14 @@ const CreatePost = ({isEmailVerified}) => {
 							}
 						</div>
 					</div>
-					{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
 
+					<div>
+						{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
+					</div>
+					
 					<div className="error">
-						{error && <p>{error}</p>}
-						{apiError && <p>{apiError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{apiError && <p><span>{apiError}</span></p>}
 					</div>
 
 				</form>

@@ -5,132 +5,68 @@
 	justify-content: center;
 }
 
-.createpost > form {
+.createpostform {
 	width: 700px;
-}
-
-/* formtextcontent */
-
-.formtextcontent {
 	display: flex;
 	flex-direction: column;
-	gap: 0px;
-	border: 3px solid black;
+	gap: 10px;
 }
-
-.formtextcontent > div {
+.createpostform > div {
+	border: 2px solid black;
 	display: flex;
-}
-
-.formtextcontent > div > input, textarea {
-	flex-basis: 85%;
-}
-
-.formtextcontent > div > div {
-	flex-basis: 15%;
-}
-
-.formtextcontent > div > input {
-	width: 100%;
-	border: none;
-}
-
-.formtextcontent textarea:focus, input:focus {
-	outline: none;
-}
-
-textarea {
-	border: none;
-}
-
-.inputtitle {
-	height: 45px;
-}
-
-.inputdescription {
-	height: 180px;
-	min-height: 180px;
-	resize: vertical;
-	border-top: 3px solid black ;
-}
-
-.wordcounter {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-left: 3px solid black;
 	padding: 5px;
 }
 
-.wordcounter > div {
-	font-size: 0.8em;
+/* Form Title */
+.createpostform > div:nth-child(1) {
+	align-items: center;
+	justify-content: center;
 }
 
-.wordcounterlimitreached > span {
-	color: red;
-}
-
-
-/* formquizcontent */
-.formquizcontent {
-	border: 3px solid black;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.buttonarea {
-	display: flex;
-	gap: 10px;
-}
-
-.buttonarea > button{
-	background-color: white;
-	color: black;
-	text-decoration: none;
-	padding: 15px;
-	border: 2px solid black;
-	font-size: 1.05em;
-	flex-basis: 50%;
-	font-weight: bold;
-
-}
-
-.buttonarea > button:hover {
-	transition: 0.3s;
-	cursor: pointer;
-}
-
-.linksarea {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.formquizcontent > div > div {
-	display: flex;
-	flex-direction: column;
+/* Title input */
+.createpostform > div:nth-child(2) {
+	height: 60px;
 	gap: 5px;
-	border: 2px solid black;
-	padding: 10px;
 }
-.formquizcontent > div > div > label {
-	flex-basis: 80%;
+.createpostform > div:nth-child(2) > input {
+	flex-basis: 85%;
+	border: 1px solid black;
 }
-.formquizcontent > div > div > input {
-	flex-basis: 20%;
+.createpostform > div:nth-child(2) > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.addquiz:hover {
-	border-color:green;
-	color: green;
+/* Desc input */
+.createpostform > div:nth-child(3) {
+	height: fit-content;
+	gap: 5px;
 }
-.removequiz:hover {
-	border-color:red;
-	color: red;
+.createpostform > div:nth-child(3) > textarea {
+	flex-basis: 85%;
+	border: 1px solid black;
+	resize: vertical;
+	min-height: 200px;
 }
-.bordertop {
-	border-top: 3px solid black;
+.createpostform > div:nth-child(3) > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 5px;
+}
+
+
+/* Add quiz */
+.createpostform > div:nth-child(4) {
+}
+/* Submit button */
+.createpostform > div:nth-child(5) {
+}
+/* errorarea */
+.createpostform > div:nth-child(6) {
 }
