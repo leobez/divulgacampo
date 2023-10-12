@@ -44,7 +44,6 @@ const EditPostForm = ({post, postId}) => {
 		setAmountOfQuizLinks((prev) => prev+1)
 		quiz_div.append(quiz_label, quiz_input)
 		quizContainerRef.current.appendChild(quiz_div)
-		console.log(quiz_input)
 		return quiz_input
 	}
 
@@ -56,35 +55,42 @@ const EditPostForm = ({post, postId}) => {
 	const [error, setError] = useState("")
 	const {loading, apiError, updateDocument} = useUpdateDocument("posts")
 
+	// Theses effects will set the initial values in the inputs
 	useEffect(() => {
-		console.log(post)
 		setTitle(post.title)
 		setDescription(post.description)
-
 	}, [])
 
-	const [cancelled, setCancelled] = useState(false)
+	const [cancelled, setCancelled] = useState(null)
 	useEffect(() => {
-		const currentAmountOfLinks = Object.keys(post.quizLinks).length
-
 		if (cancelled) return;
 
-		if (Number(amountOfQuizLinks) === Number(currentAmountOfLinks)) {
+		const currentAmountOfLinks = Object.keys(post.quizLinks).length
+
+		if (Number(amountOfQuizLinks) >= Number(currentAmountOfLinks)) {
 			return () => setCancelled(true)
 		}
 
-		const addInitialQuiz = () => {
-			const quiz = addQuiz()
-			const quizNumber = Number(quiz.name.replace("quiz_", ""))
-			quiz.value = `${post.quizLinks[quizNumber]}`	
-		}
-		addInitialQuiz()
-		
+		const quiz = addQuiz()
+		const quizNumber = Number(quiz.name.replace("quiz_", ""))
+		quiz.value = `${post.quizLinks[quizNumber]}`	
+
 	}, [amountOfQuizLinks])
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
 		setError("")
+
+		// Create quizLinks obj
+		const quizLinks = {}
+		const quizInputs = document.querySelectorAll(".quizcontainer")
+
+		quizInputs.forEach((value, key) => {
+					if (value.lastChild.value.trim() !== "") {
+						quizLinks[key] = value.lastChild.value
+					}
+				})
+		
 
 		if (
 			title.trim() === "" || 
@@ -99,6 +105,15 @@ const EditPostForm = ({post, postId}) => {
 		}
 
 		if (
+			Object.keys(quizLinks).length <= 0 ||
+			Object.keys(quizLinks).length === undefined ||
+			Object.keys(quizLinks).length === null 
+		) {
+			setError("Você precisa divulgar ao menos um questionário.")
+			return;
+		}
+
+		if (
 			title.length > maxcharlimit_title ||
 			description.length > maxcharlimit_desc
 		) {
@@ -108,10 +123,13 @@ const EditPostForm = ({post, postId}) => {
 
 		const newData = {
 			title,
-			description
+			description,
+			quizLinks,
 		}
 
-		await updateDocument(postId, newData)
+		console.log(newData)
+
+		//await updateDocument(postId, newData)
 	}
 	
 	return (
