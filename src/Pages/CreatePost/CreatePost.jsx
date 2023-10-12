@@ -31,7 +31,6 @@ const CreatePost = ({isEmailVerified}) => {
 	const addQuiz = () => {
 		const quiz_div = document.createElement("div")
 		quiz_div.setAttribute("class", "quizcontainer")
-
 		const quiz_label = document.createElement("label")
 		quiz_label.setAttribute("for", `quiz_${amountOfQuizLinks}`)
 		quiz_label.innerText = `Questionário ${amountOfQuizLinks+1}`
@@ -71,14 +70,21 @@ const CreatePost = ({isEmailVerified}) => {
 			title.trim() === null ||
 			description.trim() === "" || 
 			description.trim() === undefined ||
-			description.trim() === null ||
-			Object.keys(quizLinks).length <= 0 ||
-			Object.keys(quizLinks).length === undefined ||
-			Object.keys(quizLinks).length === null 
+			description.trim() === null
 		) {
 			setError("Preencha todos os campos.")
 			return;
 		}
+
+		if (
+			Object.keys(quizLinks).length <= 0 ||
+			Object.keys(quizLinks).length === undefined ||
+			Object.keys(quizLinks).length === null 
+		) {
+			setError("Você precisa divulgar ao menos um questionário.")
+			return;
+		}
+
 
 		if (
 			title.length > maxcharlimit_title ||
@@ -98,8 +104,6 @@ const CreatePost = ({isEmailVerified}) => {
 		setError("")
 
 		await insertDocument(postData)
-
-		//console.log(postData)
 	}
 
 	return (
@@ -127,17 +131,13 @@ const CreatePost = ({isEmailVerified}) => {
 						/>
 						<div className={styles.wordcounter}>
 							{titlecharcounter <= maxcharlimit_title ? (
-								<div>
-									<span>
-										{titlecharcounter}/{maxcharlimit_title}
-									</span>
-								</div>
+								<span>
+									{titlecharcounter}/{maxcharlimit_title}
+								</span>
 							) : (
-								<div className={styles.wordcounterlimitreached} >
-									<span>
-										{titlecharcounter}/{maxcharlimit_title}
-									</span>
-								</div>
+								<span className={styles.wordcounterlimitreached}>
+									{titlecharcounter}/{maxcharlimit_title}
+								</span>
 							)}
 						</div>
 					</div>
@@ -152,17 +152,13 @@ const CreatePost = ({isEmailVerified}) => {
 						/>
 						<div className={styles.wordcounter}>
 							{descriptioncharcounter <= maxcharlimit_desc ? (
-								<div>
-									<span>
-										{descriptioncharcounter}/{maxcharlimit_desc}
-									</span>
-								</div>
+								<span>
+									{descriptioncharcounter}/{maxcharlimit_desc}
+								</span>
 							) : (
-								<div className={styles.wordcounterlimitreached} >
-									<span>
-										{descriptioncharcounter}/{maxcharlimit_desc}
-									</span>
-								</div>
+								<span className={styles.wordcounterlimitreached} >
+									{descriptioncharcounter}/{maxcharlimit_desc}
+								</span>
 							)}
 						</div>
 					</div>
@@ -170,7 +166,7 @@ const CreatePost = ({isEmailVerified}) => {
 					<div>
 						<div className={styles.linksarea} ref={quizContainerRef}>
 						</div>
-
+						<hr />
 						<div className={styles.buttonarea}>
 
 							{amountOfQuizLinks < 10 &&
