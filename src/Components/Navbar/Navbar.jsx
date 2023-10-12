@@ -19,15 +19,11 @@ const Navbar = () => {
 		<nav className={styles.navbar}>
 
 			{/* LINKS FOR ALL USERS */}
-			<NavLink
-				to="/"
-				className={({ isActive }) => isActive ? "active" : ""}>
+			<NavLink to="/">
 				Home
 			</NavLink>
 
-			<NavLink
-				to="/about"
-				className={({ isActive }) => isActive ? "active" : ""}>
+			<NavLink to="/about">
 				Sobre
 			</NavLink>
 
@@ -35,15 +31,11 @@ const Navbar = () => {
 			{auth.currentUser ?
 				(
 					<>
-						<NavLink
-							to="/myprofile"
-							className={({ isActive }) => isActive ? "active" : ""}>
+						<NavLink to="/myprofile">
 							Meu perfil
 						</NavLink>
 						
-						<NavLink
-							to="/createpost"
-							className={({ isActive }) => isActive ? "active" : ""}>
+						<NavLink to="/createpost">
 							Criar postagem
 						</NavLink>
 

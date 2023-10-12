@@ -13,7 +13,6 @@
 	border: 3px solid black;
 	width: 200px;
 	text-align: center;
-	font-weight: bold;
 }
 
 .navbar > a:hover {
@@ -29,7 +28,6 @@
 	text-align: center;
 	background-color: white;
 	cursor: pointer;
-	font-weight: bold;
 }
 
 .navbar > button:hover {

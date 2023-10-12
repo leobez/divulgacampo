@@ -6,13 +6,11 @@ const SubNavBar = () => {
 
 	return (
 		<div className={styles.subnavbar}>
-			<NavLink 
-			className={({ isActive }) => isActive ? styles.configlinkactive : styles.configlink} 
-			to='/config'>
-				<img src="..\src\assets\icons8-settings-50.png" alt="config-icon" />
+			<NavLink to='/config'>
+				Menu
 			</NavLink>
 
-			<NavLink className={styles.contactlink} to='/contact'>
+			<NavLink to='/contact'>
 				Contato
 			</NavLink>
 		</div>

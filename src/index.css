@@ -56,6 +56,7 @@ a, input[type="submit"], button  {
 	color: black;
 	border: 3px solid black;
 	background-color: white;
+	font-weight: bold;
 }
 a:hover, input[type="submit"]:hover, button:hover  {
 	color: white;
