@@ -1,11 +1,9 @@
 import React from 'react'
 import styles from './Config.module.css'
-import { NavLink, Navigate, useNavigate } from 'react-router-dom'
+import { NavLink, Navigate } from 'react-router-dom'
 import User from './User/User'
 
 const Config = ({element}) => {
-
-	const navigate = useNavigate()
 
 	return (
 		<div className={styles.config}>
@@ -13,17 +11,9 @@ const Config = ({element}) => {
 			<div className={styles.confignavbarcontainer}>
 				<nav className="navbar">
 
-					<NavLink
-						to="/config/user"
-						className={({ isActive }) => isActive ? styles.active : ""}>
+					<NavLink to="/config/user">
 						Usuário
 					</NavLink>
-
-					{/* <NavLink
-						to="/config/appearance"
-						className={({ isActive }) => isActive ? styles.active : ""}>
-						Aparência
-					</NavLink> */}
 
 				</nav>
 			</div>
@@ -32,8 +22,6 @@ const Config = ({element}) => {
 				{element === "config" && <p>{<Navigate to='user'/>}</p>}
 				
 				{element === "user" && <User/>}
-				{element === "appearance" && <p>Configuração de aparência</p>}
-				{element === "accessibility" && <p>Configuração de acessibilidade</p>}
 			</div>
 		</div>
 	)

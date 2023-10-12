@@ -13,33 +13,24 @@
 }
 
 .confignavbarcontainer > nav {
-	padding: 0;
-	border: none;
+	padding: 10px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	gap: 5px;
 }
 
+.confignavbarcontainer > nav > a {
+	height: 49px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 3px solid black;
+}
 
 .configcontainer {
 	grid-area: configcontainer;
 	border: 2px solid black;
 	padding: 10px;
 }
-
-.active {
-	background-color: black;
-	color: white;
-}
-
-/* .config {
-	height: 100%;
-	display: flex;
-	gap: 5px;
-}
-
-.confignavbarcontainer {
-	flex-basis: 20%;
-}
-
-.configcontainer {
-	flex-basis: 80%;
-	border: 3px solid black;
-} */
