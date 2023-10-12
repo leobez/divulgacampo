@@ -12,6 +12,7 @@ const DeleteAccount = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+		setError("")
 
 		if (
 			password === undefined || 
@@ -34,9 +35,9 @@ const DeleteAccount = () => {
 	return (
 		<div className={styles.deleteaccount}>
 			<div>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} className="form">
 
-					<div className='formtitle'>
+					<div>
 						<h1>Digite sua senha para excluir a conta:</h1>
 					</div>
 
@@ -58,11 +59,13 @@ const DeleteAccount = () => {
 						onChange={(e) => setPasswordAgain(e.target.value)}/>
 					</div>
 
-					{!loading ? (<input type="submit" value="Excluir"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
-
+					<div>
+						{!loading ? (<input type="submit" value="Excluir"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
+					</div>
+					
 					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
 					</div>
 
 				</form>
