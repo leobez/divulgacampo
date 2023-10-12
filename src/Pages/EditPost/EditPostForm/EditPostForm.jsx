@@ -47,8 +47,14 @@ const EditPostForm = ({post, postId}) => {
 		return quiz_input
 	}
 
+	// PAREI AQUI
 	const removeQuiz = () => {
-		quizContainerRef.current.removeChild(quizContainerRef.current.children[amountOfQuizLinks-1])
+		console.log("chegou")
+		console.log(quizContainerRef.current)
+		console.log(quizContainerRef.current.children)
+		console.log(quizContainerRef.current.children[1])
+
+		quizContainerRef.current.removeChild(quizContainerRef.current.children[1])
 		setAmountOfQuizLinks((prev) => prev-1)
 	}
 
