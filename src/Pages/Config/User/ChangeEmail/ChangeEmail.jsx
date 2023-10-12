@@ -7,7 +7,7 @@ import { useAuthentication } from '../../../../Hooks/useAuthentication'
 
 const ChangeEmail = () => {
 
-	const [warn, setWarn] = useState("")
+	const [success, setSuccess] = useState("")
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 
@@ -44,7 +44,7 @@ const ChangeEmail = () => {
 			return;
 		}
 		setError("")
-		setWarn("")
+		setSuccess("")
 
 		try {
 			setLoading(true)
@@ -52,7 +52,7 @@ const ChangeEmail = () => {
 			await reauthenticateWithCredential(auth.currentUser, credential)
 			await updateEmail(auth.currentUser, email)
 			await sendEmailVerification(auth.currentUser)
-			setWarn("Seu e-mail foi atualizado.")
+			setSuccess("Seu e-mail foi atualizado.")
 			logoutUser(auth)
 			setLoading(false)
 		} catch (error) {
@@ -69,9 +69,9 @@ const ChangeEmail = () => {
     return (
         <div className={styles.changeemail}>
             <div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={handleSubmit} className="form">
 
-					<div className='formtitle'>
+					<div>
 						<h1>Para alterar seu e-mail, digite sua senha:</h1>
 					</div>
 
@@ -102,14 +102,17 @@ const ChangeEmail = () => {
 						onChange={(e) => setEmail(e.target.value)}/>
 					</div>
 
-					{!loading ? (<input type="submit" value="Confirmar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)} 
+					<div>
+						{!loading ? (<input type="submit" value="Confirmar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)} 
+					</div>
 
 					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
 					</div>
-					<div className="warn">
-						{warn && <p>{warn}</p>}
+
+					<div className="success">
+						{success && <p><span>{success}</span></p>}
 					</div>
 
 				</form>

@@ -11,6 +11,7 @@ const ChangeName = () => {
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
+		setError("")
 
 		if (
 			name === undefined || 
@@ -33,8 +34,9 @@ const ChangeName = () => {
 	return (
 		<div className={styles.changename}>
 			<div>
-				<form onSubmit={handleSubmit} className={styles.form}>
-					<div className='formtitle'>
+				<form onSubmit={handleSubmit} className="form">
+
+					<div>
 						<h1>Mude seu nome</h1>
 					</div>
 
@@ -46,14 +48,17 @@ const ChangeName = () => {
 						onChange={(e) => setName(e.target.value)}/>
 					</div>
 
-					{!loading ? 
-					(<input type="submit" value="Mudar"/>) : 
-					(<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
-
-					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+					<div>
+						{!loading ? 
+						(<input type="submit" value="Mudar"/>) : 
+						(<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
 					</div>
+					
+					<div className="error">
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
+					</div>
+
 				</form>
 			</div>
 		</div>
