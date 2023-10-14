@@ -30,8 +30,9 @@ export const useChangeUserInfo = () => {
 			await updateProfile(auth.currentUser, {
 				displayName: newName
 			})
+			console.log(listOfDocs)
 			setLoading(false)
-			navigate("/config/user?changed=displayName")
+			//navigate("/config/user?changed=displayName")
 		} catch (error) {
 			setLoading(false)
 			setAuthError("Algo deu errado.")

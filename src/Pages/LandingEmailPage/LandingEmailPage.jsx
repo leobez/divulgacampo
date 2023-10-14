@@ -37,7 +37,6 @@ const LandingEmailPage = () => {
 		try {
 			await applyActionCode(auth, actionCode)
 			setSuccess("Email verificado com sucesso!")
-			setTimeout(() => navigate("/login"), 1500)
 		} catch (error) {
 			if (error.message.includes("invalid-action-code")) {
 				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
