@@ -21,13 +21,10 @@ export const useChangeUserInfo = () => {
 	} = useDeleteDocument("posts")
 
 	const {
-		apiError: getDocumentsByUidApiError, 
 		listOfDocs
 	} = useGetDocumentsByUid("posts", auth.currentUser.uid)
 	
 	const {
-		loading: updateDocumentLoading,
-		apiError: updateDocumentError,
 		updateDocument,
 	} = useUpdateDocument("posts")
 
