@@ -42,10 +42,9 @@ export const useChangeUserInfo = () => {
 				newData.displayName = newName
 				await updateDocument(doc.postId, newData)
 			})
-
-			//await updateDocument()
 			setLoading(false)
-			//navigate("/config/user?changed=displayName")
+			navigate("/config/user?changed=displayName")
+			
 		} catch (error) {
 			setLoading(false)
 			setAuthError("Algo deu errado.")
