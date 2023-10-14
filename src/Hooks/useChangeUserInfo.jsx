@@ -5,6 +5,7 @@ import { EmailAuthProvider, deleteUser, reauthenticateWithCredential, updatePass
 import { useNavigate } from "react-router-dom"
 import { useDeleteDocument } from "./useDeleteDocument"
 import { useGetDocumentsByUid } from "./useGet/useGetDocumentsByUid"
+import { useUpdateDocument } from "./useUpdateDocument"
 
 export const useChangeUserInfo = () => {
 
@@ -24,13 +25,28 @@ export const useChangeUserInfo = () => {
 		listOfDocs
 	} = useGetDocumentsByUid("posts", auth.currentUser.uid)
 	
+	const {
+		loading: updateDocumentLoading,
+		apiError: updateDocumentError,
+		updateDocument,
+	} = useUpdateDocument("posts")
+
 	const updateName = async(newName) => {
 		try {
+
 			setLoading(true)
 			await updateProfile(auth.currentUser, {
 				displayName: newName
 			})
-			console.log(listOfDocs)
+
+			// Update all docs related to this user
+			listOfDocs.map(async(doc) => {
+				let newData = doc.postData
+				newData.displayName = newName
+				await updateDocument(doc.postId, newData)
+			})
+
+			//await updateDocument()
 			setLoading(false)
 			//navigate("/config/user?changed=displayName")
 		} catch (error) {
