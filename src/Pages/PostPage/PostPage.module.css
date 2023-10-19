@@ -26,7 +26,17 @@
 }
 .postpage > div:nth-child(4) > div {
 	display: flex;
+	flex-direction: column;
 	gap: 10px;
+}
+
+iframe {
+	min-height: 700px;
+	max-height: 100%;
+}
+
+.postpage > div:nth-child(4)  {
+	height: 10px;
 }
 .postpage > div:nth-child(4) > div > a{
 	border: none;

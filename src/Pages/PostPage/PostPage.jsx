@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './PostPage.module.css'
 import { useParams } from 'react-router-dom'
 import { useGetDocument } from '../../Hooks/useGet/useGetDocument'
@@ -8,6 +8,7 @@ const PostPage = () => {
 	const {postId} = useParams()
 
 	const {loading, apiError, listOfDocs} = useGetDocument("posts", postId)
+
 
 	return (
 		<div className={styles.postpage}>
@@ -32,6 +33,8 @@ const PostPage = () => {
 							<div className={styles.quizcontainer} key={index}>
 								<p>Questionário {index+1}:</p>
 								<a href={`${link}`}>{link}</a>
+								<iframe src={`${link}`} ></iframe>
+								<hr />
 							</div>
 						))}
 					</div>
