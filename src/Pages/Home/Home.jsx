@@ -23,13 +23,26 @@ const Home = () => {
 	return (
 		<div className={styles.home}>
 			<div className={styles.homemenu}>
-				<button onClick={handleRefreshClick} className={styles.refreshbutton}>
-					<p>Recarregar</p>				
-					<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
-				</button>
-				<p>
-					Bem vindo ao Divulga Campo !
-				</p>
+
+				<div>
+					<p>
+						<span>Bem vindo ao Divulga Campo !</span>
+					</p>
+				</div>
+
+				<div>
+					<button onClick={handleRefreshClick} className={styles.refreshbutton}>
+						<p>Recarregar</p>				
+						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
+					</button>
+
+					<div className={styles.filtercontainer}>
+						Filtro
+					</div>
+					<div className={styles.searchbarcontatiner}>
+						Barra de pesquisa
+					</div>
+				</div>
 			</div>
 
 			<div className={styles.welcome}>
@@ -47,8 +60,6 @@ const Home = () => {
 					)
 				}
 			</div>
-
-			<hr />
 
 			<div className={styles.homecontentcontainer}>
 

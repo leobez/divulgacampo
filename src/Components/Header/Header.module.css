@@ -8,6 +8,10 @@
 	grid-area: header;
 }
 
+.header a {
+	border-radius: 0px;
+}
+
 .header > .headerlink {
 	height: 60px;
 	margin-left: 10px;

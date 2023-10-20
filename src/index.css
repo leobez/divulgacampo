@@ -21,8 +21,9 @@ font-family: 'Sora', sans-serif;
 	color: black;
 }
 
-div, button, a {
-	border-radius: 0px;
+
+button, a {
+	border-radius: 7px;
 }
 
 html, body, #root, .App {
