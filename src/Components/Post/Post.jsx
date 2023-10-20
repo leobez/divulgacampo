@@ -7,26 +7,26 @@ const Post = ({postData, postId}) => {
 	return (
 		<div className={styles.post}>
 
-			<div className={styles.displayName}>
-				Criado por: <span>{postData.displayName}</span>
+			<div className={styles.topinfo}>
+				<div className={styles.displayName}>
+					Criado por: <span>{postData.displayName}</span>
+				</div>
+				<div className={styles.displayName}>
+					Ficará ativo por: <span>X dias</span>
+				</div>
 			</div>
+
+			<hr />
 
 			<div className={styles.title}>
 				{postData.title}
 			</div>
 
-{/* 			<div className={styles.description}>
+			<hr />
+
+			<div className={styles.description}>
 				{postData.description}
 			</div>
-
-			<div className={styles.quizlinks}>
-				<p>Meus questionários: </p>
-				{Object.entries(postData.quizLinks).map(([key, value]) => (
-					<div key={key} className={styles.quizlink}>
-						<a href={`${value}`}>{value}</a>
-					</div>
-				))}
-			</div> */}
 
 			<div className={`${styles.linktoenter}`}>
 				<Link to={`/post/${postId}`}>Acessar</Link>

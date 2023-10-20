@@ -22,7 +22,7 @@ font-family: 'Sora', sans-serif;
 }
 
 div, button, a {
-	border-radius: 7px;
+	border-radius: 0px;
 }
 
 html, body, #root, .App {

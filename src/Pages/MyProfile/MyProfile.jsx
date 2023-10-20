@@ -39,10 +39,14 @@ const MyProfile = ({isEmailVerified}) => {
 								key={post.postId} 
 								className={styles.historypost}>
 									<div className={styles.historyposttitle}>
-										{post.postData.title}
+										<p>Titulo: </p>
+										<hr />
+										<p>{post.postData.title}</p>
 									</div>
 									<div className={styles.historypostdesc}>
-										{post.postData.description}
+										<p>Descrição:</p>
+										<hr />
+										<p>{post.postData.description}</p>
 									</div>
 									<div className={styles.historypostlinks}>
 										<Link to={`/post/${post.postId}`}>Acessar</Link>

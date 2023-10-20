@@ -3,28 +3,30 @@
 	width: 600px;
 	height: 350px;
 
-	box-shadow: 1px 2px 3px black;
+	/* box-shadow: 1px 2px 3px black; */
 	padding: 20px;
+	border: 2px solid black;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-
-	overflow-y: hidden;
+	gap: 10px;
+	position: relative;
 }
 
 .post > div {
 	word-wrap: break-word;
 }
 
-.title {
-	border-top: 2px solid black;
-	border-bottom: 2px solid black;
-	padding: 20px 0px;
+.post > .topinfo {
+	display: flex;
+	justify-content: space-between;
+}
+
+.post > .title, .description {
+
 }
 
 .quizlinks {
-	border-top: 2px solid black ;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -36,23 +38,20 @@
 }
 
 .linktoenter {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
 }
 .linktoenter > a {
-	width: 100%;
 	height: 60px;
-	border: 2px solid black;
 	display: grid;
+	border: 2px solid black;
 	place-items: center;
-
 }
 .linktoenter > a:hover {
 	background-color: black;
 	color: white;
 	transition: 0.3s;
-
 }
 

@@ -37,6 +37,10 @@
 	word-wrap: break-word;
 }
 
+.historypost > div > p {
+	padding: 5px;
+}
+
 .historyposttitle {
 	border: 2px solid black;
 	width: 100%;
@@ -87,12 +91,17 @@
 	color: green;
 	background-color: white;
 }
+.historypostlinks > button{
+	border-width: 2px;
+	font-size: 0.9em;
+}
 /* EXLCUIR */
 .historypostlinks > button:hover{
 	border-color: red;
 	color: red;
 	background-color: white;
 }
+
 
 .extrainfo {
 	display: flex;
