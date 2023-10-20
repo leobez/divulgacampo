@@ -27,7 +27,7 @@ const PostPage = () => {
 					</div>
 
 					<div>
-						Responda meus questionários:
+						<p><span> Meus questionários </span></p>
 						{Object.values(listOfDocs[0].quizLinks).map((link, index) => (
 							<div className={styles.quizcontainer} key={index}>
 								<p>Questionário {index+1}:</p>

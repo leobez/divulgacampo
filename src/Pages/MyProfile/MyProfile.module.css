@@ -38,16 +38,17 @@
 }
 
 .historypost > div > p {
-	padding: 5px;
-}
-
-.historyposttitle {
-	border: 2px solid black;
+	padding: 5px 0px;
 	width: 100%;
 	text-overflow: ellipsis;
 	display: inline-block;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.historyposttitle {
+	border: 2px solid black;
+	width: 100%;
 	flex-basis: 30%;
 	padding: 5px;
 }
