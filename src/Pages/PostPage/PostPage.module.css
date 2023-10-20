@@ -2,31 +2,40 @@
 	display: flex;
 	flex-direction: column;
 	max-width: 1200px;
-	gap: 20px;
-	padding: 10px;
+	gap: 30px;
+	padding: 20px;
 }
 
 .postpage > div {
 	overflow-wrap: break-word;
-	padding: 10px;
 	text-align: justify;
 }
 .postpage > div:nth-child(1)  > span::before{
 	content: " ";
 }
 .postpage > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
 }
 .postpage > div:nth-child(3) {
-}
-.postpage > div:nth-child(4) > p {
-	font-size: 1.5em;
-	text-align: center;
-}
-.postpage > div:nth-child(4)  {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	border-top: 1px solid black;
+}
+.postpage > div:nth-child(3) > p:nth-child(1) {
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.postpage > div:nth-child(4)  {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.postpage > div:nth-child(4) > p {
+	font-size: 1.2em;
+	text-align: center;
 }
 .postpage > div:nth-child(4) > div {
 	display: flex;

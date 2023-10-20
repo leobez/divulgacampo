@@ -20,13 +20,16 @@ const PostPage = () => {
 
 					<div>
 						<p><span>{listOfDocs[0].title}</span></p>
+						<hr />
 					</div>
 					
 					<div>
+						<p><span>Descrição</span></p>
 						<p>{listOfDocs[0].description}</p>
 					</div>
 
 					<div>
+						<hr />
 						<p><span> Meus questionários </span></p>
 						{Object.values(listOfDocs[0].quizLinks).map((link, index) => (
 							<div className={styles.quizcontainer} key={index}>
