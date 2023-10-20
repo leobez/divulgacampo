@@ -17,13 +17,13 @@ const PostPage = () => {
 					<div>Criado por: 
 						<span>{listOfDocs[0].displayName}</span>
 					</div>
-					
+
 					<div>
-						{listOfDocs[0].title}
+						<p><span>{listOfDocs[0].title}</span></p>
 					</div>
 					
 					<div>
-						{listOfDocs[0].description}
+						<p>{listOfDocs[0].description}</p>
 					</div>
 
 					<div>

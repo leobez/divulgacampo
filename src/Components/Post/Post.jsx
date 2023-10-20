@@ -19,13 +19,14 @@ const Post = ({postData, postId}) => {
 			<hr />
 
 			<div className={styles.title}>
-				{postData.title}
+				<p><span>{postData.title}</span></p>
 			</div>
 
 			<hr />
 
 			<div className={styles.description}>
-				{postData.description}
+				<p>{postData.description}</p>
+				<div className={styles.fadeeffect}></div>
 			</div>
 
 			<div className={`${styles.linktoenter}`}>
