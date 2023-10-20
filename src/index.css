@@ -21,6 +21,10 @@ font-family: 'Sora', sans-serif;
 	color: black;
 }
 
+div, button, a {
+	border-radius: 7px;
+}
+
 html, body, #root, .App {
 	height: 100%;
 	width: 100%;

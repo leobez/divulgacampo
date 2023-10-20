@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 
 // Components
@@ -63,9 +63,13 @@ function App() {
 	console.log("auth.currentUser: ", auth.currentUser)
 	console.log("isEmailVerified: ", isEmailVerified) */
 
+
+
     return (
 		<div className='App'>
-			
+
+			{/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG8ipS3laaTJH3uWTrxcMd15rrwUPUAfvwWdjh4Vli7yAcXA/viewform?embedded=true" width="640" height="577" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe> */}
+
 			<AuthContext.Provider value={auth}>
 				<BrowserRouter>
 					<Header/>
