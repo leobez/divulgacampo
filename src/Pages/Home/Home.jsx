@@ -16,6 +16,15 @@ const Home = () => {
 		getDocuments()
 	}, [refresh])
 
+	useEffect(() => {
+		if (listOfDocs) {
+			listOfDocs.map((doc) => {
+				const date = doc.postData.createdAt.toDate().toDateString()
+				console.log(date)
+			})
+		}
+	}, [listOfDocs])
+
 	const handleRefreshClick = () => {
 		setRefresh(prev => !prev)
 	}

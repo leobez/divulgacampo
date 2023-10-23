@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Post.module.css'
 import { Link } from 'react-router-dom'
 
 const Post = ({postData, postId}) => {
+
+	const [date, setDate] = useState("")
+	useEffect(() => {
+		const data = postData.createdAt.toDate().toLocaleDateString()
+		setDate(data)
+	}, [])
 
 	return (
 		<div className={styles.post}>
@@ -12,7 +18,7 @@ const Post = ({postData, postId}) => {
 					Criado por: <span>{postData.displayName}</span>
 				</div>
 				<div className={styles.displayName}>
-					Ficará ativo por: <span>X dias</span>
+					Postado em: <span>{date}</span>
 				</div>
 			</div>
 
