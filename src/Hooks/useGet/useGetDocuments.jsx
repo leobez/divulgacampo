@@ -8,6 +8,35 @@ export const useGetDocuments = (collectionName) => {
 	const [apiError, setApiError] = useState("")
 	const [listOfDocs, setListOfDocs] = useState([])
 
+	const getDocumentsByQuery = async(searchQuery) => {
+		setListOfDocs([])
+		try {
+			setLoading(true)
+
+			const col = collection(db, collectionName)
+
+			const q = await query(col, where("description", "array-contains", searchQuery), orderBy("createdAt", "desc"))
+
+			const snapshot = await getDocs(q)
+
+			console.log("aaa: ", snapshot)
+
+ 			if (snapshot.docs.length <= 0) {
+				setListOfDocs([])
+			} else {
+				snapshot.docs.forEach(
+					(doc) => setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
+				)
+			} 
+			setLoading(false)
+
+		} catch (error) {
+			setApiError("Algo deu errado.")
+			console.log(error)
+			setLoading(false)
+		}
+	}
+
 	const getNonExpiredDocuments = async() => {
 		setListOfDocs([])
 		try {
@@ -64,6 +93,7 @@ export const useGetDocuments = (collectionName) => {
 		apiError,
 		getDocuments,
 		getNonExpiredDocuments,
+		getDocumentsByQuery,
 		listOfDocs,
 	}
 }

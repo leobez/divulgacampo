@@ -30,6 +30,7 @@ import ChangePassword from './Pages/Config/User/ChangePassword/ChangePassword'
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 import ChangeEmail from './Pages/Config/User/ChangeEmail/ChangeEmail'
 import LandingEmailPage from './Pages/LandingEmailPage/LandingEmailPage'
+import Search from './Pages/Search/Search'
 
 function App() {
 
@@ -63,8 +64,6 @@ function App() {
 	console.log("auth.currentUser: ", auth.currentUser)
 	console.log("isEmailVerified: ", isEmailVerified) */
 
-
-
     return (
 		<div className='App'>
 
@@ -86,9 +85,12 @@ function App() {
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/landingemailpage' element={<LandingEmailPage/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
+							<Route path='/search' element={<Search/>}/>
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>
 							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
+
+
 
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
