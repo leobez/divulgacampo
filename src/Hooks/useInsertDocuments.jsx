@@ -11,7 +11,10 @@ export const useInsertDocument = (collectionName) => {
 
 	const insertDocument = async(data) => {
 
-		try {
+		console.log("POSTTTL: ", data.postTTL)
+
+		
+/* 		try {
 			setLoading(true)
 			await addDoc(collection(db, collectionName), {
 				uid: data.uid,
@@ -27,7 +30,7 @@ export const useInsertDocument = (collectionName) => {
 		} catch (error) {
 			setLoading(false)
 			setApiError(error)
-		} 
+		}  */
 	}
 
 	return {

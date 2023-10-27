@@ -64,61 +64,78 @@
 	padding: 0px 5px;
 }
 
-/* Quiz area*/
+/* TTL of post */
 .createpostform > div:nth-child(4) {
+	border: 2px solid black;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > div:nth-child(4) > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > div:nth-child(4) > div:nth-child(3) > div {
+	display: flex;
+	gap: 10px;
+}
+/* Quiz area*/
+.createpostform > div:nth-child(5) {
 	display: flex;
 	flex-direction: column;
 	border: 2px solid black;
 	padding: 10px;
 }
-.createpostform > div:nth-child(4) > .linksarea {
+.createpostform > div:nth-child(5) > .linksarea {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-.createpostform > div:nth-child(4) > .linksarea > div {
+.createpostform > div:nth-child(5) > .linksarea > div {
 	height: 50px;
 	gap: 10px;
 	display: flex;
 	align-items: center;
 }
-.createpostform > div:nth-child(4) > .linksarea > div > label {
+.createpostform > div:nth-child(5) > .linksarea > div > label {
 	height: 40px;
 	flex-basis: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.createpostform > div:nth-child(4) > .linksarea > div > input {
+.createpostform > div:nth-child(5) > .linksarea > div > input {
 	height: 40px;
 	flex-basis: 80%;
 	padding: 0px 5px;
 }
 
-.createpostform > div:nth-child(4) > .buttonarea {
+.createpostform > div:nth-child(5) > .buttonarea {
 	display: flex;
 	gap: 10px;
 	margin-top: 5px;
 }
-.createpostform > div:nth-child(4) > .buttonarea > button {
+.createpostform > div:nth-child(5) > .buttonarea > button {
 	flex-basis: 50%;
 	height: 60px;
 	border-width: 2px;
 }
 
 /* Submit button */
-.createpostform > div:nth-child(5) {
+.createpostform > div:nth-child(6) {
 	height: fit-content;
 	display: flex;
 	justify-content: center;
 }
-.createpostform > div:nth-child(5) > input[type="submit"] {
+.createpostform > div:nth-child(6) > input[type="submit"] {
 	height: 60px;
 	width: 100%;
 	padding: 10px;
 }
 
 /* errorarea */
-.createpostform > div:nth-child(6) {
+.createpostform > div:nth-child(7) {
 }

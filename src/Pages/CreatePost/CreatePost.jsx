@@ -49,6 +49,12 @@ const CreatePost = ({isEmailVerified}) => {
 		setAmountOfQuizLinks((prev) => prev-1)
 	}
 
+	const [postTTL, setPostTTL] = useState(0)
+
+	useEffect(() => {
+		console.log(postTTL)
+	}, [postTTL])
+
 	const [error, setError] = useState("")
 	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 
@@ -70,7 +76,12 @@ const CreatePost = ({isEmailVerified}) => {
 			title.trim() === null ||
 			description.trim() === "" || 
 			description.trim() === undefined ||
-			description.trim() === null
+			description.trim() === null ||
+			postTTL === "" || 
+			postTTL === undefined ||
+			postTTL === null ||
+			postTTL < 30 ||
+			postTTL > 90
 		) {
 			setError("Preencha todos os campos.")
 			return;
@@ -99,7 +110,8 @@ const CreatePost = ({isEmailVerified}) => {
 			displayName: auth.currentUser.displayName,
 			title: title,
 			description: description,
-			quizLinks: quizLinks  
+			quizLinks: quizLinks ,
+			postTTL: postTTL
 		}
 		setError("")
 
@@ -162,7 +174,36 @@ const CreatePost = ({isEmailVerified}) => {
 							)}
 						</div>
 					</div>
-	
+								
+					<div>
+						<div>
+							<p>Dias para a postagem ficar ativa:</p>
+						</div>
+
+						<hr />
+
+						<div>
+							<div>
+								<input type="radio" id="30_days" name="post_ttl" value="30" 
+								onChange={() => setPostTTL(30)}/>
+								<label htmlFor="30_days">30 dias</label>
+							</div>
+
+							<div>
+								<input type="radio" id="60_days" name="post_ttl" value="60"
+								onChange={() => setPostTTL(60)}/>
+								<label htmlFor="60_days">60 dias</label>
+							</div>
+
+							<div>
+								<input type="radio" id="90_days" name="post_ttl" value="90"
+								onChange={() => setPostTTL(90)}/>
+								<label htmlFor="90_days">90 dias</label>	
+							</div>
+						</div>
+
+					</div>			
+
 					<div>
 						<div className={styles.linksarea} ref={quizContainerRef}>
 						</div>

@@ -16,15 +16,6 @@ const Home = () => {
 		getDocuments()
 	}, [refresh])
 
-	useEffect(() => {
-		if (listOfDocs) {
-			listOfDocs.map((doc) => {
-				const date = doc.postData.createdAt.toDate().toDateString()
-				console.log(date)
-			})
-		}
-	}, [listOfDocs])
-
 	const handleRefreshClick = () => {
 		setRefresh(prev => !prev)
 	}
@@ -45,12 +36,10 @@ const Home = () => {
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
 
-					<div className={styles.filtercontainer}>
-						Filtro
-					</div>
 					<div className={styles.searchbarcontatiner}>
 						Barra de pesquisa
 					</div>
+					
 				</div>
 			</div>
 
