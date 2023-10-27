@@ -30,7 +30,6 @@ import ChangePassword from './Pages/Config/User/ChangePassword/ChangePassword'
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword'
 import ChangeEmail from './Pages/Config/User/ChangeEmail/ChangeEmail'
 import LandingEmailPage from './Pages/LandingEmailPage/LandingEmailPage'
-import Search from './Pages/Search/Search'
 
 function App() {
 
@@ -85,11 +84,9 @@ function App() {
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/landingemailpage' element={<LandingEmailPage/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
-							<Route path='/search' element={<Search/>}/>
 							<Route path='/config' element={<Config element={"config"}/>}/>
 							<Route path='/config/user' element={<Config element={"user"}/>}/>
 							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
-
 
 
 							{/* ROTAS PARA AUTENTICADO */}
@@ -100,6 +97,7 @@ function App() {
 							<Route path='/deleteaccount' element={isLogged ? <DeleteAccount/> : <Navigate to="/"/>}/>
 							<Route path='/changepassword' element={isLogged ? <ChangePassword/>: <Navigate to="/login"/>}/>
 							<Route path='/changeemail' element={isLogged ? <ChangeEmail/>: <Navigate to="/login"/>}/>
+
 
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
