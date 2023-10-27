@@ -76,8 +76,25 @@
 	flex-basis: 30%;
 	border: 2px solid black;
 	display: flex;
+	padding: 10px;
+}
+.searchbarcontatiner > form {
+	display: flex;
+	gap: 10px;
+}
+.searchbarcontatiner > form > input[type="submit"] {
+	padding: 10px;
+	border-width: 2px;
+}
+.searchbarcontatiner > form > div {
+	height: 100%;
+	display: flex;
 	align-items: center;
-	justify-content: center;
+	gap: 10px;
+}
+.searchbarcontatiner > form > div > input[type="text"] {
+	padding: 10px;
+	height: 90%;
 }
 
 .welcome {

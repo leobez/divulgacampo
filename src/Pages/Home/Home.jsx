@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
 import { Timestamp } from 'firebase/firestore'
@@ -9,9 +9,22 @@ import { Timestamp } from 'firebase/firestore'
 const Home = () => {
 
 	const auth = useContext(AuthContext)
+	const navigate = useNavigate()
 
 	const {loading, apiError, getNonExpiredDocuments, listOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
+
+	const [searchQuery, setSearchQuery] = useState("")
+
+	const handleSearch = (e) => {
+		e.preventDefault()
+		if (searchQuery.trim() === "") {
+			console.log("nada")
+			return;
+		} 
+		console.log(searchQuery)
+		navigate(`search?q=${searchQuery}`)
+	}
 
 	useEffect(() => {
 		getNonExpiredDocuments()
@@ -20,6 +33,7 @@ const Home = () => {
 	const handleRefreshClick = () => {
 		setRefresh(prev => !prev)
 	}
+
 
 	return (
 		<div className={styles.home}>
@@ -38,9 +52,18 @@ const Home = () => {
 					</button>
 
 					<div className={styles.searchbarcontatiner}>
-						Barra de pesquisa
+						<form onSubmit={handleSearch}>
+							<div>
+								<input 
+								type="text" 
+								name="searchQuery" 
+								id="searchQuery" 
+								placeholder='Pesquisa...'
+								onChange={(e) => setSearchQuery(e.target.value)}/>
+							</div>
+							<input type="submit" value="Pesquisar" />
+						</form>
 					</div>
-					
 				</div>
 			</div>
 
