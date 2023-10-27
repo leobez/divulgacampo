@@ -73,7 +73,6 @@
 
 .searchbarcontatiner {
 	height: 100%;
-	flex-basis: 30%;
 	border: 2px solid black;
 	display: flex;
 	padding: 10px;
@@ -83,10 +82,12 @@
 	gap: 10px;
 }
 .searchbarcontatiner > form > input[type="submit"] {
+	flex-basis: 70%;
 	padding: 10px;
 	border-width: 2px;
 }
 .searchbarcontatiner > form > div {
+	flex-basis: 30%;
 	height: 100%;
 	display: flex;
 	align-items: center;
