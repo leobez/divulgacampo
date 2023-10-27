@@ -9,12 +9,9 @@
 }
 
 .homemenu {
-	height: 140px;
 	width: inherit;
 	border: 2px solid black;
 	display: flex;
-	flex-direction: column;
-
 	z-index: 2;
 	background-color: white;
 	position: sticky;
@@ -24,22 +21,20 @@
 }
 
 .homemenu > div:nth-child(1)  {
-	flex-basis: 20%;
+	flex-basis: 70%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 .homemenu > div:nth-child(1) > p {
 	font-size: 1.2em;
 }
 
-.homemenu > div:nth-child(2)  {
-	flex-basis: 80%;
-	display: flex;
-	gap: 10px;
-	justify-content: space-between;
-}
+
 
 .refreshbutton {
+	width: fit-content;
 	border-width: 2px;
-	height: 100%;
 	flex-basis: 10%;
 	padding: 10px;
 	cursor: pointer;
@@ -62,38 +57,29 @@
 	transition: 0.3s;
 }
 
-.filtercontainer {
-	height: 100%;
-	flex-basis: 70%;
-	border: 2px solid black;
+.searchbarcontainer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.searchbarcontatiner {
-	height: 100%;
-	border: 2px solid black;
-	display: flex;
 	padding: 10px;
 }
-.searchbarcontatiner > form {
+.searchbarcontainer > form {
 	display: flex;
 	gap: 10px;
 }
-.searchbarcontatiner > form > input[type="submit"] {
+.searchbarcontainer > form > input[type="submit"] {
 	flex-basis: 70%;
 	padding: 10px;
 	border-width: 2px;
 }
-.searchbarcontatiner > form > div {
+.searchbarcontainer > form > div {
 	flex-basis: 30%;
 	height: 100%;
 	display: flex;
 	align-items: center;
 	gap: 10px;
 }
-.searchbarcontatiner > form > div > input[type="text"] {
+.searchbarcontainer > form > div > input[type="text"] {
 	padding: 10px;
 	height: 90%;
 }

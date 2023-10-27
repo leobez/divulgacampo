@@ -19,6 +19,7 @@ const Home = () => {
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchQuery.trim() === "") {
+			setRefresh(prev => !prev)
 			return;
 		} 
 		console.log(searchQuery)
@@ -45,28 +46,26 @@ const Home = () => {
 					<p>
 						<span>Bem vindo ao Divulga Campo !</span>
 					</p>
-				</div>
-
-				<div>
 					<button onClick={handleRefreshClick} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
-
-					<div className={styles.searchbarcontatiner}>
-						<form onSubmit={handleSearch}>
-							<div>
-								<input 
-								type="text" 
-								name="searchQuery" 
-								id="searchQuery" 
-								placeholder='Pesquisa...'
-								onChange={(e) => setSearchQuery(e.target.value)}/>
-							</div>
-							<input type="submit" value="Pesquisar" />
-						</form>
-					</div>
 				</div>
+
+				<div className={styles.searchbarcontainer}>
+					<form onSubmit={handleSearch}>
+						<div>
+							<input 
+							type="text" 
+							name="searchQuery" 
+							id="searchQuery" 
+							placeholder='Pesquisa...'
+							onChange={(e) => setSearchQuery(e.target.value)}/>
+						</div>
+						<input type="submit" value="Pesquisar" />
+					</form>
+				</div>
+		
 			</div>
 
 			<div className={styles.welcome}>
