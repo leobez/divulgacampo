@@ -4,16 +4,17 @@ import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
+import { Timestamp } from 'firebase/firestore'
 
 const Home = () => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, getDocuments, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, getNonExpiredDocuments, listOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
 
 	useEffect(() => {
-		getDocuments()
+		getNonExpiredDocuments()
 	}, [refresh])
 
 	const handleRefreshClick = () => {
