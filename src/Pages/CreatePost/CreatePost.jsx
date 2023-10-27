@@ -51,10 +51,6 @@ const CreatePost = ({isEmailVerified}) => {
 
 	const [postTTL, setPostTTL] = useState(0)
 
-	useEffect(() => {
-		console.log(postTTL)
-	}, [postTTL])
-
 	const [error, setError] = useState("")
 	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 

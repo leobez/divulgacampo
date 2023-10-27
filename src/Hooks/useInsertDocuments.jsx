@@ -11,18 +11,24 @@ export const useInsertDocument = (collectionName) => {
 
 	const insertDocument = async(data) => {
 
-		console.log("POSTTTL: ", data.postTTL)
+ 		try {
 
-		
-/* 		try {
 			setLoading(true)
+
+			const expiresIn = new Date()
+			expiresIn.setDate(
+				Timestamp.now().toDate().getDate() + data.postTTL
+			)
+			console.log("POSTTTL: ", expiresIn)
+
 			await addDoc(collection(db, collectionName), {
 				uid: data.uid,
 				displayName: data.displayName,
 				title: data.title,
 				description: data.description,
 				quizLinks: data.quizLinks,
-				createdAt: Timestamp.now()
+				createdAt: Timestamp.now(),
+				expiresIn: expiresIn
 			})
 			setLoading(false)
 			navigate("/")
@@ -30,7 +36,7 @@ export const useInsertDocument = (collectionName) => {
 		} catch (error) {
 			setLoading(false)
 			setApiError(error)
-		}  */
+		}  
 	}
 
 	return {

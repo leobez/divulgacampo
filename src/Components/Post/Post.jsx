@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 
 const Post = ({postData, postId}) => {
 
-	const [date, setDate] = useState("")
+	const [postedAt, setPostedAt] = useState("")
+	const [expiresIn, setExpiresIn] = useState("")
+
 	useEffect(() => {
-		const data = postData.createdAt.toDate().toLocaleDateString()
-		setDate(data)
+		const postedAt = postData.createdAt.toDate().toLocaleDateString()
+		setPostedAt(postedAt)
+
+		const expiresIn = postData.expiresIn.toDate().toLocaleDateString()
+		setExpiresIn(expiresIn)
 	}, [])
 
 	return (
@@ -17,9 +22,16 @@ const Post = ({postData, postId}) => {
 				<div className={styles.displayName}>
 					Criado por: <span>{postData.displayName}</span>
 				</div>
-				<div className={styles.displayName}>
-					Postado em: <span>{date}</span>
+
+				<div>
+					<div>
+						Postado em: <span>{postedAt}</span>
+					</div>
+					<div>
+						Valido até: <span>{expiresIn}</span>
+					</div>
 				</div>
+
 			</div>
 
 			<hr />
