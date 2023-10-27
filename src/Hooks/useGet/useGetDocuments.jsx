@@ -15,11 +15,9 @@ export const useGetDocuments = (collectionName) => {
 
 			const col = collection(db, collectionName)
 
-			const q = await query(col, where("description", "array-contains", searchQuery), orderBy("createdAt", "desc"))
+			const q = await query(col, where("displayName", "==", searchQuery))
 
 			const snapshot = await getDocs(q)
-
-			console.log("aaa: ", snapshot)
 
  			if (snapshot.docs.length <= 0) {
 				setListOfDocs([])
