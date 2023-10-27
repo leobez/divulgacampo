@@ -11,7 +11,7 @@ const Home = () => {
 	const auth = useContext(AuthContext)
 	const navigate = useNavigate()
 
-	const {loading, apiError, getNonExpiredDocuments, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, getNonExpiredDocuments, getDocumentsByQuery, listOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
 
 	const [searchQuery, setSearchQuery] = useState("")
@@ -19,11 +19,10 @@ const Home = () => {
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchQuery.trim() === "") {
-			console.log("nada")
 			return;
 		} 
 		console.log(searchQuery)
-		navigate(`search?q=${searchQuery}`)
+		getDocumentsByQuery(searchQuery)
 	}
 
 	useEffect(() => {
@@ -33,7 +32,10 @@ const Home = () => {
 	const handleRefreshClick = () => {
 		setRefresh(prev => !prev)
 	}
-
+	
+	useEffect(() => {
+		console.log(listOfDocs)
+	}, [listOfDocs])
 
 	return (
 		<div className={styles.home}>

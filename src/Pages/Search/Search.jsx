@@ -18,12 +18,19 @@ const Search = () => {
 	}, [])
 
 	useEffect(() => {
-		console.log(listOfDocs.postData)
+		if (listOfDocs)
+			console.log(listOfDocs.postData)
 	}, [listOfDocs])
 
 	return (
 		<div className={styles.search}>
 				
+			<div>
+				<p><span>Resultados encontrados para: {search}</span></p>
+			</div>
+
+			<hr />
+
 			{listOfDocs ? (
 				<div></div>
 			) : (
