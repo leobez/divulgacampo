@@ -173,7 +173,7 @@ const CreatePost = ({isEmailVerified}) => {
 								
 					<div>
 						<div>
-							<p>Dias para a postagem ficar ativa:</p>
+							<p>Sua postagem ficará ativa por: </p>
 						</div>
 
 						<hr />
