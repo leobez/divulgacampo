@@ -40,7 +40,11 @@ export const useGetDocuments = (collectionName) => {
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-			const q = await query(col, where('expiresIn', '>', Timestamp.now()))
+			const q = await query(col, 
+				where('expiresIn', '>', Timestamp.now()), 
+				orderBy('expiresIn'), 
+				orderBy('createdAt', 'desc'))
+
 			const snapshot = await getDocs(q)
 
  			if (snapshot.docs.length <= 0) {
