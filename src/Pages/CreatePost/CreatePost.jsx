@@ -142,8 +142,6 @@ const CreatePost = ({isEmailVerified}) => {
 			keywords: keyWordLowered
 		}
 		setError("")
-
-		console.log(postData)
 		
 		await insertDocument(postData)
 	}
