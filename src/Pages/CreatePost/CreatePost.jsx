@@ -214,7 +214,7 @@ const CreatePost = ({isEmailVerified}) => {
 							<div>
 								<label htmlFor="keyword1">Palavra chave 1: </label>
 								<input 
-								placeholder='Ex.: Tecnologia, matemática, educação ...'
+								placeholder='Ex.: tecnologia, matematica, educacao ...'
 								type="text" 
 								name="keyword1" 
 								className="keyword"
