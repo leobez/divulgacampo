@@ -149,7 +149,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 				<form onSubmit={handleSubmit} className={styles.createpostform}>
 
-					<div>
+					<div className={styles.titleofform}>
 						<h1><span>Divulgue sua pesquisa de campo!</span></h1>
 					</div>
 
@@ -199,9 +199,10 @@ const CreatePost = ({isEmailVerified}) => {
 					<div className={styles.keywordsarea}>
 						<div>
 							<p>
-								Defina algumas palvras chaves para sua postagem:
+								Defina algumas palvras chaves para sua postagem (opcional):
 							</p>
 						</div>
+						<hr />
 						<div className={styles.keywords}>
 							<div>
 								<label htmlFor="keyword1">Palavra chave 1: </label>

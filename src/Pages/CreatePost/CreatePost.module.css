@@ -7,12 +7,11 @@
 
 .createpostform {
 	width: 700px;
-	display: flex;
-	flex-direction: column;
 	gap: 10px;
 }
 .createpostform > div {
 	display: flex;
+	margin: 10px 0px;
 }
 
 .wordcounterlimitreached {
@@ -20,7 +19,7 @@
 }
 
 /* Form Title */
-.createpostform > div:nth-child(1) {
+.createpostform > .titleofform {
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
@@ -68,6 +67,26 @@
 .createpostform > .keywordsarea {
 	padding: 10px;
 	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .keywordsarea > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .keywordsarea > div:nth-child(3) > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .keywordsarea > div:nth-child(3) > div > label {
+	flex-basis: 20%
+}
+.createpostform > .keywordsarea > div:nth-child(3) > div > input {
+	height: 45px;
+
 }
 
 /* TTL of post */
