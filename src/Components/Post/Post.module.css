@@ -1,7 +1,7 @@
 .post {
 	min-width: 300px;
 	width: 600px;
-	height: 400px;
+	height: 500px;
 
 	/* box-shadow: 1px 2px 3px black; */
 	padding: 20px;
@@ -19,7 +19,57 @@
 .post > .topinfo {
 	display: flex;
 	justify-content: space-between;
+	gap: 10px;
 }
+
+/* DISPLAY NAME AND KEYWORDS */
+.post > .topinfo > div:nth-child(1) {
+	flex-basis: 60%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.keywords {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.keywords > div {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.keywords > div > .keyword {
+	background-color: black;
+	padding: 7px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.keywords > div > .keyword > span::before {
+	content: "● ";
+}
+.keywords > div > .keyword > span {
+	color: white;
+	max-width: 120px;
+	font-size: 0.8em;
+	text-overflow: ellipsis;
+	display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* CREATEDAT AND EXPIRESIN */
+.post > .topinfo > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.post > .topinfo > div:nth-child(2) > div > p {
+	width: 120px;
+}
+
 .post > .title {
 	padding: 5px 0px;
 	text-align: justify;

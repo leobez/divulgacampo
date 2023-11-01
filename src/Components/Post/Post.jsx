@@ -19,16 +19,28 @@ const Post = ({postData, postId}) => {
 		<div className={styles.post}>
 
 			<div className={styles.topinfo}>
-				<div className={styles.displayName}>
-					Criado por: <span>{postData.displayName}</span>
+				<div>
+					<div className={styles.displayName}>
+						Criado por: <span>{postData.displayName}</span>
+					</div>
+					<div className={styles.keywords}>
+						<p>Palavras chaves: </p>
+						<div>
+							{postData.keywords.map((keyword, index) => (
+								<div className={styles.keyword} key={index}>
+									<span>{keyword}</span>
+								</div>
+							))}
+						</div>
+					</div>
 				</div>
 
 				<div>
 					<div>
-						Postado em: <span>{postedAt}</span>
+						<p>Postado em: <span>{postedAt}</span></p>
 					</div>
 					<div>
-						Valido até: <span>{expiresIn}</span>
+						<p>Valido até: <span>{expiresIn}</span></p>
 					</div>
 				</div>
 
