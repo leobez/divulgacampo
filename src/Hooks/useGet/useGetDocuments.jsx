@@ -39,8 +39,7 @@ export const useGetDocuments = (collectionName) => {
 			if (searchQuery[0] === "#") {
 				que = await query(col, where("displayName", "==", searchQuery.replace(/#/, "")))
 			} else {
-				// Substituir pelo array de tags eventualmente
-				que = await query(col, where("title", "==", searchQuery))
+				que = await query(col, where("keywords", "array-contains",  searchQuery))
 			} 
 
 			const snapshot = await getDocs(que)
