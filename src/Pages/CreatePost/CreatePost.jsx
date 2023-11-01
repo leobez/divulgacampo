@@ -51,11 +51,14 @@ const CreatePost = ({isEmailVerified}) => {
 
 	const [postTTL, setPostTTL] = useState(0)
 
+	const [keywords, setKeywords] = useState([])
+
 	const [error, setError] = useState("")
 	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 
 	const handleSubmit = async(e) => {	
 		e.preventDefault()
+
 
 		// Create quizLinks obj
 		const quizLinks = {}
@@ -65,6 +68,25 @@ const CreatePost = ({isEmailVerified}) => {
 				quizLinks[key] = value.lastChild.value
 			}
 		})
+
+		// Create keywords array
+		const keyWords = []
+		const keyWordsInputs = document.querySelectorAll(".keyword")
+		keyWordsInputs.forEach((input) => {
+			keyWords.push(input.value)
+		})
+
+		if (keyWords.length > 3) {
+			setError("Muitas palavras chaves")
+			return;
+		}
+
+		for (let a=0; a<3; a++) {
+			if (keyWords[a].length > 30) {
+				setError("Palavras-chave muito grande.")
+				return
+			}
+		}
 
 		if (
 			title.trim() === "" || 
@@ -107,11 +129,14 @@ const CreatePost = ({isEmailVerified}) => {
 			title: title,
 			description: description,
 			quizLinks: quizLinks ,
-			postTTL: postTTL
+			postTTL: postTTL,
+			keywords: keyWords
 		}
 		setError("")
 
-		await insertDocument(postData)
+		console.log(postData)
+		
+		//await insertDocument(postData)
 	}
 
 	return (
@@ -128,7 +153,7 @@ const CreatePost = ({isEmailVerified}) => {
 						<h1><span>Divulgue sua pesquisa de campo!</span></h1>
 					</div>
 
-					<div>
+					<div className={styles.titlearea}>
 						<input 
 							className={styles.inputtitle}
 							type='text' 
@@ -150,7 +175,7 @@ const CreatePost = ({isEmailVerified}) => {
 						</div>
 					</div>
 					
-					<div>
+					<div className={styles.descriptionarea}>
 						<textarea 
 							className={styles.inputdescription}
 							type='text' 
@@ -170,8 +195,43 @@ const CreatePost = ({isEmailVerified}) => {
 							)}
 						</div>
 					</div>
-								
-					<div>
+
+					<div className={styles.keywordsarea}>
+						<div>
+							<p>
+								Defina algumas palvras chaves para sua postagem:
+							</p>
+						</div>
+						<div className={styles.keywords}>
+							<div>
+								<label htmlFor="keyword1">Palavra chave 1: </label>
+								<input 
+								placeholder='Ex.: Tecnologia, matemática, educação ...'
+								type="text" 
+								name="keyword1" 
+								className="keyword"
+								onChange={(e) => setKeywords()}/>
+							</div>
+							<div>
+								<label htmlFor="keyword2">Palavra chave 2: </label>
+								<input 
+								type="text" 
+								name="keyword2" 
+								className="keyword"
+								onChange={(e) => setKeywords()}/>
+							</div>
+							<div>
+								<label htmlFor="keyword3">Palavra chave 3: </label>
+								<input 
+								type="text" 
+								name="keyword3" 
+								className="keyword"
+								onChange={(e) => setKeywords()}/>
+							</div>
+						</div>
+					</div>
+
+					<div className={styles.expiresarea}>
 						<div>
 							<p>Sua postagem ficará ativa por: </p>
 						</div>
@@ -200,7 +260,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 					</div>			
 
-					<div>
+					<div className={styles.quizarea}>
 						<div className={styles.linksarea} ref={quizContainerRef}>
 						</div>
 						<hr />
@@ -220,11 +280,11 @@ const CreatePost = ({isEmailVerified}) => {
 						</div>
 					</div>
 
-					<div>
+					<div className={styles.buttonarea}>
 						{!loading ? (<input type="submit" value="Enviar"/>) : (<input type="submit" className="loadingButton" value="Enviando..." disabled/>)}
 					</div>
 					
-					<div className="error">
+					<div className='error'>
 						{error && <p><span>{error}</span></p>}
 						{apiError && <p><span>{apiError}</span></p>}
 					</div>

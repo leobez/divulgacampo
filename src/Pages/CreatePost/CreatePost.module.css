@@ -27,16 +27,16 @@
 }
 
 /* Title input */
-.createpostform > div:nth-child(2) {
+.createpostform > .titlearea {
 	height: 60px;
 	gap: 5px;
 }
-.createpostform > div:nth-child(2) > input {
+.createpostform > .titlearea > input {
 	flex-basis: 85%;
 	border: 1px solid black;
 	padding: 0px 5px;
 }
-.createpostform > div:nth-child(2) > div {
+.createpostform > .titlearea > div {
 	flex-basis: 15%;
 	border: 1px solid black;
 	display: flex;
@@ -45,17 +45,17 @@
 }
 
 /* Desc input */
-.createpostform > div:nth-child(3) {
+.createpostform >.descriptionarea {
 	height: fit-content;
 	gap: 5px;
 }
-.createpostform > div:nth-child(3) > textarea {
+.createpostform >.descriptionarea > textarea {
 	flex-basis: 85%;
 	border: 1px solid black;
 	resize: vertical;
 	min-height: 200px;
 }
-.createpostform > div:nth-child(3) > div {
+.createpostform >.descriptionarea > div {
 	flex-basis: 15%;
 	border: 1px solid black;
 	display: flex;
@@ -64,78 +64,79 @@
 	padding: 0px 5px;
 }
 
+/* Tags area */
+.createpostform > .keywordsarea {
+	padding: 10px;
+	border: 2px solid black;
+}
+
 /* TTL of post */
-.createpostform > div:nth-child(4) {
+.createpostform > .expiresarea {
 	border: 2px solid black;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
-.createpostform > div:nth-child(4) > div:nth-child(3) {
+.createpostform > .expiresarea > div:nth-child(3) {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
-.createpostform > div:nth-child(4) > div:nth-child(3) > div {
+.createpostform > .expiresarea > div:nth-child(3) > div {
 	display: flex;
-	gap: 10px;
-}
-/* Quiz area*/
-.createpostform > div:nth-child(5) {
-	display: flex;
-	flex-direction: column;
-	border: 2px solid black;
-	padding: 10px;
-}
-.createpostform > div:nth-child(5) > .linksarea {
-	display: flex;
-	flex-direction: column;
 	gap: 10px;
 }
 
-.createpostform > div:nth-child(5) > .linksarea > div {
+/* Quiz area*/
+.createpostform > .quizarea {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	padding: 10px;
+}
+.createpostform > .quizarea > .linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .quizarea > .linksarea > div {
 	height: 50px;
 	gap: 10px;
 	display: flex;
 	align-items: center;
 }
-.createpostform > div:nth-child(5) > .linksarea > div > label {
+.createpostform > .quizarea > .linksarea > div > label {
 	height: 40px;
 	flex-basis: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.createpostform > div:nth-child(5) > .linksarea > div > input {
+.createpostform > .quizarea > .linksarea > div > input {
 	height: 40px;
 	flex-basis: 80%;
 	padding: 0px 5px;
 }
-
-.createpostform > div:nth-child(5) > .buttonarea {
+.createpostform > .quizarea > .buttonarea {
 	display: flex;
 	gap: 10px;
 	margin-top: 5px;
 }
-.createpostform > div:nth-child(5) > .buttonarea > button {
+.createpostform > .quizarea > .buttonarea > button {
 	flex-basis: 50%;
 	height: 60px;
 	border-width: 2px;
 }
 
 /* Submit button */
-.createpostform > div:nth-child(6) {
+.createpostform > .buttonarea {
 	height: fit-content;
 	display: flex;
 	justify-content: center;
 }
-.createpostform > div:nth-child(6) > input[type="submit"] {
+.createpostform > .buttonarea > input[type="submit"] {
 	height: 60px;
 	width: 100%;
 	padding: 10px;
-}
-
-/* errorarea */
-.createpostform > div:nth-child(7) {
 }
