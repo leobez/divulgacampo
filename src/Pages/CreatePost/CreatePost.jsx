@@ -73,7 +73,15 @@ const CreatePost = ({isEmailVerified}) => {
 		const keyWords = []
 		const keyWordsInputs = document.querySelectorAll(".keyword")
 		keyWordsInputs.forEach((input) => {
-			keyWords.push(input.value)
+			if (
+				input.value &&
+				input.value !== "" && 
+				input.value !== null && 
+				input.value !== undefined &&
+				input.value.length > 0
+				) {
+				keyWords.push(input.value)
+			}
 		})
 
 		if (keyWords.length > 3) {
@@ -81,12 +89,12 @@ const CreatePost = ({isEmailVerified}) => {
 			return;
 		}
 
-		for (let a=0; a<3; a++) {
-			if (keyWords[a].length > 30) {
+		keyWords.map((keyword) => {
+			if (keyword.length > 30) {
 				setError("Palavras-chave muito grande.")
-				return
+				return;
 			}
-		}
+		})
 
 		if (
 			title.trim() === "" || 
@@ -114,7 +122,6 @@ const CreatePost = ({isEmailVerified}) => {
 			return;
 		}
 
-
 		if (
 			title.length > maxcharlimit_title ||
 			description.length > maxcharlimit_desc
@@ -136,7 +143,7 @@ const CreatePost = ({isEmailVerified}) => {
 
 		console.log(postData)
 		
-		//await insertDocument(postData)
+		await insertDocument(postData)
 	}
 
 	return (

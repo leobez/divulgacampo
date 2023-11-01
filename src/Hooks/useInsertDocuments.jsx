@@ -19,7 +19,6 @@ export const useInsertDocument = (collectionName) => {
 			expiresIn.setDate(
 				Timestamp.now().toDate().getDate() + data.postTTL
 			)
-			console.log("POSTTTL: ", expiresIn)
 
 			await addDoc(collection(db, collectionName), {
 				uid: data.uid,
@@ -27,6 +26,7 @@ export const useInsertDocument = (collectionName) => {
 				title: data.title,
 				description: data.description,
 				quizLinks: data.quizLinks,
+				keywords: data.keywords,
 				createdAt: Timestamp.now(),
 				expiresIn: expiresIn
 			})
