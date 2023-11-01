@@ -4,14 +4,19 @@ import AuthContext from '../../Context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { useGetDocuments } from '../../Hooks/useGet/useGetDocuments'
 import Post from '../../Components/Post/Post'
-import { Timestamp } from 'firebase/firestore'
 
 const Home = () => {
 
 	const auth = useContext(AuthContext)
-	const navigate = useNavigate()
 
-	const {loading, apiError, getNonExpiredDocuments, getDocumentsByQuery, sortedListOfDocs} = useGetDocuments("posts")
+	const {
+		loading, 
+		apiError, 
+		getNonExpiredDocuments, 
+		getDocumentsByQuery, 
+		sortedListOfDocs, 
+		queryMessage} = useGetDocuments("posts")
+		
 	const [refresh, setRefresh] = useState(false)
 
 	const [searchQuery, setSearchQuery] = useState("")
@@ -33,10 +38,6 @@ const Home = () => {
 		setRefresh(prev => !prev)
 	}
 	
-	useEffect(() => {
-		console.log(sortedListOfDocs)
-	}, [sortedListOfDocs])
-
 	return (
 		<div className={styles.home}>
 			<div className={styles.homemenu}>
@@ -84,25 +85,29 @@ const Home = () => {
 			</div>
 
 			<div className={styles.homecontentcontainer}>
-
+				
+				
 				<div className={styles.homecontent}>
-					{sortedListOfDocs && sortedListOfDocs.map((post) => (
+					<div>
+						{loading && <p>Carregando posts...</p>}
+					</div>
+			
+					{sortedListOfDocs && !queryMessage && sortedListOfDocs.map((post) => (
 						<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 					))}
 
 					<div>
-						<div>
-							{loading && <p>Carregando posts...</p>}
-						</div>
-
-						<div>
-							{apiError && <p>{apiError}</p>}
-						</div>
-
-						<div>
-							{!loading && sortedListOfDocs.length <= 0 && <p>Não há posts.</p>}
-						</div>
+						{apiError && <p>{apiError}</p>}
 					</div>
+
+					<div>
+						{queryMessage && <p>{queryMessage}</p>}
+					</div>
+
+					<div>
+						{!loading && sortedListOfDocs.length <= 0 && <p>Não há posts.</p>}
+					</div>
+					
 				</div>
 
 			</div>

@@ -9,11 +9,14 @@ export const useGetDocuments = (collectionName) => {
 
 	const [listOfDocs, setListOfDocs] = useState([])
 	const [sortedListOfDocs, setSortedListOfDocs] = useState([])
+	const [queryMessage, setQueryMessage] = useState("")
 
 	// Creating a list for sorted documents by 'createdAt' field
 	useEffect(() => {
 
-		if (listOfDocs.length <= 0) return;
+		if (listOfDocs.length <= 0) {
+			return;
+		}
 
 		let sortedList = []
 		listOfDocs.map((doc) => {
@@ -46,7 +49,9 @@ export const useGetDocuments = (collectionName) => {
 
  			if (snapshot.docs.length <= 0) {
 				setListOfDocs([])
+				setQueryMessage("Nenhum post foi encontrado.")
 			} else {
+				setQueryMessage("")
 				snapshot.docs.forEach(
 					(doc) => setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 				)
@@ -62,6 +67,7 @@ export const useGetDocuments = (collectionName) => {
 
 	const getNonExpiredDocuments = async() => {
 		setListOfDocs([])
+		setQueryMessage("")
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
@@ -118,6 +124,7 @@ export const useGetDocuments = (collectionName) => {
 		getNonExpiredDocuments,
 		getDocumentsByQuery,
 		listOfDocs,
-		sortedListOfDocs
+		sortedListOfDocs,
+		queryMessage,
 	}
 }
