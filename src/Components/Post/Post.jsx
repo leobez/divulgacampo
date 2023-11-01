@@ -24,7 +24,6 @@ const Post = ({postData, postId}) => {
 						Criado por: <span>{postData.displayName}</span>
 					</div>
 					<div className={styles.keywords}>
-						<p>Palavras chaves: </p>
 						<div>
 							{postData.keywords.map((keyword, index) => (
 								<div className={styles.keyword} key={index}>

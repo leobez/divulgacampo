@@ -4,10 +4,6 @@
 	gap: 5px;
 }
 
-.home div {
-	border-radius: 7px;
-}
-
 .homemenu {
 	width: inherit;
 	border: 2px solid black;
@@ -29,8 +25,6 @@
 .homemenu > div:nth-child(1) > p {
 	font-size: 1.2em;
 }
-
-
 
 .refreshbutton {
 	width: fit-content;
@@ -126,9 +120,9 @@
 .homecontent {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: 20px;
 	align-items: center;
-	padding-top: 40px;
+	padding-top: 2px;
 }
 
 .warning, .error, .loading {
