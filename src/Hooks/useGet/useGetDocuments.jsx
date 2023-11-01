@@ -39,7 +39,7 @@ export const useGetDocuments = (collectionName) => {
 			if (searchQuery[0] === "#") {
 				que = await query(col, where("displayName", "==", searchQuery.replace(/#/, "")))
 			} else {
-				que = await query(col, where("keywords", "array-contains",  searchQuery))
+				que = await query(col, where("keywords", "array-contains",  searchQuery.toLowerCase()))
 			} 
 
 			const snapshot = await getDocs(que)

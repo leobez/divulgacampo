@@ -129,6 +129,8 @@ const CreatePost = ({isEmailVerified}) => {
 			setError("Limite de caracteres ultrapassado.")
 			return;	
 		}
+		
+		const keyWordLowered = keyWords.map((keyword) => keyword.toLocaleLowerCase())
 
 		const postData = {
 			uid: auth.currentUser.uid,
@@ -137,7 +139,7 @@ const CreatePost = ({isEmailVerified}) => {
 			description: description,
 			quizLinks: quizLinks ,
 			postTTL: postTTL,
-			keywords: keyWords
+			keywords: keyWordLowered
 		}
 		setError("")
 
