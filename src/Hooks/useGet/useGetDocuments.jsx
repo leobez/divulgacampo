@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {db} from "../../firebase/config"
 import { Timestamp, collection, getDocs, orderBy, query, where } from "firebase/firestore"
 
@@ -6,18 +6,44 @@ export const useGetDocuments = (collectionName) => {
 
 	const [loading, setLoading] = useState(false)
 	const [apiError, setApiError] = useState("")
+
 	const [listOfDocs, setListOfDocs] = useState([])
+	const [sortedListOfDocs, setSortedListOfDocs] = useState([])
+
+	// Creating a list for sorted documents by 'createdAt' field
+	useEffect(() => {
+
+		if (listOfDocs.length <= 0) return;
+
+		let sortedList = []
+		listOfDocs.map((doc) => {
+			sortedList.push(doc)
+		})
+		sortedList.sort(
+			(a, b) => b.postData.createdAt.toDate().getTime() - a.postData.createdAt.toDate().getTime() 
+		)
+
+		setSortedListOfDocs(() => sortedList)
+		
+	}, [listOfDocs])
 
 	const getDocumentsByQuery = async(searchQuery) => {
+
 		setListOfDocs([])
 		try {
 			setLoading(true)
 
 			const col = collection(db, collectionName)
 
-			const q = await query(col, where("displayName", "==", searchQuery))
+			let que;
+			if (searchQuery[0] === "#") {
+				que = await query(col, where("displayName", "==", searchQuery.replace(/#/, "")))
+			} else {
+				// Substituir pelo array de tags eventualmente
+				que = await query(col, where("title", "==", searchQuery))
+			} 
 
-			const snapshot = await getDocs(q)
+			const snapshot = await getDocs(que)
 
  			if (snapshot.docs.length <= 0) {
 				setListOfDocs([])
@@ -40,10 +66,7 @@ export const useGetDocuments = (collectionName) => {
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-			const q = await query(col, 
-				where('expiresIn', '>', Timestamp.now()), 
-				orderBy('expiresIn'), 
-				orderBy('createdAt', 'desc'))
+			const q = await query(col, where('expiresIn', '>', Timestamp.now()))
 
 			const snapshot = await getDocs(q)
 
@@ -54,7 +77,6 @@ export const useGetDocuments = (collectionName) => {
 					(doc) => setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 				)
 			} 
-	
 			setLoading(false)
 
 		} catch (error) {
@@ -97,5 +119,6 @@ export const useGetDocuments = (collectionName) => {
 		getNonExpiredDocuments,
 		getDocumentsByQuery,
 		listOfDocs,
+		sortedListOfDocs
 	}
 }

@@ -11,7 +11,7 @@ const Home = () => {
 	const auth = useContext(AuthContext)
 	const navigate = useNavigate()
 
-	const {loading, apiError, getNonExpiredDocuments, getDocumentsByQuery, listOfDocs} = useGetDocuments("posts")
+	const {loading, apiError, getNonExpiredDocuments, getDocumentsByQuery, sortedListOfDocs} = useGetDocuments("posts")
 	const [refresh, setRefresh] = useState(false)
 
 	const [searchQuery, setSearchQuery] = useState("")
@@ -22,8 +22,7 @@ const Home = () => {
 			setRefresh(prev => !prev)
 			return;
 		} 
-		console.log(searchQuery)
-		getDocumentsByQuery(searchQuery)
+		getDocumentsByQuery(searchQuery.trim())
 	}
 
 	useEffect(() => {
@@ -35,8 +34,8 @@ const Home = () => {
 	}
 	
 	useEffect(() => {
-		console.log(listOfDocs)
-	}, [listOfDocs])
+		console.log(sortedListOfDocs)
+	}, [sortedListOfDocs])
 
 	return (
 		<div className={styles.home}>
@@ -59,7 +58,7 @@ const Home = () => {
 							type="text" 
 							name="searchQuery" 
 							id="searchQuery" 
-							placeholder='Pesquisa...'
+							placeholder='#nome, termo'
 							onChange={(e) => setSearchQuery(e.target.value)}/>
 						</div>
 						<input type="submit" value="Pesquisar" />
@@ -87,7 +86,7 @@ const Home = () => {
 			<div className={styles.homecontentcontainer}>
 
 				<div className={styles.homecontent}>
-					{listOfDocs && listOfDocs.map((post) => (
+					{sortedListOfDocs && sortedListOfDocs.map((post) => (
 						<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 					))}
 
@@ -101,7 +100,7 @@ const Home = () => {
 						</div>
 
 						<div>
-							{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
+							{!loading && sortedListOfDocs.length <= 0 && <p>Não há posts.</p>}
 						</div>
 					</div>
 				</div>
