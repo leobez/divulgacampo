@@ -88,14 +88,6 @@
 
 .homerightcontainer {
 	width: 100%;
-	/* 100VH - (80px + 80px + (2px * 4) + 2px) 
-
-		80px	: header and footer height
-		2px*4	: top and bottom borders of header and footer
-		2px		: top and bottom padding of body (1px each)
-	*/
-
-	height: calc(100vh - 170px);
 	overflow-y: scroll;
 	position: relative;
 }
