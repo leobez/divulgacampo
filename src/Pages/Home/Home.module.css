@@ -1,29 +1,58 @@
 .home {
+	height: 100%;
+	display: flex;
+	gap: 3px;
+}
+
+.homemenu {
+	width: 350px;
+	border: 2px solid black;
+	position: relative;
+	padding: 5px;
+}
+
+.homemenu > div {
+	margin: 10px 0px;
+}
+
+/* HOME MENU -> TITULO */
+.homemenu > .titlecontainer {
+	height: fit-content;
+}
+.homemenu > .titlecontainer > p {
+	font-size: 1.1em;
+	text-align: center;
+}
+
+
+/* HOME MENU -> BARRA DE PESQUISA */
+.homemenu > .searchbarcontainer {
+	width: 100%;
+}
+.searchbarcontainer > form {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 }
-
-.homemenu {
-	width: inherit;
+.searchbarcontainer > form  > input[type="text"] {
+	height: 45px;
+	padding: 2px;
 	border: 2px solid black;
-	display: flex;
-	z-index: 2;
-	background-color: white;
-	position: sticky;
-	top: 0;
-	padding: 10px;
-	gap: 20px;
+}
+.searchbarcontainer > form > input[type="submit"] {
+	border-width: 2px ;
+	width: fit-content;
+	padding: 5px;
+	height: 40px;
+	align-self: flex-end;
 }
 
-.homemenu > div:nth-child(1)  {
-	flex-basis: 70%;
+
+/* HOME MENU -> BOTÃO DE RELOAD */
+.homemenu > .refreshcontainer {
+	height: 1fr;
 	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-.homemenu > div:nth-child(1) > p {
-	font-size: 1.2em;
+	justify-content: center;
 }
 
 .refreshbutton {
@@ -50,39 +79,35 @@
 	filter: invert(100%);
 	transition: 0.3s;
 }
-
 .searchbarcontainer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 10px;
 }
-.searchbarcontainer > form {
-	display: flex;
-	gap: 10px;
-}
-.searchbarcontainer > form > input[type="submit"] {
-	flex-basis: 70%;
-	padding: 10px;
-	border-width: 2px;
-}
-.searchbarcontainer > form > div {
-	flex-basis: 30%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-.searchbarcontainer > form > div > input[type="text"] {
-	padding: 10px;
-	height: 90%;
+
+.homerightcontainer {
+	width: 100%;
+	/* 100VH - (80px + 80px + (2px * 4) + 2px) 
+
+		80px	: header and footer height
+		2px*4	: top and bottom borders of header and footer
+		2px		: top and bottom padding of body (1px each)
+	*/
+
+	height: calc(100vh - 170px);
+	overflow-y: scroll;
+	position: relative;
 }
 
 .welcome {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	position: relative;
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 2;
 }
 
 .welcomelinkstoauth {
@@ -122,7 +147,7 @@
 	flex-direction: column;
 	gap: 20px;
 	align-items: center;
-	padding-top: 2px;
+	padding-top: 5px;
 }
 
 .warning, .error, .loading {
