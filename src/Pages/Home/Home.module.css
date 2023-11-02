@@ -5,7 +5,7 @@
 }
 
 .homemenu {
-	width: 350px;
+	width: 320px;
 	border: 2px solid black;
 	position: relative;
 	padding: 5px;
@@ -47,12 +47,14 @@
 	align-self: flex-end;
 }
 
-
 /* HOME MENU -> BOTÃO DE RELOAD */
 .homemenu > .refreshcontainer {
 	height: 1fr;
 	display: flex;
 	justify-content: center;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
 }
 
 .refreshbutton {
