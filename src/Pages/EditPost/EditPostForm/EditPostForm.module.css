@@ -14,23 +14,23 @@
 }
 
 /* Form Title */
-.editpostform > div:nth-child(1) {
+.editpostform > .titleofform {
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
 }
 
 /* Title input */
-.editpostform > div:nth-child(2) {
+.editpostform > .titlearea {
 	height: 60px;
 	gap: 5px;
 }
-.editpostform > div:nth-child(2) > input {
+.editpostform > .titlearea > input {
 	flex-basis: 85%;
 	border: 1px solid black;
 	padding: 0px 5px;
 }
-.editpostform > div:nth-child(2) > div {
+.editpostform > .titlearea > div {
 	flex-basis: 15%;
 	border: 1px solid black;
 	display: flex;
@@ -39,17 +39,17 @@
 }
 
 /* Desc input */
-.editpostform > div:nth-child(3) {
+.editpostform > .descriptionarea {
 	height: fit-content;
 	gap: 5px;
 }
-.editpostform > div:nth-child(3) > textarea {
+.editpostform > .descriptionarea > textarea {
 	flex-basis: 85%;
 	border: 1px solid black;
 	resize: vertical;
 	min-height: 200px;
 }
-.editpostform > div:nth-child(3) > div {
+.editpostform > .descriptionarea > div {
 	flex-basis: 15%;
 	border: 1px solid black;
 	display: flex;
@@ -58,61 +58,83 @@
 	padding: 0px 5px;
 }
 
+/* Tags area */
+.editpostform > .keywordsarea {
+	padding: 10px;
+	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div > label {
+	flex-basis: 20%
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div > input {
+	height: 45px;
+
+}
+
 /* Quiz area*/
-.editpostform > div:nth-child(4) {
+.editpostform > .quizarea {
 	display: flex;
 	flex-direction: column;
 	border: 2px solid black;
 	padding: 10px;
 }
-.editpostform > div:nth-child(4) > .linksarea {
+.editpostform > .quizarea > .linksarea {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-.editpostform > div:nth-child(4) > .linksarea > div {
+.editpostform > .quizarea > .linksarea > div {
 	height: 50px;
 	gap: 10px;
 	display: flex;
 	align-items: center;
 }
-.editpostform > div:nth-child(4) > .linksarea > div > label {
+.editpostform > .quizarea > .linksarea > div > label {
 	height: 40px;
 	flex-basis: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.editpostform > div:nth-child(4) > .linksarea > div > input {
+.editpostform > .quizarea > .linksarea > div > input {
 	height: 40px;
 	flex-basis: 80%;
 	padding: 0px 5px;
 }
 
-.editpostform > div:nth-child(4) > .buttonarea {
+.editpostform > .quizarea > .buttonarea {
 	display: flex;
 	gap: 10px;
 	margin-top: 5px;
 }
-.editpostform > div:nth-child(4) > .buttonarea > button {
+.editpostform > .quizarea > .buttonarea > button {
 	flex-basis: 50%;
 	height: 60px;
 	border-width: 2px;
 }
 
 /* Submit button */
-.editpostform > div:nth-child(5) {
+.editpostform > .buttonarea {
 	height: fit-content;
 	display: flex;
 	justify-content: center;
 }
-.editpostform > div:nth-child(5) > input[type="submit"] {
+.editpostform > .buttonarea > input[type="submit"] {
 	height: 60px;
 	width: 100%;
 	padding: 10px;
-}
-
-/* errorarea */
-.editpostform > div:nth-child(6) {
 }

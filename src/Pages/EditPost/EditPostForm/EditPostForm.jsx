@@ -5,8 +5,6 @@ import { useUpdateDocument } from '../../../Hooks/useUpdateDocument'
 
 const EditPostForm = ({post, postId}) => {
 
-	const auth = useContext(AuthContext)
-
 	const maxcharlimit_title = 200
 	const [title, setTitle] = useState("")
 	const titleRef = useRef()
@@ -134,11 +132,12 @@ const EditPostForm = ({post, postId}) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit} className={styles.editpostform}>
-				<div>
+
+				<div className={styles.titleofform}>
 					<h1><span>Editando a postagem: {postId}</span></h1>
 				</div>
 
-				<div>
+				<div className={styles.titlearea}>
 					<input 
 						className={styles.inputtitle}
 						type='text' 
@@ -161,7 +160,7 @@ const EditPostForm = ({post, postId}) => {
 					</div>
 				</div>
 					
-				<div>
+				<div className={styles.descriptionarea}>
 					<textarea 
 						className={styles.inputdescription}
 						type='text' 
@@ -183,10 +182,51 @@ const EditPostForm = ({post, postId}) => {
 					</div>
 				</div>
 	
-				<div>
+				{/* <div className={styles.keywordsarea}>
+					<div>
+						<p>
+							Defina algumas palvras chaves para sua postagem (opcional):
+						</p>
+					</div>
+
+					<hr />
+
+					<div className={styles.keywords}>
+						<div>
+							<label htmlFor="keyword1">Palavra chave 1: </label>
+							<input 
+							placeholder='Ex.: tecnologia, matematica, educacao ...'
+							type="text" 
+							name="keyword1" 
+							className="keyword"
+							onChange={(e) => setKeywords()}/>
+						</div>
+						<div>
+							<label htmlFor="keyword2">Palavra chave 2: </label>
+							<input 
+							type="text" 
+							name="keyword2" 
+							className="keyword"
+							onChange={(e) => setKeywords()}/>
+						</div>
+						<div>
+							<label htmlFor="keyword3">Palavra chave 3: </label>
+							<input 
+							type="text" 
+							name="keyword3" 
+							className="keyword"
+							onChange={(e) => setKeywords()}/>
+						</div>
+					</div>
+				</div> */}
+
+				<div className={styles.quizarea}>
+
 					<div className={styles.linksarea} ref={quizContainerRef}>
 					</div>
+
 					<hr />
+
 					<div className={styles.buttonarea}>
 
 						{amountOfQuizLinks < 10 &&
@@ -201,9 +241,10 @@ const EditPostForm = ({post, postId}) => {
 							</button>
 						}
 					</div>
+
 				</div>
 
-				<div>
+				<div className={styles.buttonarea}>
 					{!loading ? (<input type="submit" value="Editar"/>) : (<input type="submit" className="loadingButton" value="Editando..." disabled/>)}
 				</div>
 				
