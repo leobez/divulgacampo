@@ -97,7 +97,7 @@ const Home = () => {
 			<div className={styles.homecontentcontainer}>
 
 				<div className={styles.homecontent}>
-					
+
 						<div>
 							{loading && <p>Carregando posts...</p>}
 						</div>
