@@ -86,7 +86,7 @@
 }
 .createpostform > .keywordsarea > div:nth-child(3) > div > input {
 	height: 45px;
-
+	padding: 0px 5px;
 }
 
 /* TTL of post */

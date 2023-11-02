@@ -28,6 +28,7 @@ const EditPostForm = ({post, postId}) => {
 	const quizContainerRef = useRef()
 
 	const addQuiz = () => {
+
 		const quiz_div = document.createElement("div")
 		quiz_div.setAttribute("class", "quizcontainer")
 		const quiz_label = document.createElement("label")
@@ -58,6 +59,14 @@ const EditPostForm = ({post, postId}) => {
 	useEffect(() => {
 		setTitle(post.title)
 		setDescription(post.description)
+		
+		const keywordsInputs = document.querySelectorAll(".keyword")
+		console.log(keywordsInputs)
+		post.keywords.map((keyword, index) => {
+			keywordsInputs[index].value = keyword
+			console.log(keywordsInputs[index])
+			console.log(keyword, index)
+		})
 	}, [])
 
 	const [cancelled, setCancelled] = useState(null)
@@ -89,7 +98,33 @@ const EditPostForm = ({post, postId}) => {
 						quizLinks[key] = value.lastChild.value
 					}
 				})
-		
+
+		// Create keywords array
+		const keyWords = []
+		const keyWordsInputs = document.querySelectorAll(".keyword")
+		keyWordsInputs.forEach((input) => {
+			if (
+				input.value &&
+				input.value !== "" && 
+				input.value !== null && 
+				input.value !== undefined &&
+				input.value.length > 0
+				) {
+				keyWords.push(input.value)
+			}
+		})
+
+		if (keyWords.length > 3) {
+			setError("Muitas palavras chaves")
+			return;
+		}
+
+		keyWords.map((keyword) => {
+			if (keyword.length > 30) {
+				setError("Palavras-chave muito grande.")
+				return;
+			}
+		})
 
 		if (
 			title.trim() === "" || 
@@ -120,10 +155,13 @@ const EditPostForm = ({post, postId}) => {
 			return;	
 		}
 
+		const keyWordLowered = keyWords.map((keyword) => keyword.toLocaleLowerCase())
+
 		const newData = {
 			title,
 			description,
 			quizLinks,
+			keywords: keyWordLowered
 		}
 
 		await updateDocument(postId, newData)
@@ -181,8 +219,8 @@ const EditPostForm = ({post, postId}) => {
 						)}
 					</div>
 				</div>
-	
-				{/* <div className={styles.keywordsarea}>
+
+				<div className={styles.keywordsarea}>
 					<div>
 						<p>
 							Defina algumas palvras chaves para sua postagem (opcional):
@@ -218,8 +256,8 @@ const EditPostForm = ({post, postId}) => {
 							onChange={(e) => setKeywords()}/>
 						</div>
 					</div>
-				</div> */}
-
+				</div>
+				
 				<div className={styles.quizarea}>
 
 					<div className={styles.linksarea} ref={quizContainerRef}>
