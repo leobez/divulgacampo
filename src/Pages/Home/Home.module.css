@@ -144,6 +144,10 @@
 	padding-top: 5px;
 }
 
+.homecontent > div {
+	background-color: white;
+}
+
 .warning, .error, .loading {
 	margin-top: 20px;
 }

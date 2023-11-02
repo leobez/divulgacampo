@@ -9,7 +9,11 @@ font-family: 'Sora', sans-serif;
 /* General styles */
 
 :root {
-
+	--cor1: #5054C7;
+	--cor2: #595B94;
+	--cor3: #3139FA;
+	--cor4: #4E4E61;
+	--cor5: #292933;
 }
 
 * {
