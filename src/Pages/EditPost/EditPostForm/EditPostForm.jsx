@@ -59,13 +59,9 @@ const EditPostForm = ({post, postId}) => {
 	useEffect(() => {
 		setTitle(post.title)
 		setDescription(post.description)
-		
 		const keywordsInputs = document.querySelectorAll(".keyword")
-		console.log(keywordsInputs)
 		post.keywords.map((keyword, index) => {
 			keywordsInputs[index].value = keyword
-			console.log(keywordsInputs[index])
-			console.log(keyword, index)
 		})
 	}, [])
 
