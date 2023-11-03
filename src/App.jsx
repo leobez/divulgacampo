@@ -98,7 +98,6 @@ function App() {
 							<Route path='/config' element={isLogged ? <Config element={"config"}/> : <Navigate to="/login"/>}/>
 							<Route path='/config/user' element={isLogged ? <Config element={"user"}/> : <Navigate to="/login"/>}/>
 
-
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>
 							<Route path='/register' element={!isLogged ? <Register/>:<Navigate to="/"/>}/>
