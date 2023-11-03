@@ -31,7 +31,7 @@ export const useGetDocuments = (collectionName) => {
 	}, [listOfDocs])
 
 	const getDocumentsByQuery = async(searchQuery) => {
-
+		setApiError("")
 		setListOfDocs([])
 		try {
 			setLoading(true)
@@ -68,6 +68,7 @@ export const useGetDocuments = (collectionName) => {
 	const getNonExpiredDocuments = async() => {
 		setListOfDocs([])
 		setQueryMessage("")
+		setApiError("")
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
@@ -92,7 +93,7 @@ export const useGetDocuments = (collectionName) => {
 	}
 
 	const getDocuments = async() => {
-		
+		setApiError("")
 		setListOfDocs([])
 		try {
 			setLoading(true)

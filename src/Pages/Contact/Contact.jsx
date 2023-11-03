@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Contact.module.css'
+import { useSendContactEmail } from '../../Hooks/useSendContactEmail'
 
 const Contact = () => {
 
@@ -8,7 +9,9 @@ const Contact = () => {
 	const [message, setMessage] = useState("")
 	const [error, setError] = useState("")
 
-	const handleSubmit = (e) => {
+	const {loading, apiError, sendEmail} = useSendContactEmail()
+
+	const handleSubmit = async(e) => {
 		e.preventDefault()
 
 		if (
@@ -25,6 +28,10 @@ const Contact = () => {
 			setError("Preencha todos os campos.")
 			return;
 		}
+
+		setError("")
+
+		await sendEmail()
 
 	}
 
@@ -65,25 +72,16 @@ const Contact = () => {
 							onChange={(e) => setMessage(e.target.value)}
 						/>
 					</div>
-					
-					<div>
-						<input type="submit" value="Enviar"/>
-					</div>
-					
 
-					{/* <div>
+					<div>
 						{!loading ? (<input type="submit" value="Enviar"/>):(
 						<input type="submit" value="Carregando..." className='loadingButton' disabled/>)}
-					</div> */}
+					</div>
 
 					<div className="error">
 						{error && <p><span>{error}</span></p>}
-					</div> 
-
-					{/* <div className="error">
-						{error && <p><span>{error}</span></p>}
-						{authError && <p><span>{authError}</span></p>}
-					</div> */}
+						{apiError && <p><span>{apiError}</span></p>}
+					</div>
 				</form>
 			</div>
 		</div>

@@ -29,6 +29,8 @@ export const useChangeUserInfo = () => {
 	} = useUpdateDocument("posts")
 
 	const updateName = async(newName) => {
+		setAuthError("")
+
 		try {
 
 			setLoading(true)
@@ -52,6 +54,7 @@ export const useChangeUserInfo = () => {
 	}
 
 	const deleteUserAccount = async(password) => {
+		setAuthError("")
 		try {
 			setLoading(true)
 			const credential = EmailAuthProvider.credential(auth.currentUser.email, password)
@@ -62,7 +65,6 @@ export const useChangeUserInfo = () => {
 				//console.log("DELETANDO DOCUMENTO DE ID: ", doc.postId)
 				deleteDocument(doc.postId)
 			})
-
 			await deleteUser(auth.currentUser)
 			setLoading(false)
 		} catch (error) {
@@ -76,6 +78,7 @@ export const useChangeUserInfo = () => {
 	}
 
 	const updateUserPassword = async({currentPassword, newPassword}) => {
+		setAuthError("")
 		try {
 			setLoading(true)
 

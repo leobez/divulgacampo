@@ -18,7 +18,7 @@ export const useAuthentication = () => {
 	const [loading, setLoading] = useState(false)
 
 	const registerUser = async(auth, userData) => {
-
+		setAuthError("")
 		try {
 			setLoading(true)
 			const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password)
@@ -41,7 +41,7 @@ export const useAuthentication = () => {
 	}
 
 	const loginUser = async(auth, userData) => {
-
+		setAuthError("")
 		try {
 			setLoading(true)
 			const userCredential = await signInWithEmailAndPassword(auth, userData.email, userData.password)
@@ -50,7 +50,6 @@ export const useAuthentication = () => {
 				navigate(`/validationemailsent/?email=${userCredential.user.email}`)
 				await signOut(auth)
 			}
-			//navigate("/")
 		} catch (error) {
 			setLoading(false)
 			console.log(error)
@@ -65,6 +64,7 @@ export const useAuthentication = () => {
 	}
 
 	const logoutUser = async(auth) => {
+		setAuthError("")
 		try {
 			setLoading(true)
 			await signOut(auth)
@@ -72,8 +72,7 @@ export const useAuthentication = () => {
 			navigate("/")
 		} catch (error) {
 			setLoading(false)
-			//console.log(error)
-			//setAuthError(error.message)
+			setAuthError("Algo deu errado.")
 		}
 	}
 
