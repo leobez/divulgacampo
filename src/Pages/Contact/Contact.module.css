@@ -1,3 +1,14 @@
 .contact {
-	
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	overflow-y: scroll;
+}
+
+.contact textarea {
+	border: 2px solid black;
+	min-height: 250px;
+	resize: vertical;
+	min-width: 450px;
 }
