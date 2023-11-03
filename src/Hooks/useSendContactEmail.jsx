@@ -12,7 +12,6 @@ export const useSendContactEmail = () => {
 	const sendEmail = async(data) => {
 		setApiError("")
 		setApiSuccess("")
-
 		try {
 			setLoading(true)
 			await emailjs.send(
@@ -21,7 +20,6 @@ export const useSendContactEmail = () => {
 				data, 
 				emailjsconfig.Public_key
 			)
-
 			setApiSuccess("Email enviado com sucesso.")
 			setLoading(false)
 		} catch (error) {
