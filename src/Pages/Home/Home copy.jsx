@@ -12,11 +12,28 @@ const Home = () => {
 	const {
 		loading, 
 		apiError, 
-		message, 
-		listOfDocs, 
-		setGetMoreDocs,
-		setRefresh} = useGetDocuments("posts")
+		getDocuments, 
+		getDocumentsByQuery, 
+		sortedListOfDocs, 
+		queryMessage} = useGetDocuments("posts")
 		
+	const [searchQuery, setSearchQuery] = useState("")
+	const [limit, setLimit] = useState(5)
+	const [refresh, setRefresh] = useState(false)
+
+	const handleSearch = (e) => {
+		e.preventDefault()
+		if (searchQuery.trim() === "") {
+			setLimit(5)
+			return;
+		} 
+		getDocumentsByQuery(searchQuery.trim())
+	}
+
+	useEffect(() => {
+		getDocuments(limit)
+	}, [limit, refresh])
+	
 	return (
 		<div className={styles.home}>
 
@@ -32,7 +49,7 @@ const Home = () => {
 
 				<div className={styles.searchbarcontainer}>
 
-					<form>
+					<form onSubmit={handleSearch}>
 						<input 
 						type="text" 
 						name="searchQuery" 
@@ -48,7 +65,7 @@ const Home = () => {
 				<hr />
 
 				<div className={styles.refreshcontainer}>
-					<button onClick={() => setRefresh(true)} className={styles.refreshbutton}>
+					<button onClick={() => setRefresh((prev) => !prev)} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
@@ -81,25 +98,17 @@ const Home = () => {
 							{loading && <p>Carregando posts...</p>}
 						</div>
 				
-						{listOfDocs && listOfDocs.map((post) => (
+						{sortedListOfDocs && !queryMessage && sortedListOfDocs.map((post) => (
 							<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 						))}
 
 						<div>
-							{message.length === 0 ? (
-								<button 
-									className={styles.loadmore} 
-									onClick={() => setGetMoreDocs((prev) => prev+1)}
-								>
+							<button 
+							className={styles.loadmore} 
+							onClick={() => setLimit((prev) => prev+5)}
+							>
 								Carregar Mais
 							</button>
-
-							) : (
-								<div>
-									{message && <p>{message}</p>}
-								</div>
-							)}
-
 						</div>
 
 						<div>
@@ -107,7 +116,11 @@ const Home = () => {
 						</div>
 
 						<div>
-							{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
+							{queryMessage && <p>{queryMessage}</p>}
+						</div>
+
+						<div>
+							{!loading && sortedListOfDocs.length <= 0 && <p>Não há posts.</p>}
 						</div>
 						
 					</div>
