@@ -9,15 +9,44 @@ export const useGetDocuments = (collectionName) => {
 	const [message, setMessage] = useState("")
 
 	const [listOfDocs, setListOfDocs] = useState([])
+
 	const [lastPost, setLastPost] = useState([])
+	const [lastSnapshot, setLastSnaphot] = useState([])
 
 	const [getMoreDocs, setGetMoreDocs] = useState(0)
 	const [refresh, setRefresh] = useState(false)
+	const [search, setSearch] = useState("")
 
 	/* TO DO: 
 		CREATE A FUNCTION TO REMOVE EXPIRED DOCUMENTS 
 		USEEFFECT KEEPS RUNNING WHEN CODE IS CHANGED
-		*/
+	*/
+
+	/* 
+		QUERIES:
+			refresh and initial
+			q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
+			q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
+
+			getmoredocs
+				q = await query(
+					col, 
+					orderBy("createdAt", "desc"),
+					startAfter(lastPost),
+					limit(PAGINATION_LIMIT))
+			
+			search
+			if (search[0] === "#") {
+				q = await query(col, where("displayName", "==", search.replace(/#/, "")))
+			} else {
+				q = await query(col, where("keywords", "array-contains",  search.toLowerCase()))
+			} 
+	
+	*/
+
+	useEffect(() => {
+		console.log("DOCS: ", listOfDocs)
+	}, [listOfDocs])
 
 	useEffect(() => {
 		// No more posts to load
@@ -32,47 +61,29 @@ export const useGetDocuments = (collectionName) => {
 
 		const getDocuments = async() => {
 
-			if (refresh) {
-				setListOfDocs([])
-				setGetMoreDocs(0)
-				setRefresh(false)
-				return;
-			}
-
 			console.log("getDocuments")
 			const PAGINATION_LIMIT = 5;
 
 			try {
 				setLoading(true)
-				const col = collection(db, collectionName)
 
+				const col = collection(db, collectionName)
 				let q;
 
-				// First query
-				if (getMoreDocs === 0) {
-					q = await query(
-						col, 
-						orderBy("createdAt", "desc"),
-						limit(PAGINATION_LIMIT))
-				} else {
-					q = await query(
-						col, 
-						orderBy("createdAt", "desc"),
-						startAfter(lastPost),
-						limit(PAGINATION_LIMIT))
-				}
-	
+				q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
+
 				const snapshot = await getDocs(q)
+				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
+
 				setLastPost(snapshot.docs[snapshot.docs.length-1])
-				
-				console.log("LASTPOST: ", lastPost === snapshot.docs[snapshot.docs.length-1])
+				setLastSnaphot(snapshot)
 
 				snapshot.docs.forEach(
 					(doc) => setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 				)
 
 				setLoading(false)
-	
+
 			} catch (error) {
 				setApiError("Algo deu errado.")
 				console.log(error)
@@ -82,9 +93,7 @@ export const useGetDocuments = (collectionName) => {
 
 		getDocuments()
 		
-	}, [collectionName, getMoreDocs, refresh])
-
-
+	}, [collectionName, getMoreDocs, refresh, search])
 
 	return {
 		loading, 
@@ -93,5 +102,6 @@ export const useGetDocuments = (collectionName) => {
 		listOfDocs,
 		setGetMoreDocs,
 		setRefresh,
+		setSearch,
 	}
 }

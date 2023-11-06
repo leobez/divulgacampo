@@ -15,8 +15,16 @@ const Home = () => {
 		message, 
 		listOfDocs, 
 		setGetMoreDocs,
-		setRefresh} = useGetDocuments("posts")
-		
+		setRefresh,
+		setSearch} = useGetDocuments("posts")
+
+	const [searchQuery, setSearchQuery] = useState("")
+	const handleSearch = (e) => {
+		e.preventDefault()
+		console.log(searchQuery)
+		setSearch(true)
+	}
+
 	return (
 		<div className={styles.home}>
 
@@ -32,7 +40,7 @@ const Home = () => {
 
 				<div className={styles.searchbarcontainer}>
 
-					<form>
+					<form onSubmit={handleSearch}>
 						<input 
 						type="text" 
 						name="searchQuery" 
