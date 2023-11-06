@@ -12,31 +12,27 @@ const Home = () => {
 	const {
 		loading, 
 		apiError, 
-		getNonExpiredDocuments, 
+		getDocuments, 
 		getDocumentsByQuery, 
 		sortedListOfDocs, 
 		queryMessage} = useGetDocuments("posts")
 		
-	const [refresh, setRefresh] = useState(false)
-
 	const [searchQuery, setSearchQuery] = useState("")
+	const [limit, setLimit] = useState(5)
+	const [refresh, setRefresh] = useState(false)
 
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchQuery.trim() === "") {
-			setRefresh(prev => !prev)
+			setLimit(5)
 			return;
 		} 
 		getDocumentsByQuery(searchQuery.trim())
 	}
 
 	useEffect(() => {
-		getNonExpiredDocuments()
-	}, [refresh])
-
-	const handleRefreshClick = () => {
-		setRefresh(prev => !prev)
-	}
+		getDocuments(limit)
+	}, [limit, refresh])
 	
 	return (
 		<div className={styles.home}>
@@ -69,7 +65,7 @@ const Home = () => {
 				<hr />
 
 				<div className={styles.refreshcontainer}>
-					<button onClick={handleRefreshClick} className={styles.refreshbutton}>
+					<button onClick={() => setRefresh((prev) => !prev)} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
@@ -105,6 +101,15 @@ const Home = () => {
 						{sortedListOfDocs && !queryMessage && sortedListOfDocs.map((post) => (
 							<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 						))}
+
+						<div>
+							<button 
+							className={styles.loadmore} 
+							onClick={() => setLimit((prev) => prev+5)}
+							>
+								Carregar Mais
+							</button>
+						</div>
 
 						<div>
 							{apiError && <p>{apiError}</p>}

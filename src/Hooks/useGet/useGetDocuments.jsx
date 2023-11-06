@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react"
 import {db} from "../../firebase/config"
-import { Timestamp, collection, getDocs, orderBy, query, where } from "firebase/firestore"
+import { Timestamp, collection, getDocs, limit, orderBy, query, startAfter, where } from "firebase/firestore"
 
 export const useGetDocuments = (collectionName) => {
 
 	const [loading, setLoading] = useState(false)
 	const [apiError, setApiError] = useState("")
+	const [queryMessage, setQueryMessage] = useState("")
 
 	const [listOfDocs, setListOfDocs] = useState([])
 	const [sortedListOfDocs, setSortedListOfDocs] = useState([])
-	const [queryMessage, setQueryMessage] = useState("")
+	const [lastPost, setLastPost] = useState([])
 
-	// Creating a list for sorted documents by 'createdAt' field
+	// Reseting messages and list of documents 
+	const resetStates = () => {
+		setListOfDocs([])
+		setQueryMessage("")
+		setApiError("")
+		return;
+	}
+
+	// TO DO: filter posts that have expired
+	// OR cloud functions
 	useEffect(() => {
 
 		if (listOfDocs.length <= 0) {
@@ -27,12 +37,11 @@ export const useGetDocuments = (collectionName) => {
 		)
 
 		setSortedListOfDocs(() => sortedList)
-		
 	}, [listOfDocs])
 
 	const getDocumentsByQuery = async(searchQuery) => {
-		setApiError("")
-		setListOfDocs([])
+		resetStates()
+
 		try {
 			setLoading(true)
 
@@ -65,16 +74,31 @@ export const useGetDocuments = (collectionName) => {
 		}
 	}
 
-	const getNonExpiredDocuments = async() => {
-		setListOfDocs([])
-		setQueryMessage("")
-		setApiError("")
+	const getDocuments = async(paginationLimit) => {
+		resetStates()
+		console.log("getDocuments")
 		try {
 			setLoading(true)
 			const col = collection(db, collectionName)
-			const q = await query(col, where('expiresIn', '>', Timestamp.now()))
+			let q;
+
+			// First query
+			if (paginationLimit === 5) {
+				q = await query(
+					col, 
+					orderBy("createdAt", "desc"),
+					limit(paginationLimit))
+			} else {
+				q = await query(
+					col, 
+					orderBy("createdAt", "desc"),
+					startAfter(lastPost),
+					limit(paginationLimit))
+			}
 
 			const snapshot = await getDocs(q)
+
+			setLastPost(snapshot.docs[snapshot.docs.length-1].data())
 
  			if (snapshot.docs.length <= 0) {
 				setListOfDocs([])
@@ -92,37 +116,10 @@ export const useGetDocuments = (collectionName) => {
 		}
 	}
 
-	const getDocuments = async() => {
-		setApiError("")
-		setListOfDocs([])
-		try {
-			setLoading(true)
-			const col = collection(db, collectionName)
-			const q = await query(col, orderBy('createdAt', 'desc'))
-			const snapshot = await getDocs(q)
-
-			if (snapshot.docs.length <= 0) {
-				setListOfDocs([])
-			} else {
-				snapshot.docs.forEach(
-					(doc) => setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
-				)
-			}
-			
-			setLoading(false)
-
-		} catch (error) {
-			setApiError("Algo deu errado.")
-			console.log(error)
-			setLoading(false)
-		}
-	}
-
 	return {
 		loading, 
 		apiError,
 		getDocuments,
-		getNonExpiredDocuments,
 		getDocumentsByQuery,
 		listOfDocs,
 		sortedListOfDocs,

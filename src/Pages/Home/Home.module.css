@@ -151,3 +151,7 @@
 .warning, .error, .loading {
 	margin-top: 20px;
 }
+
+.loadmore {
+	padding: 10px;
+}
