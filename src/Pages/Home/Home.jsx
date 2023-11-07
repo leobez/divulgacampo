@@ -16,7 +16,8 @@ const Home = () => {
 		listOfDocs, 
 		setGetMoreDocs,
 		setRefresh,
-		setSearch} = useGetDocuments("posts")
+		setSearch
+	} = useGetDocuments("posts")
 
 	const [searchQuery, setSearchQuery] = useState("")
 	const handleSearch = (e) => {
