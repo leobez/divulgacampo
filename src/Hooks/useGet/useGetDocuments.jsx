@@ -12,9 +12,7 @@ export const useGetDocuments = (collectionName) => {
 	const [lastPost, setLastPost] = useState([])
 
 	const [getMoreDocs, setGetMoreDocs] = useState(0)
-	const [refresh, setRefresh] = useState(false)
 	const [search, setSearch] = useState("")
-	const [cancelled, setCancelled] = useState(false)
 
 	const PAGINATION_LIMIT = 5;
 
@@ -49,10 +47,6 @@ export const useGetDocuments = (collectionName) => {
 	}, [listOfDocs])
 
 	useEffect(() => {
-		console.log("REFRESH: ", refresh)
-	}, [refresh])
-
-	useEffect(() => {
 		// No more posts to load
 		if (lastPost === undefined) {
 			setMessage("Não há mais posts.")
@@ -61,77 +55,7 @@ export const useGetDocuments = (collectionName) => {
 		}
 	}, [lastPost])
 
-/* 	useEffect(() => {
-		const refreshDocuments = async() => {
-			console.log("refreshDocuments")
-			setListOfDocs([])
-			try {
-				setLoading(true)
-				const col = collection(db, collectionName)
-				const q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
-				const snapshot = await getDocs(q)
-				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
-				setLastPost(snapshot.docs[snapshot.docs.length-1])
-				snapshot.docs.map((doc) => {
-					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
-				})
-				setLoading(false)
-			} catch (error) {
-				setApiError("Algo deu errado.")
-				console.log(error)
-				setLoading(false)
-			}
-		}
-		refreshDocuments()
-	}, [refresh])
-
 	useEffect(() => {
-		const getDocuments = async() => {
-			console.log("getDocuments")
-			try {
-				setLoading(true)
-				const col = collection(db, collectionName)
-				const q = await query(col, orderBy("createdAt", "desc"), startAfter(lastPost), limit(PAGINATION_LIMIT))
-				const snapshot = await getDocs(q)
-				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
-				setLastPost(snapshot.docs[snapshot.docs.length-1])
-				snapshot.docs.map((doc) => {
-					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
-				})
-				setLoading(false)
-			} catch (error) {
-				setApiError("Algo deu errado.")
-				console.log(error)
-				setLoading(false)
-			}
-		}
-		getDocuments()
-	}, [getMoreDocs]) */
-
-	// TESTE
-	useEffect(() => {
-
-		const refreshDocuments = async() => {
-			console.log("refreshDocuments")
-			setListOfDocs([])
-			try {
-				setLoading(true)
-				const col = collection(db, collectionName)
-				const q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
-				const snapshot = await getDocs(q)
-				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
-				setLastPost(snapshot.docs[snapshot.docs.length-1])
-				snapshot.docs.map((doc) => {
-					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
-				})
-				setLoading(false)
-			} catch (error) {
-				setApiError("Algo deu errado.")
-				console.log(error)
-				setLoading(false)
-			}
-		}
-
 		const getDocuments = async() => {
 			console.log("getDocuments")
 			try {
@@ -139,6 +63,7 @@ export const useGetDocuments = (collectionName) => {
 				const col = collection(db, collectionName)
 				let q;
 				if (getMoreDocs === 0) {
+					setListOfDocs([])
 					q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
 				} else {
 					q = await query(col, orderBy("createdAt", "desc"), startAfter(lastPost), limit(PAGINATION_LIMIT))
@@ -156,18 +81,9 @@ export const useGetDocuments = (collectionName) => {
 				setLoading(false)
 			}
 		}
+		getDocuments()
 
-		if (refresh) {
-			refreshDocuments()
-		} else {
-			getDocuments()
-		}
-
-	}, [getMoreDocs, refresh])
-
-	useEffect(() => {
-		return () => setCancelled(true)
-	}, [])
+	}, [getMoreDocs])
 
 	return {
 		loading, 
@@ -175,7 +91,6 @@ export const useGetDocuments = (collectionName) => {
 		message,
 		listOfDocs,
 		setGetMoreDocs,
-		setRefresh,
-		setSearch,
+		setSearch
 	}
 }

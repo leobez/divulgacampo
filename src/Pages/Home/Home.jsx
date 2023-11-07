@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
@@ -15,7 +15,6 @@ const Home = () => {
 		message, 
 		listOfDocs, 
 		setGetMoreDocs,
-		setRefresh,
 		setSearch
 	} = useGetDocuments("posts")
 
@@ -57,7 +56,7 @@ const Home = () => {
 				<hr />
 
 				<div className={styles.refreshcontainer}>
-					<button onClick={() => setRefresh(true)} className={styles.refreshbutton}>
+					<button onClick={() => setGetMoreDocs(0)} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
