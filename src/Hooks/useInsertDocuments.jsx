@@ -10,6 +10,7 @@ export const useInsertDocument = (collectionName) => {
 	const navigate = useNavigate()
 
 	const insertDocument = async(data) => {
+		setApiError("")
 
  		try {
 
@@ -35,7 +36,7 @@ export const useInsertDocument = (collectionName) => {
 
 		} catch (error) {
 			setLoading(false)
-			setApiError(error)
+			setApiError("Algo deu errado")
 		}  
 	}
 

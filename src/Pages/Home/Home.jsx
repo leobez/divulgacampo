@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from "./Home.module.css"
 import AuthContext from '../../Context/AuthContext'
 import { Link } from 'react-router-dom'
@@ -12,32 +12,25 @@ const Home = () => {
 	const {
 		loading, 
 		apiError, 
-		getNonExpiredDocuments, 
-		getDocumentsByQuery, 
-		sortedListOfDocs, 
-		queryMessage} = useGetDocuments("posts")
-		
-	const [refresh, setRefresh] = useState(false)
+		message, 
+		listOfDocs, 
+		setGetMoreDocs,
+		beingSearched,
+		setSearch
+	} = useGetDocuments("posts")
 
 	const [searchQuery, setSearchQuery] = useState("")
-
 	const handleSearch = (e) => {
 		e.preventDefault()
-		if (searchQuery.trim() === "") {
-			setRefresh(prev => !prev)
-			return;
-		} 
-		getDocumentsByQuery(searchQuery.trim())
+		if (searchQuery === "") {
+			setGetMoreDocs(0)
+		} else {
+			setGetMoreDocs((prev) => prev+1)
+			console.log(searchQuery)
+			setSearch(searchQuery)
+		}
 	}
 
-	useEffect(() => {
-		getNonExpiredDocuments()
-	}, [refresh])
-
-	const handleRefreshClick = () => {
-		setRefresh(prev => !prev)
-	}
-	
 	return (
 		<div className={styles.home}>
 
@@ -69,7 +62,7 @@ const Home = () => {
 				<hr />
 
 				<div className={styles.refreshcontainer}>
-					<button onClick={handleRefreshClick} className={styles.refreshbutton}>
+					<button onClick={() => setGetMoreDocs(0)} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
 						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
@@ -99,23 +92,38 @@ const Home = () => {
 				<div className={styles.homecontent}>
 
 						<div>
-							{loading && <p>Carregando posts...</p>}
+							{loading ? (
+								<p>Carregando posts...</p>
+							) : (
+								<div className={styles.homecontentposts}>
+									{listOfDocs && listOfDocs.map((post) => (
+									<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
+									))}
+								</div>
+							)}
 						</div>
-				
-						{sortedListOfDocs && !queryMessage && sortedListOfDocs.map((post) => (
-							<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
-						))}
+
+						<div>
+							{message.length === 0 && !beingSearched ? (
+								<button 
+								className={styles.loadmore} 
+								onClick={() => setGetMoreDocs((prev) => prev+1)}>
+									Carregar Mais
+								</button>
+							) : (
+								<div>
+									{message && <p>{message}</p>}
+								</div>
+							)}
+
+						</div>
 
 						<div>
 							{apiError && <p>{apiError}</p>}
 						</div>
 
 						<div>
-							{queryMessage && <p>{queryMessage}</p>}
-						</div>
-
-						<div>
-							{!loading && sortedListOfDocs.length <= 0 && <p>Não há posts.</p>}
+							{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
 						</div>
 						
 					</div>

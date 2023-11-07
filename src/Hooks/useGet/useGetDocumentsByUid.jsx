@@ -32,6 +32,7 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 
 		const getDocumentsByUid = async(uid) => {
 			if (cancelled) return;
+			setApiError("")
 			setListOfDocs([])
 			try {
 				setLoading(true)

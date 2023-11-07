@@ -7,6 +7,7 @@ export const useForgotPassword = () => {
 	const [loading, setLoading] = useState(false)
 
 	const forgotUserPassword = async(email) => {
+		setApiError("")
 
 		const auth = getAuth()
 

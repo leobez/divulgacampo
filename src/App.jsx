@@ -73,7 +73,7 @@ function App() {
 				
 					<div className='navcontainer'>
 						<Navbar/>
-						<SubNavBar/>	
+						{ auth.currentUser && <SubNavBar/>}		
 					</div>
 
 					<div className='main'>
@@ -82,15 +82,10 @@ function App() {
 							<Route path='*' element={<NotFound/>}/>
 							<Route path='/' element={<Home isEmailVerified={isEmailVerified}/>}/>
 							<Route path='/about' element={<About/>}/>
-							<Route path='/contact' element={<Contact/>}/>
 							<Route path='/validationemailsent' element={<ValidationEmailSent/>}/>
 							<Route path='/landingemailpage' element={<LandingEmailPage/>}/>
 							<Route path='/post/:postId' element={<PostPage/>}/>
-							<Route path='/config' element={<Config element={"config"}/>}/>
-							<Route path='/config/user' element={<Config element={"user"}/>}/>
-							<Route path='/config/appearance' element={<Config element={"appearance"}/>}/>
-
-
+							
 							{/* ROTAS PARA AUTENTICADO */}
 							<Route path='/myprofile' element={isLogged ? <MyProfile isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
 							<Route path='/createpost' element={isLogged ? <CreatePost isEmailVerified={isEmailVerified}/>:<Navigate to='/login'/>}/>
@@ -99,7 +94,9 @@ function App() {
 							<Route path='/deleteaccount' element={isLogged ? <DeleteAccount/> : <Navigate to="/"/>}/>
 							<Route path='/changepassword' element={isLogged ? <ChangePassword/>: <Navigate to="/login"/>}/>
 							<Route path='/changeemail' element={isLogged ? <ChangeEmail/>: <Navigate to="/login"/>}/>
-
+							<Route path='/contact' element={isLogged ? <Contact/> : <Navigate to="/login"/>}/>
+							<Route path='/config' element={isLogged ? <Config element={"config"}/> : <Navigate to="/login"/>}/>
+							<Route path='/config/user' element={isLogged ? <Config element={"user"}/> : <Navigate to="/login"/>}/>
 
 							{/* ROTAS PARA NÃO AUTENTICADO */}
 							<Route path='/login' element={!isLogged? <Login/>:<Navigate to="/"/>}/>

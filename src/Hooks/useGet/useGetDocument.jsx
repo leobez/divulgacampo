@@ -13,6 +13,9 @@ export const useGetDocument = (collectionName, docId=null) => {
 	useEffect(() => {
 
 		const getDocument = async(docId) => {
+			
+			setApiError("")
+			
 			if (cancelled) return;
 
 			setListOfDocs([])

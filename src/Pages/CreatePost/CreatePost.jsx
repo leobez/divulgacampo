@@ -51,8 +51,6 @@ const CreatePost = ({isEmailVerified}) => {
 
 	const [postTTL, setPostTTL] = useState(0)
 
-	const [keywords, setKeywords] = useState([])
-
 	const [error, setError] = useState("")
 	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 
@@ -218,7 +216,7 @@ const CreatePost = ({isEmailVerified}) => {
 								type="text" 
 								name="keyword1" 
 								className="keyword"
-								onChange={(e) => setKeywords()}/>
+								/>
 							</div>
 							<div>
 								<label htmlFor="keyword2">Palavra chave 2: </label>
@@ -226,7 +224,7 @@ const CreatePost = ({isEmailVerified}) => {
 								type="text" 
 								name="keyword2" 
 								className="keyword"
-								onChange={(e) => setKeywords()}/>
+								/>
 							</div>
 							<div>
 								<label htmlFor="keyword3">Palavra chave 3: </label>
@@ -234,7 +232,7 @@ const CreatePost = ({isEmailVerified}) => {
 								type="text" 
 								name="keyword3" 
 								className="keyword"
-								onChange={(e) => setKeywords()}/>
+								/>
 							</div>
 						</div>
 					</div>

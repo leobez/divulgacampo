@@ -141,9 +141,23 @@
 	flex-direction: column;
 	gap: 20px;
 	align-items: center;
-	padding-top: 5px;
+	padding-top: 20px;
+}
+
+.homecontentposts {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.homecontent > div {
+	background-color: white;
 }
 
 .warning, .error, .loading {
 	margin-top: 20px;
+}
+
+.loadmore {
+	padding: 10px;
 }

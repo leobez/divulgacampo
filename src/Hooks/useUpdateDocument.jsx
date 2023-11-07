@@ -10,6 +10,7 @@ export const useUpdateDocument = (collectionName) => {
 	const navigate = useNavigate()
 
 	const updateDocument = async(docId, newData) => {
+		setApiError("")
 
 		try {
 			setLoading(true)
@@ -19,7 +20,7 @@ export const useUpdateDocument = (collectionName) => {
 			navigate("/myprofile")
 		} catch (error) {
 			setLoading(false)
-			setApiError(error)
+			setApiError("Algo deu errado.")
 		} 
 	}
 
