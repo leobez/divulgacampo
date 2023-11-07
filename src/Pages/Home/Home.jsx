@@ -92,13 +92,17 @@ const Home = () => {
 				<div className={styles.homecontent}>
 
 						<div>
-							{loading && <p>Carregando posts...</p>}
+							{loading ? (
+								<p>Carregando posts...</p>
+							) : (
+								<div className={styles.homecontentposts}>
+									{listOfDocs && listOfDocs.map((post) => (
+									<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
+									))}
+								</div>
+							)}
 						</div>
 
-						{listOfDocs && listOfDocs.map((post) => (
-							<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
-						))}
-						
 						<div>
 							{message.length === 0 && !beingSearched ? (
 								<button 
