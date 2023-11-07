@@ -18,11 +18,16 @@ const Home = () => {
 		setSearch
 	} = useGetDocuments("posts")
 
+
 	const [searchQuery, setSearchQuery] = useState("")
 	const handleSearch = (e) => {
 		e.preventDefault()
-		console.log(searchQuery)
-		setSearch(true)
+		if (searchQuery === "") {
+			setGetMoreDocs(0)
+		} else {
+			console.log(searchQuery)
+			setUserQuery(searchQuery)
+		}
 	}
 
 	return (
@@ -88,11 +93,11 @@ const Home = () => {
 						<div>
 							{loading && <p>Carregando posts...</p>}
 						</div>
-				
+
 						{listOfDocs && listOfDocs.map((post) => (
 							<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 						))}
-
+						
 						<div>
 							{message.length === 0 ? (
 								<button 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {db} from "../../firebase/config"
-import { collection, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore"
+import { collection, getDocs, limit, orderBy, query, startAfter, where } from "firebase/firestore"
 
 export const useGetDocuments = (collectionName) => {
 
@@ -19,7 +19,7 @@ export const useGetDocuments = (collectionName) => {
 	/* TO DO: 
 		CREATE A FUNCTION TO REMOVE EXPIRED DOCUMENTS 
 		USEEFFECT KEEPS RUNNING WHEN CODE IS CHANGED
-
+		REMOVE LOAD MORE BUTTON WHEN 'SEARCHING'
 		ARRUMAR: REFRESH, GETMOREDOCS, SEARCH TO WORK TOGHETER
 	*/
 
@@ -56,8 +56,10 @@ export const useGetDocuments = (collectionName) => {
 	}, [lastPost])
 
 	useEffect(() => {
+
 		const getDocuments = async() => {
 			console.log("getDocuments")
+			setApiError("")
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
@@ -68,12 +70,14 @@ export const useGetDocuments = (collectionName) => {
 				} else {
 					q = await query(col, orderBy("createdAt", "desc"), startAfter(lastPost), limit(PAGINATION_LIMIT))
 				}
+				
 				const snapshot = await getDocs(q)
 				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
 				setLastPost(snapshot.docs[snapshot.docs.length-1])
 				snapshot.docs.map((doc) => {
 					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
 				})
+
 				setLoading(false)
 			} catch (error) {
 				setApiError("Algo deu errado.")
@@ -81,6 +85,7 @@ export const useGetDocuments = (collectionName) => {
 				setLoading(false)
 			}
 		}
+
 		getDocuments()
 
 	}, [getMoreDocs])
