@@ -13,7 +13,7 @@ const Home = () => {
 		loading, 
 		apiError, 
 		message, 
-		listOfDocs, 
+		listOfFilteredDocs,
 		setGetMoreDocs,
 		beingSearched,
 		setSearch
@@ -96,7 +96,7 @@ const Home = () => {
 								<p>Carregando posts...</p>
 							) : (
 								<div className={styles.homecontentposts}>
-									{listOfDocs && listOfDocs.map((post) => (
+									{listOfFilteredDocs && listOfFilteredDocs.map((post) => (
 									<Post key={post.postId} postData={post.postData} postId={post.postId}></Post>
 									))}
 								</div>
@@ -123,7 +123,7 @@ const Home = () => {
 						</div>
 
 						<div>
-							{!loading && listOfDocs.length <= 0 && <p>Não há posts.</p>}
+							{!loading && listOfFilteredDocs.length <= 0 && <p>Não há posts.</p>}
 						</div>
 						
 					</div>

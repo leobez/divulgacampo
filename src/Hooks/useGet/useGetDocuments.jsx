@@ -9,6 +9,7 @@ export const useGetDocuments = (collectionName) => {
 	const [message, setMessage] = useState("")
 
 	const [listOfDocs, setListOfDocs] = useState([])
+	const [listOfFilteredDocs, setListOfFilteredDocs] = useState([])
 	const [lastPost, setLastPost] = useState([])
 
 	const [getMoreDocs, setGetMoreDocs] = useState(0)
@@ -17,7 +18,12 @@ export const useGetDocuments = (collectionName) => {
 
 	const PAGINATION_LIMIT = 5;
 
-	/* TO DO: CREATE A FUNCTION TO REMOVE EXPIRED DOCUMENTS */
+	useEffect(() => {
+		const currentDate = new Date()
+		const tempList = listOfDocs.filter((doc) => currentDate < doc.postData.expiresIn.toDate())
+		setListOfFilteredDocs(tempList)
+	}, [listOfDocs])
+
 
 	useEffect(() => {
 		// No more posts to load
@@ -80,7 +86,7 @@ export const useGetDocuments = (collectionName) => {
 		loading, 
 		apiError,
 		message,
-		listOfDocs,
+		listOfFilteredDocs,
 		setGetMoreDocs,
 		beingSearched,
 		setSearch
