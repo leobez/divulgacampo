@@ -33,7 +33,7 @@ export const useGetDocuments = (collectionName) => {
 		const getDocuments = async() => {
 			setApiError("")
 			try {
-				setLoading(true)
+				if (!(getMoreDocs > 0)) setLoading(true)
 				const col = collection(db, collectionName)
 				let q;
 
