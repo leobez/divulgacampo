@@ -15,9 +15,9 @@ const Home = () => {
 		message, 
 		listOfDocs, 
 		setGetMoreDocs,
+		beingSearched,
 		setSearch
 	} = useGetDocuments("posts")
-
 
 	const [searchQuery, setSearchQuery] = useState("")
 	const handleSearch = (e) => {
@@ -25,8 +25,9 @@ const Home = () => {
 		if (searchQuery === "") {
 			setGetMoreDocs(0)
 		} else {
+			setGetMoreDocs((prev) => prev+1)
 			console.log(searchQuery)
-			setUserQuery(searchQuery)
+			setSearch(searchQuery)
 		}
 	}
 
@@ -99,14 +100,12 @@ const Home = () => {
 						))}
 						
 						<div>
-							{message.length === 0 ? (
+							{message.length === 0 && !beingSearched ? (
 								<button 
-									className={styles.loadmore} 
-									onClick={() => setGetMoreDocs((prev) => prev+1)}
-								>
-								Carregar Mais
-							</button>
-
+								className={styles.loadmore} 
+								onClick={() => setGetMoreDocs((prev) => prev+1)}>
+									Carregar Mais
+								</button>
 							) : (
 								<div>
 									{message && <p>{message}</p>}

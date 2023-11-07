@@ -13,42 +13,15 @@ export const useGetDocuments = (collectionName) => {
 
 	const [getMoreDocs, setGetMoreDocs] = useState(0)
 	const [search, setSearch] = useState("")
+	const [beingSearched, setBeingSearched] = useState(false)
 
 	const PAGINATION_LIMIT = 5;
 
-	/* TO DO: 
-		CREATE A FUNCTION TO REMOVE EXPIRED DOCUMENTS 
-		USEEFFECT KEEPS RUNNING WHEN CODE IS CHANGED
-		REMOVE LOAD MORE BUTTON WHEN 'SEARCHING'
-		ARRUMAR: REFRESH, GETMOREDOCS, SEARCH TO WORK TOGHETER
-	*/
-
-	/* 
-		QUERIES:
-			refresh and initial
-			q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
-			q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
-
-			getmoredocs
-			q = await query(col, orderBy("createdAt", "desc"),startAfter(lastPost), limit(PAGINATION_LIMIT))
-
-			
-			search
-			if (search[0] === "#") {
-				q = await query(col, where("displayName", "==", search.replace(/#/, "")))
-			} else {
-				q = await query(col, where("keywords", "array-contains",  search.toLowerCase()))
-			} 
-	
-	*/
-
-	useEffect(() => {
-		console.log("DOCS: ", listOfDocs)
-	}, [listOfDocs])
+	/* TO DO: CREATE A FUNCTION TO REMOVE EXPIRED DOCUMENTS */
 
 	useEffect(() => {
 		// No more posts to load
-		if (lastPost === undefined) {
+		if (lastPost === undefined && !beingSearched) {
 			setMessage("Não há mais posts.")
 		} else {
 			setMessage("")
@@ -58,21 +31,34 @@ export const useGetDocuments = (collectionName) => {
 	useEffect(() => {
 
 		const getDocuments = async() => {
-			console.log("getDocuments")
 			setApiError("")
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
 				let q;
+
+				// These queries are for the initial load and loadMore button
 				if (getMoreDocs === 0) {
 					setListOfDocs([])
+					setBeingSearched(false)
 					q = await query(col, orderBy("createdAt", "desc"), limit(PAGINATION_LIMIT))
 				} else {
 					q = await query(col, orderBy("createdAt", "desc"), startAfter(lastPost), limit(PAGINATION_LIMIT))
 				}
+
+				// This query is for when user searches
+				if (search.length > 0) {
+					setBeingSearched(true)
+					setListOfDocs([])
+					if (search[0] === "#") {
+						q = await query(col, where("displayName", "==", search.replace(/#/, "")))
+					} else {
+						q = await query(col, where("keywords", "array-contains",  search.toLowerCase()))
+					} 
+					setSearch("")
+				}
 				
 				const snapshot = await getDocs(q)
-				console.log("SNAPSHOT LENGTH", snapshot.docs.length)
 				setLastPost(snapshot.docs[snapshot.docs.length-1])
 				snapshot.docs.map((doc) => {
 					setListOfDocs((prev) => [...prev, {postData: doc.data(), postId: doc.id}])
@@ -96,6 +82,7 @@ export const useGetDocuments = (collectionName) => {
 		message,
 		listOfDocs,
 		setGetMoreDocs,
+		beingSearched,
 		setSearch
 	}
 }
