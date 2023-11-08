@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './CreatePost.module.css'
 import { useInsertDocument } from '../../Hooks/useInsertDocuments'
 import AuthContext from '../../Context/AuthContext'
+import { useValidateURL } from '../../Hooks/useValidateURL'
  
 const CreatePost = ({isEmailVerified}) => {
 
@@ -36,7 +37,7 @@ const CreatePost = ({isEmailVerified}) => {
 		quiz_label.innerText = `Questionário ${amountOfQuizLinks+1}`
 
 		const quiz_input = document.createElement("input")
-		quiz_input.setAttribute("type", "text") // CHANGE TO URL
+		quiz_input.setAttribute("type", "url") // CHANGE TO URL
 		quiz_input.setAttribute("name", `quiz_${amountOfQuizLinks}`)
 		quiz_input.setAttribute("placeholder", "Digite o link para seu questionário")
 
@@ -50,13 +51,14 @@ const CreatePost = ({isEmailVerified}) => {
 	}
 
 	const [postTTL, setPostTTL] = useState(0)
-
 	const [error, setError] = useState("")
 	const {loading, apiError, insertDocument} = useInsertDocument("posts")
 
+	const {validateURL} = useValidateURL()
+
 	const handleSubmit = async(e) => {	
 		e.preventDefault()
-
+		setError("")
 
 		// Create quizLinks obj
 		const quizLinks = {}
@@ -67,6 +69,12 @@ const CreatePost = ({isEmailVerified}) => {
 			}
 		})
 
+		// Validate if links are from google forms
+		if (!validateURL(quizLinks)) {
+			setError("URL invalida.")
+			return;
+		}
+		
 		// Create keywords array
 		const keyWords = []
 		const keyWordsInputs = document.querySelectorAll(".keyword")
@@ -120,6 +128,7 @@ const CreatePost = ({isEmailVerified}) => {
 			return;
 		}
 
+
 		if (
 			title.length > maxcharlimit_title ||
 			description.length > maxcharlimit_desc
@@ -139,7 +148,6 @@ const CreatePost = ({isEmailVerified}) => {
 			postTTL: postTTL,
 			keywords: keyWordLowered
 		}
-		setError("")
 		
 		await insertDocument(postData)
 	}
@@ -264,9 +272,22 @@ const CreatePost = ({isEmailVerified}) => {
 							</div>
 						</div>
 
-					</div>			
+					</div>	
+
+					<div className={styles.reference}>
+						<p>
+							Crie seus formulários utilizando os serviços recomendados:
+						</p>
+						<hr />
+						<div>
+							<a href="https://www.google.com/intl/pt-BR/forms/about/" target='_blank'>
+								Google Forms
+							</a>
+						</div>
+					</div>
 
 					<div className={styles.quizarea}>
+
 						<div className={styles.linksarea} ref={quizContainerRef}>
 						</div>
 						<hr />
