@@ -263,7 +263,7 @@ const EditPostForm = ({post, postId}) => {
 
 					<div className={styles.buttonarea}>
 
-						{amountOfQuizLinks < 10 &&
+						{amountOfQuizLinks < 5 &&
 							<button type="button" onClick={addQuiz} className={styles.addquiz}>
 								Adicionar Questionário +
 							</button>
