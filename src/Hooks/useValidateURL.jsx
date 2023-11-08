@@ -10,7 +10,6 @@ export const useValidateURL = () => {
 				/https:\/\/docs.google.com\/forms\/d\/e\/[^/]+\/viewform/,
 				/https:\/\/forms.gle\/[^/]/
 			]
-			console.log("chegou")
 			Object.values(links).map((link) => {
 				let flag = 0;
 				patterns.map(pattern => {
