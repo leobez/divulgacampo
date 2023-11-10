@@ -74,7 +74,10 @@ const CreatePost = ({isEmailVerified}) => {
 			setError("URL invalida.")
 			return;
 		}
-		
+
+		// Removing duplicates
+		const filteredQuizLinks = {...[...new Set(Object.values(quizLinks))]}
+
 		// Create keywords array
 		const keyWords = []
 		const keyWordsInputs = document.querySelectorAll(".keyword")
@@ -144,7 +147,7 @@ const CreatePost = ({isEmailVerified}) => {
 			displayName: auth.currentUser.displayName,
 			title: title,
 			description: description,
-			quizLinks: quizLinks ,
+			quizLinks: filteredQuizLinks,
 			postTTL: postTTL,
 			keywords: keyWordLowered
 		}
@@ -212,7 +215,7 @@ const CreatePost = ({isEmailVerified}) => {
 					<div className={styles.keywordsarea}>
 						<div>
 							<p>
-								Defina algumas palvras chaves para sua postagem (opcional):
+								Defina algumas palvras chaves para sua postagem <span>(opcional)</span>:
 							</p>
 						</div>
 						<hr />
