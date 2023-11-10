@@ -109,6 +109,7 @@
 	display: flex;
 	gap: 10px;
 }
+
 /* Reference*/
 .createpostform > .reference {
 	border: 2px solid black;

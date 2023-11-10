@@ -2,6 +2,7 @@ import styles from './EditPostForm.module.css'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import AuthContext from '../../../Context/AuthContext'
 import { useUpdateDocument } from '../../../Hooks/useUpdateDocument'
+import { useValidateURL } from '../../../Hooks/useValidateURL'
 
 const EditPostForm = ({post, postId}) => {
 
@@ -80,6 +81,8 @@ const EditPostForm = ({post, postId}) => {
 		quiz.value = `${post.quizLinks[quizNumber]}`	
 
 	}, [amountOfQuizLinks])
+	
+	const {validateURL} = useValidateURL()
 
 	const handleSubmit = async(e) => {
 		e.preventDefault()
@@ -94,6 +97,15 @@ const EditPostForm = ({post, postId}) => {
 						quizLinks[key] = value.lastChild.value
 					}
 				})
+
+		// Validate if links are from google forms
+		if (!validateURL(quizLinks)) {
+			setError("URL invalida.")
+			return;
+		}
+
+		// Removing duplicates
+		const filteredQuizLinks = {...[...new Set(Object.values(quizLinks))]}
 
 		// Create keywords array
 		const keyWords = []
@@ -156,7 +168,7 @@ const EditPostForm = ({post, postId}) => {
 		const newData = {
 			title,
 			description,
-			quizLinks,
+			quizLinks: filteredQuizLinks,
 			keywords: keyWordLowered
 		}
 
@@ -254,6 +266,18 @@ const EditPostForm = ({post, postId}) => {
 					</div>
 				</div>
 				
+				<div className={styles.reference}>
+						<p>
+							Crie seus formulários utilizando os serviços recomendados:
+						</p>
+						<hr />
+						<div>
+							<a href="https://www.google.com/intl/pt-BR/forms/about/" target='_blank'>
+								Google Forms
+							</a>
+						</div>
+				</div>
+
 				<div className={styles.quizarea}>
 
 					<div className={styles.linksarea} ref={quizContainerRef}>
