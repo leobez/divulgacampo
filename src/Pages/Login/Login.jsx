@@ -33,9 +33,9 @@ const Login = () => {
     return (
 		<div className={styles.login}>
 			<div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={handleSubmit} className="form">
 
-					<div className='formtitle'>
+					<div>
 						<h1>Entre !</h1>
 					</div>
 
@@ -57,17 +57,20 @@ const Login = () => {
 						onChange={(e) => setPassword(e.target.value)}/>
 					</div>
 
-					{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
+					<div>
+						{!loading ? (<input type="submit" value="Entrar"/>) : (<input type="submit" className="loadingButton" value="Carregando..." disabled/>)}
+					</div>
 
-					<div className='extrabuttons'>
+					<div className={styles.extralinks}>
 						<Link to="/register" className="nonNavLink">Não tem conta?</Link>
-						<Link to="/resetpassword" className="nonNavLink">Esqueceu sua senha?</Link>
+						<Link to="/forgotpassword" className="nonNavLink">Esqueceu sua senha?</Link>
 					</div>
 
 					<div className="error">
-						{error && <p>{error}</p>}
-						{authError && <p>{authError}</p>}
+						{error && <p><span>{error}</span></p>}
+						{authError && <p><span>{authError}</span></p>}
 					</div>
+
 				</form>
 			</div>
 		</div>

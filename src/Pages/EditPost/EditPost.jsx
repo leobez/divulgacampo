@@ -7,7 +7,7 @@ import EditPostForm from './EditPostForm/EditPostForm';
 const EditPost = () => {
 
 	const {postId} = useParams()
-
+	
 	const {loading, apiError, listOfDocs: doc} = useGetDocument("posts", postId)
 
 	return (
@@ -16,11 +16,13 @@ const EditPost = () => {
 			{doc && doc[0] && 
 				<EditPostForm post={doc[0]} postId={postId}></EditPostForm>
 			}
-			<div className='loading'>
+
+			<div>
 				{loading && <p>Carregando...</p>}
 			</div>
+
 			<div className="error">
-				{apiError && <p>{apiError}</p>}
+				{apiError && <p><span>{apiError}</span></p>}
 			</div>
 			
 		</div>

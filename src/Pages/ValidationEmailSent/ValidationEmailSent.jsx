@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import styles from './ValidationEmailSent.module.css'
 
 const ValidationEmailSent = () => {
 
@@ -14,11 +15,18 @@ const ValidationEmailSent = () => {
 	}, [])
 
 	return (
-		<div className='verifyemailwarn'>
+		<div className={styles.validationemailsent}>
 			{email ? (
-			<p>Para entrar, verifique o email:<span>{email}</span></p>) 
+			<div>
+				<p>Para entrar, verifique o email: <span>{email}</span> </p>
+			</div>
+			) 
 			: 
-			(<p><span>Email de verificação enviado.</span></p>) }
+			(
+			<div>
+				<p>Email de validação enviado.</p>
+			</div>
+			) }
 		</div>
 	)
 }

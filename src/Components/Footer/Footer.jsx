@@ -4,7 +4,7 @@ import styles from "./Footer.module.css"
 const Footer = () => {
 	return (
 		<div className={styles.footer}>
-			<div>Footer</div>
+			<div>DivulgaCampo, icons by <a href="https://icons8.com" target='_blank'>icons8</a> </div>
 		</div>
 	)
 }

@@ -1,25 +1,131 @@
 .home {
+	height: 100%;
+	display: flex;
+	gap: 3px;
+}
+
+.homemenu {
+	width: 320px;
+	border: 2px solid black;
+	position: relative;
+	padding: 5px;
+}
+
+.homemenu > div {
+	margin: 10px 0px;
+}
+
+/* HOME MENU -> TITULO */
+.homemenu > .titlecontainer {
+	height: fit-content;
+}
+.homemenu > .titlecontainer > p {
+	font-size: 1.1em;
+	text-align: center;
+}
+
+
+/* HOME MENU -> BARRA DE PESQUISA */
+.homemenu > .searchbarcontainer {
+	width: 100%;
+}
+.searchbarcontainer > form {
 	display: flex;
 	flex-direction: column;
+	gap: 5px;
+}
+.searchbarcontainer > form  > input[type="text"] {
+	height: 45px;
+	padding: 2px;
+	border: 2px solid black;
+}
+.searchbarcontainer > form > input[type="submit"] {
+	border-width: 2px ;
+	width: fit-content;
+	padding: 5px;
+	height: 40px;
+	align-self: flex-end;
+}
+
+/* HOME MENU -> BOTÃO DE RELOAD */
+.homemenu > .refreshcontainer {
+	height: 1fr;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+}
+
+.refreshbutton {
+	width: fit-content;
+	border-width: 2px;
+	flex-basis: 10%;
+	padding: 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	gap: 10px;
+	justify-self: flex-start;
+}
+.refreshbutton:hover {
+	background-color: black;
+	transition: 0.3s;
+}
+.refreshbutton:hover p {
+	color: white;
+	transition: 0.3s;
+}
+.refreshbutton:hover img {
+	filter: invert(100%);
+	transition: 0.3s;
+}
+.searchbarcontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+}
+
+.homerightcontainer {
+	width: 100%;
+	overflow-y: scroll;
+	position: relative;
 }
 
 .welcome {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 2;
 }
 
 .welcomelinkstoauth {
 	display: flex;
 	gap: 10px;
 	align-items: center;
+	z-index: 1;
+	margin-left: 10px;
+}
+.welcomelinkstoauth > a {
+	border-width: 2px;
+	height: 50px;
+	padding: 10px;
+	font-size: 1.01em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .welcomelinkstopost {
 	display: flex;
 	gap: 10px;
 	align-items: center;
+	z-index: 1;
 }
 
 .welcomelinkstopost > a {
@@ -27,12 +133,31 @@
 	height: 100px;
 	display: grid;
 	place-items: center;
+	border-width: 2px;
 }
 
 .homecontent {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: 20px;
 	align-items: center;
+	padding-top: 20px;
 }
 
+.homecontentposts {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.homecontent > div {
+	background-color: white;
+}
+
+.warning, .error, .loading {
+	margin-top: 20px;
+}
+
+.loadmore {
+	padding: 10px;
+}

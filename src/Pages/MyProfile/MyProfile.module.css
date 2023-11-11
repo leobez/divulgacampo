@@ -2,6 +2,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	padding: 10px;
+	overflow-y: scroll;
 }
 
 .myprofile .info > span{
@@ -34,17 +36,22 @@
 
 .historypost > div {
 	word-wrap: break-word;
-	padding: 5px;
 }
 
-.historyposttitle {
-	border: 2px solid black;
+.historypost > div > p {
+	padding: 5px 0px;
 	width: 100%;
 	text-overflow: ellipsis;
 	display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-	flex-basis: 20%;
+}
+
+.historyposttitle {
+	border: 2px solid black;
+	width: 100%;
+	flex-basis: 30%;
+	padding: 5px;
 }
 
 .historypostdesc {
@@ -55,6 +62,7 @@
     overflow: hidden;
     white-space: nowrap;
 	flex-basis: 70%;
+	padding: 5px;
 }
 
 .historypostlinks {
@@ -66,12 +74,12 @@
 .historypostlinks > a, button {
 	border: 2px solid black;
 	background-color: white;
-	cursor: pointer;
-	font-weight: bold;
 	padding: 5px;
 	flex-basis: 33%;
-	text-align: center;
-	font-size: 1.01em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.9em;
 }
 
 /* ACESSAR */
@@ -83,16 +91,21 @@
 .historypostlinks > a:nth-child(2):hover{
 	border-color: green;
 	color: green;
+	background-color: white;
+}
+.historypostlinks > button{
+	border-width: 2px;
+	font-size: 0.9em;
 }
 /* EXLCUIR */
 .historypostlinks > button:hover{
 	border-color: red;
 	color: red;
-	transition: 0.3s;
+	background-color: white;
 }
+
 
 .extrainfo {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
 }

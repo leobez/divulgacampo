@@ -1,109 +1,160 @@
 .editpostform {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-/* formtextcontent */
-
-.formtextcontent {
+	width: 700px;
 	display: flex;
 	flex-direction: column;
-	gap: 0px;
-	border: 3px solid black;
+	gap: 10px;
+	padding-bottom: 50px;
+
 }
 
-.formtextcontent > div {
+.editpostform > div {
 	display: flex;
 }
 
-.formtextcontent > div > input, textarea {
-	flex-basis: 85%;
-}
-
-.formtextcontent > div > div {
-	flex-basis: 15%;
-}
-
-.formtextcontent > div:nth-child(2) > div {
-	border-top: 3px solid black ;
-}
-
-.formtextcontent > div > input {
-	width: 100%;
-	border: none;
-}
-
-.formtextcontent textarea:focus, input:focus {
-	outline: none;
-}
-
-textarea {
-	border: none;
-}
-
-.inputtitle {
-	height: 45px;
-}
-
-.inputdescription {
-	height: 180px;
-	min-height: 180px;
-	resize: vertical;
-	border-top: 3px solid black ;
-}
-
-.wordcounter {
-	/* height: 100%; */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-left: 3px solid black;
-	padding: 5px;
-}
-
-.wordcounter > div {
-	font-size: 0.8em;
-}
-
-.wordcounterlimitreached > span {
+.wordcounterlimitreached {
 	color: red;
 }
 
-/* formquizcontent */
-.formquizcontent {
-	border: 3px solid black;
+/* Form Title */
+.editpostform > .titleofform {
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+/* Title input */
+.editpostform > .titlearea {
+	display: flex;
+	height: 60px;
+	gap: 5px;
+}
+.editpostform > .titlearea > input {
+	flex-basis: 85%;
+	border: 1px solid black;
+	padding: 0px 5px;
+}
+.editpostform > .titlearea > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Desc input */
+.editpostform > .descriptionarea {
+	display: flex;
+	height: fit-content;
+	gap: 5px;
+}
+.editpostform > .descriptionarea > textarea {
+	flex-basis: 85%;
+	border: 1px solid black;
+	resize: vertical;
+	min-height: 200px;
+}
+.editpostform > .descriptionarea > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 5px;
+}
+
+/* Tags area */
+.editpostform > .keywordsarea {
+	padding: 10px;
+	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div > label {
+	flex-basis: 20%
+}
+.editpostform > .keywordsarea > div:nth-child(3) > div > input {
+	height: 45px;
+	padding: 0px 5px;
+}
+/* Reference*/
+.editpostform > .reference {
+	border: 2px solid black;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	position: relative;
 }
-.quizunreachable {
-	z-index: 2;
-	background-color: rgba(128, 128, 128, 0.376);
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-.linksarea {
+.editpostform > .reference > div {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	gap: 10px;
 }
-.formquizcontent > div > div {
+.editpostform > .reference > div > a {
+	padding: 5px;
+	border-width: 2px;
+}
+/* Quiz area*/
+.editpostform > .quizarea {
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
 	border: 2px solid black;
 	padding: 10px;
 }
-.formquizcontent > div > div > label {
-	flex-basis: 80%;
+.editpostform > .quizarea > .linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.formquizcontent > div > div > input {
-	flex-basis: 20%;
+
+.editpostform > .quizarea > .linksarea > div {
+	height: 50px;
+	gap: 10px;
+	display: flex;
+	align-items: center;
+}
+.editpostform > .quizarea > .linksarea > div > label {
+	height: 40px;
+	flex-basis: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.editpostform > .quizarea > .linksarea > div > input {
+	height: 40px;
+	flex-basis: 80%;
+	padding: 0px 5px;
+}
+
+.editpostform > .quizarea > .buttonarea {
+	display: flex;
+	gap: 10px;
+	margin-top: 5px;
+}
+.editpostform > .quizarea > .buttonarea > button {
+	flex-basis: 50%;
+	height: 60px;
+	border-width: 2px;
+}
+
+/* Submit button */
+.editpostform > .buttonarea {
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+}
+.editpostform > .buttonarea > input[type="submit"] {
+	height: 60px;
+	width: 100%;
+	padding: 10px;
 }

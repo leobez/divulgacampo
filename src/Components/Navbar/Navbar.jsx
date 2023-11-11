@@ -10,37 +10,32 @@ const Navbar = () => {
 	const auth = useContext(AuthContext)
 
 	const {logoutUser} = useAuthentication()
-
+	
 	const handleLogout = async () => {
 		await logoutUser(auth)
 	}
 
 	return (
-		<nav className="navbar">
-			<NavLink
-				to="/"
-				className={({ isActive }) => isActive ? "active" : ""}>
+		<nav className={styles.navbar}>
+
+			{/* LINKS FOR ALL USERS */}
+			<NavLink to="/">
 				Home
 			</NavLink>
 
-			<NavLink
-				to="/about"
-				className={({ isActive }) => isActive ? "active" : ""}>
+			<NavLink to="/about">
 				Sobre
 			</NavLink>
 
+			{/* LINKS FOR AUTHENTICATED/NON-AUTHENTICADED USERS */}
 			{auth.currentUser ?
 				(
 					<>
-						<NavLink
-							to="/myprofile"
-							className={({ isActive }) => isActive ? "active" : ""}>
+						<NavLink to="/myprofile">
 							Meu perfil
 						</NavLink>
 						
-						<NavLink
-							to="/createpost"
-							className={({ isActive }) => isActive ? "active" : ""}>
+						<NavLink to="/createpost">
 							Criar postagem
 						</NavLink>
 
@@ -66,7 +61,6 @@ const Navbar = () => {
 					</>
 				)
 			}
-
 		</nav>
 	)
 }

@@ -1,0 +1,61 @@
+.postpagecontainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow-y: scroll;
+}
+
+.postpage {
+	max-width: 1000px;
+	min-width: 600px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 20px;
+}
+
+.postpage > div {
+	overflow-wrap: break-word;
+	text-align: justify;
+}
+.postpage > div:nth-child(1)  > span::before{
+	content: " ";
+}
+.postpage > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.postpage > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.postpage > div:nth-child(3) > p:nth-child(1) {
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.postpage > div:nth-child(4)  {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.postpage > div:nth-child(4) > p {
+	font-size: 1.2em;
+	text-align: center;
+}
+.postpage > div:nth-child(4) > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.postpage > div:nth-child(4) > div > a{
+	border: none;
+	background-color: white;
+	color: black;
+}
+

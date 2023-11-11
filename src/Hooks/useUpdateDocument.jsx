@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {db} from "../firebase/config"
-import { Timestamp, addDoc, collection, doc, updateDoc } from "firebase/firestore"
+import { doc, updateDoc } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 
 export const useUpdateDocument = (collectionName) => {
@@ -10,6 +10,7 @@ export const useUpdateDocument = (collectionName) => {
 	const navigate = useNavigate()
 
 	const updateDocument = async(docId, newData) => {
+		setApiError("")
 
 		try {
 			setLoading(true)
@@ -19,7 +20,7 @@ export const useUpdateDocument = (collectionName) => {
 			navigate("/myprofile")
 		} catch (error) {
 			setLoading(false)
-			setApiError(error)
+			setApiError("Algo deu errado.")
 		} 
 	}
 

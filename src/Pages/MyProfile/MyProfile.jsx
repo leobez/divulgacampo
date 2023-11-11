@@ -9,7 +9,7 @@ const MyProfile = ({isEmailVerified}) => {
 
 	const auth = useContext(AuthContext)
 
-	const {loading, apiError, listOfDocs: userDocs} = useGetDocumentsByUid("posts", auth.currentUser.uid)
+	const {loading, apiError, sortedListOfDocs: userSortedDocs} = useGetDocumentsByUid("posts", auth.currentUser.uid)
 	const {loading: deleteLoading, apiError: deleteApiError, deleteDocument} = useDeleteDocument("posts")
 
 	const handleDeleteClick = (e) => {
@@ -26,23 +26,27 @@ const MyProfile = ({isEmailVerified}) => {
 				<>
 					<h1>Suas informações: </h1>
 					<hr />
-					<p className={styles.info}>Seu uid é: <span>{auth.currentUser.uid}</span></p>
 					<p className={styles.info}>Seu email é: <span>{auth.currentUser.email}</span></p>
-					<p className={styles.info}>Seu displayName é: <span>{auth.currentUser.displayName}</span></p>
+					<p className={styles.info}>Seu nome é: <span>{auth.currentUser.displayName}</span></p>
 					<hr />
 					<div className={styles.historycontainer}>
 						<h1>Histórico de postagens: </h1>
+
 						<div className={styles.history}>
 
-						{userDocs && userDocs.map((post) => (
+						{userSortedDocs && userSortedDocs.map((post) => (
 								<div 
 								key={post.postId} 
 								className={styles.historypost}>
 									<div className={styles.historyposttitle}>
-										{post.postData.title}
+										<p>Titulo: </p>
+										<hr />
+										<p>{post.postData.title}</p>
 									</div>
 									<div className={styles.historypostdesc}>
-										{post.postData.description}
+										<p>Descrição:</p>
+										<hr />
+										<p>{post.postData.description}</p>
 									</div>
 									<div className={styles.historypostlinks}>
 										<Link to={`/post/${post.postId}`}>Acessar</Link>
@@ -53,14 +57,14 @@ const MyProfile = ({isEmailVerified}) => {
 							))}
 
 							<div className={styles.extrainfo}>
-								<div className='loading'>
+								<div>
 									{loading && <p>Carregando posts...</p>}
 								</div>
 								<div className="error">
 									{apiError && <p>{apiError}</p>}
 								</div>
-								<div className="warn">
-									{userDocs.length <= 0 && <p>Não há posts.</p>}
+								<div>
+									{userSortedDocs.length <= 0 && <p>Não há posts.</p>}
 								</div>	
 							</div>
 

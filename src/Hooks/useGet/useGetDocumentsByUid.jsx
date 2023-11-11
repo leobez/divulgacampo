@@ -9,12 +9,31 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 
 	const [cancelled, setCancelled] = useState(false)
 	const [listOfDocs, setListOfDocs] = useState([])
+	const [sortedListOfDocs, setSortedListOfDocs] = useState([])
+
+	// Creating a list for sorted documents by 'createdAt' field
+	useEffect(() => {
+
+		if (listOfDocs.length <= 0) return;
+
+		let sortedList = []
+		listOfDocs.map((doc) => {
+			sortedList.push(doc)
+		})
+		sortedList.sort(
+			(a, b) => b.postData.createdAt.toDate().getTime() - a.postData.createdAt.toDate().getTime() 
+		)
+
+		setSortedListOfDocs(() => sortedList)
+		
+	}, [listOfDocs])
 
 	useEffect(() => {
 
 		const getDocumentsByUid = async(uid) => {
 			if (cancelled) return;
-
+			setApiError("")
+			setListOfDocs([])
 			try {
 				setLoading(true)
 				const col = collection(db, collectionName)
@@ -48,5 +67,6 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 		loading, 
 		apiError,
 		listOfDocs,
+		sortedListOfDocs
 	}
 }

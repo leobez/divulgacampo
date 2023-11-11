@@ -10,24 +10,34 @@ export const useInsertDocument = (collectionName) => {
 	const navigate = useNavigate()
 
 	const insertDocument = async(data) => {
+		setApiError("")
 
-		try {
+ 		try {
+
 			setLoading(true)
+
+			const expiresIn = new Date()
+			expiresIn.setDate(
+				Timestamp.now().toDate().getDate() + data.postTTL
+			)
+
 			await addDoc(collection(db, collectionName), {
 				uid: data.uid,
 				displayName: data.displayName,
 				title: data.title,
 				description: data.description,
 				quizLinks: data.quizLinks,
-				createdAt: Timestamp.now()
+				keywords: data.keywords,
+				createdAt: Timestamp.now(),
+				expiresIn: expiresIn
 			})
 			setLoading(false)
 			navigate("/")
 
 		} catch (error) {
 			setLoading(false)
-			setApiError(error)
-		} 
+			setApiError("Algo deu errado")
+		}  
 	}
 
 	return {

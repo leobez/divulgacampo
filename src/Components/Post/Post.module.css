@@ -1,27 +1,106 @@
 .post {
 	min-width: 300px;
 	width: 600px;
-	box-shadow: 1px 2px 3px black;
-	padding: 10px;
+	height: 500px;
+
+	/* box-shadow: 1px 2px 3px black; */
+	padding: 15px;
+	border: 2px solid black;
+
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 10px;
 }
 
 .post > div {
-	padding: 5px;
 	word-wrap: break-word;
 }
 
-.title {
-	border-bottom: 2px solid black;
+.post > .topinfo {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+/* DISPLAY NAME AND KEYWORDS */
+.post > .topinfo > div:nth-child(1) {
+	flex-basis: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+}
+.keywords {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.keywords > div {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.keywords > div > .keyword {
+	background-color: black;
+	padding: 7px;
+	display: flex;
+	align-items: center;
+	border-radius: 20px;
+	gap: 10px;
+}
+.keywords > div > .keyword > span::before {
+	content: "● ";
+}
+.keywords > div > .keyword > span {
+	color: white;
+	max-width: 120px;
+	font-size: 0.8em;
+	text-overflow: ellipsis;
+	display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* CREATEDAT AND EXPIRESIN */
+.post > .topinfo > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.post > .topinfo > div:nth-child(2) > div > p {
+	width: 120px;
+}
+
+.post > .title {
+	padding: 5px 0px;
+	text-align: justify;
+}
+.post > .description {
+	padding: 10px;
+	flex-basis: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	line-break: anywhere;
+	text-align: justify;
+}
+.post > .description > .fadeeffect {
+	position: absolute;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: grid;
+	place-items: center;
+	background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(254,254,254,0) 100%);  
 }
 
 .quizlinks {
-	border-top: 2px solid black ;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	padding-top: 10px;
 }
 
 .quizlink {
@@ -29,24 +108,17 @@
 }
 
 .linktoenter {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	
 }
 .linktoenter > a {
-	width: 100%;
-	height: 100%;
-	border: 1px solid black;
+	height: 60px;
 	display: grid;
+	border: 2px solid black;
 	place-items: center;
-
 }
 .linktoenter > a:hover {
 	background-color: black;
 	color: white;
 	transition: 0.3s;
-
 }
 

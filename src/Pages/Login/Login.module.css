@@ -3,9 +3,17 @@
 	display: flex;
 	justify-content: center;
 }
-
-.login > div {
-/* 	border-left: 1px solid black;
-	border-right: 1px solid black; */
+.login .extralinks {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
 }
-
+.login .extralinks > a {
+	border-width: 2px;
+	height: 50px;
+	padding: 10px;
+	font-size: 0.9em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

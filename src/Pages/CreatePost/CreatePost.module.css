@@ -3,134 +3,180 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	overflow-y: scroll;
 }
 
-.createpost > form {
+.createpostform {
 	width: 700px;
+	gap: 10px;
+	height: fit-content;
+	padding-bottom: 50px;
 }
-
-/* formtextcontent */
-
-.formtextcontent {
+.createpostform > div {
 	display: flex;
-	flex-direction: column;
-	gap: 0px;
-	border: 3px solid black;
+	margin: 10px 0px;
 }
 
-.formtextcontent > div {
-	display: flex;
+.wordcounterlimitreached {
+	color: red;
 }
 
-.formtextcontent > div > input, textarea {
+/* Form Title */
+.createpostform > .titleofform {
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+/* Title input */
+.createpostform > .titlearea {
+	height: 60px;
+	gap: 5px;
+}
+.createpostform > .titlearea > input {
 	flex-basis: 85%;
+	border: 1px solid black;
+	padding: 0px 5px;
 }
-
-.formtextcontent > div > div {
+.createpostform > .titlearea > div {
 	flex-basis: 15%;
-}
-
-.formtextcontent > div > input {
-	width: 100%;
-	border: none;
-}
-
-.formtextcontent textarea:focus, input:focus {
-	outline: none;
-}
-
-textarea {
-	border: none;
-}
-
-.inputtitle {
-	height: 45px;
-}
-
-.inputdescription {
-	height: 180px;
-	min-height: 180px;
-	resize: vertical;
-	border-top: 3px solid black ;
-}
-
-.wordcounter {
-	height: 100%;
+	border: 1px solid black;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-left: 3px solid black;
-	padding: 5px;
 }
 
-.wordcounter > div {
-	font-size: 0.8em;
-}
-
-.wordcounterlimitreached > span {
-	color: red;
-}
-
-
-/* formquizcontent */
-.formquizcontent {
-	border: 3px solid black;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.buttonarea {
-	display: flex;
-	gap: 10px;
-}
-
-.buttonarea > button{
-	background-color: white;
-	color: black;
-	text-decoration: none;
-	padding: 15px;
-	border: 2px solid black;
-	font-size: 1.05em;
-	flex-basis: 50%;
-	font-weight: bold;
-
-}
-
-.buttonarea > button:hover {
-	transition: 0.3s;
-	cursor: pointer;
-}
-
-.linksarea {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.formquizcontent > div > div {
-	display: flex;
-	flex-direction: column;
+/* Desc input */
+.createpostform >.descriptionarea {
+	height: fit-content;
 	gap: 5px;
-	border: 2px solid black;
-	padding: 10px;
 }
-.formquizcontent > div > div > label {
-	flex-basis: 80%;
+.createpostform >.descriptionarea > textarea {
+	flex-basis: 85%;
+	border: 1px solid black;
+	resize: vertical;
+	min-height: 200px;
 }
-.formquizcontent > div > div > input {
-	flex-basis: 20%;
+.createpostform >.descriptionarea > div {
+	flex-basis: 15%;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 5px;
 }
 
-.addquiz:hover {
-	border-color:green;
-	color: green;
+/* Tags area */
+.createpostform > .keywordsarea {
+	padding: 10px;
+	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.removequiz:hover {
-	border-color:red;
-	color: red;
+.createpostform > .keywordsarea > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.bordertop {
-	border-top: 3px solid black;
+.createpostform > .keywordsarea > div:nth-child(3) > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .keywordsarea > div:nth-child(3) > div > label {
+	flex-basis: 20%
+}
+.createpostform > .keywordsarea > div:nth-child(3) > div > input {
+	height: 45px;
+	padding: 0px 5px;
+}
+
+/* TTL of post */
+.createpostform > .expiresarea {
+	border: 2px solid black;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .expiresarea > div:nth-child(3) {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .expiresarea > div:nth-child(3) > div {
+	display: flex;
+	gap: 10px;
+}
+
+/* Reference*/
+.createpostform > .reference {
+	border: 2px solid black;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .reference > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+.createpostform > .reference > div > a {
+	padding: 5px;
+	border-width: 2px;
+}
+
+/* Quiz area*/
+.createpostform > .quizarea {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	padding: 10px;
+	gap: 20px;
+}
+.createpostform > .quizarea > .linksarea {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.createpostform > .quizarea > .linksarea > div {
+	gap: 10px;
+	display: flex;
+	align-items: center;
+}
+.createpostform > .quizarea > .linksarea > div > label {
+	height: 40px;
+	flex-basis: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.createpostform > .quizarea > .linksarea > div > input {
+	height: 40px;
+	flex-basis: 80%;
+	padding: 0px 5px;
+}
+.createpostform > .quizarea > .buttonarea {
+	display: flex;
+	gap: 10px;
+	margin-top: 5px;
+}
+.createpostform > .quizarea > .buttonarea > button {
+	flex-basis: 50%;
+	height: 60px;
+	border-width: 2px;
+}
+
+/* Submit button */
+.createpostform > .buttonarea {
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+}
+.createpostform > .buttonarea > input[type="submit"] {
+	height: 60px;
+	width: 100%;
+	padding: 10px;
 }

@@ -3,9 +3,19 @@
 	display: flex;
 	justify-content: center;
 }
-
-.register > div {
-/* 	border-left: 1px solid black;
-	border-right: 1px solid black; */
+.register .extralinks {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
 }
+.register .extralinks > a {
+	border-width: 2px;
+	height: 50px;
+	padding: 10px;
+	font-size: 0.9em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 
