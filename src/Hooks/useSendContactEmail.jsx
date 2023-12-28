@@ -25,7 +25,6 @@ export const useSendContactEmail = () => {
 		} catch (error) {
 			setLoading(false)
 			setApiError("Algo deu errado")
-			console.log(error)
 		} 
 
 	}

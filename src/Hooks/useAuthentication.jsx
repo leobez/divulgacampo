@@ -29,7 +29,6 @@ export const useAuthentication = () => {
 			setLoading(false)
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
 			if (error.message.includes("email-already-in-use")) {
 				setAuthError("Email já usado. Tente outro.")
 			} else if (error.message.includes("weak-password")) {
@@ -52,7 +51,6 @@ export const useAuthentication = () => {
 			}
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
 			if (error.message.includes("user-not-found")) {
 				setAuthError("Usuário não foi encontrado.")
 			} else if (error.message.includes("wrong-password")) {

@@ -73,7 +73,6 @@ export const useGetDocuments = (collectionName) => {
 				setLoading(false)
 			} catch (error) {
 				setApiError("Algo deu errado.")
-				console.log(error)
 				setLoading(false)
 			}
 		}

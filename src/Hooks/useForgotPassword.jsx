@@ -18,7 +18,6 @@ export const useForgotPassword = () => {
 			return true
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
 			setApiError("Algo deu errado.")
 		}
 	}

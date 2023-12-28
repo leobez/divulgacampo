@@ -28,7 +28,6 @@ export const useGetDocument = (collectionName, docId=null) => {
 				setListOfDocs([docSnap.data()])
 			} catch (error) {
 				setApiError("Algo deu errado.")
-				console.log(error)
 				setLoading(false)
 			}
 		}

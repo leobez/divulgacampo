@@ -17,7 +17,6 @@ export const useDeleteDocument = (collectionName) => {
 			setLoading(false)
 		} catch (error) {
 			setApiError("Algo deu errado.")
-			console.log(error)
 		}
 	}
 	

@@ -40,7 +40,6 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 				const q = await query(col, where("uid", "==", uid), orderBy("createdAt", "desc"))
 	
 				await onSnapshot(q, (querySnapshot) => {
-					console.log("TRIGGER: getDocumentsByUid")
 					if (querySnapshot.docs.length <= 0) setListOfDocs([])
 					let temp = []
 					querySnapshot.docs.forEach(doc => {
@@ -52,7 +51,6 @@ export const useGetDocumentsByUid = (collectionName, uid) => {
 
 			} catch (error) {
 				setApiError("Algo deu errado.")
-				console.log(error)
 				setLoading(false)
 			}
 		}

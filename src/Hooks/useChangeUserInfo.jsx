@@ -62,7 +62,6 @@ export const useChangeUserInfo = () => {
 
 			// DELETE EACH DOC OWNED BY THE USER
 			await listOfDocs.map((doc) => {
-				//console.log("DELETANDO DOCUMENTO DE ID: ", doc.postId)
 				deleteDocument(doc.postId)
 			})
 			await deleteUser(auth.currentUser)
@@ -93,7 +92,6 @@ export const useChangeUserInfo = () => {
 
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
 			if (error.message.includes("wrong-password")) {
 				setAuthError("Senha atual incorreta.")
 			} else if (error.message.includes("weak-password")) {
