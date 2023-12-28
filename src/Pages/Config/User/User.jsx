@@ -15,7 +15,6 @@ const User = () => {
 				<>
 					<h1>Suas informações: </h1>
 					<hr />
-					<p className={styles.info}>Seu id é: <span>{auth.currentUser.uid}</span></p>
 					<p className={styles.info}>Seu nome é: <span>{auth.currentUser.displayName}</span></p>
 					<p className={styles.info}>Seu email é: <span>{auth.currentUser.email}</span></p>
 					<hr />

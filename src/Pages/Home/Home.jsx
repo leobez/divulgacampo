@@ -64,7 +64,6 @@ const Home = () => {
 				<div className={styles.refreshcontainer}>
 					<button onClick={() => setGetMoreDocs(0)} className={styles.refreshbutton}>
 						<p>Recarregar</p>				
-						<img src="..\src\assets\icons8-refresh-30.png" alt="refresh-icon" />
 					</button>
 				</div>
 
@@ -122,10 +121,6 @@ const Home = () => {
 							{apiError && <p>{apiError}</p>}
 						</div>
 
-						<div>
-							{!loading && listOfFilteredDocs.length <= 0 && <p>Não há posts.</p>}
-						</div>
-						
 					</div>
 
 				</div>
