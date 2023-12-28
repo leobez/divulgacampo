@@ -57,7 +57,6 @@ const ChangeEmail = () => {
 			setTimeout(() => logoutUser(auth), 1500)
 		} catch (error) {
 			setLoading(false)
-			console.log(error)
 			if (error.message.includes("wrong-password")) {
 				setError("Senha incorreta.")
 			} else {

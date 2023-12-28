@@ -26,7 +26,6 @@ const Home = () => {
 			setGetMoreDocs(0)
 		} else {
 			setGetMoreDocs((prev) => prev+1)
-			console.log(searchQuery)
 			setSearch(searchQuery)
 		}
 	}

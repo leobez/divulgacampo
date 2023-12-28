@@ -24,7 +24,6 @@ const LandingEmailPage = () => {
 			await confirmPasswordReset(auth, actionCode, randomPassword);
 			setSuccess(`Sua nova senha é: ${randomPassword}. Entre e troque sua senha imediatamente.`)
 		} catch (error) {
-			console.log(error)
 			if (error.message.includes("invalid-action-code")) {
 				setError("Algo deu errado. Verifique se clicou no link correto em seu e-mail.")
 			} else {
