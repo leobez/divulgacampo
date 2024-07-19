@@ -8,7 +8,9 @@ Para acessar: https://divulgacampo.web.app/
 
 Site para divulgação de pesquisas de campo. Projeto para a disciplina de laboratório de engenharia de software do 5º semestre de ADS.
 
-Feito com uso de React no Frontend e a plataforma em nuvem [Firebase](https://firebase.google.com/?hl=pt-br) no Backend, especificamente os serviços Firestore e Authentication.
+> screenshot
+
+Feito com React e [Firebase](https://firebase.google.com/?hl=pt-br) no, especificamente os serviços Firestore e Authentication.
 
 <hr>
 
