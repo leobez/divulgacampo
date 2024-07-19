@@ -8,7 +8,7 @@ Para acessar: https://divulgacampo.web.app/
 
 Site para divulgação de pesquisas de campo. Projeto para a disciplina de laboratório de engenharia de software do 5º semestre de ADS.
 
-> screenshot
+<img src="https://github.com/leobez/divulgacampo/blob/main/screenshots/main.png" height='500px'/>
 
 Feito com React e [Firebase](https://firebase.google.com/?hl=pt-br) no, especificamente os serviços Firestore e Authentication.
 
